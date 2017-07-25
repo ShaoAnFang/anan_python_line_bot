@@ -44,7 +44,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
-    if event.message.text == 'stock':
+    if event.message.text == '股':
         result = stock()
 
     line_bot_api.reply_message(
@@ -52,7 +52,9 @@ def handle_message(event):
                                TextSendMessage(text=result))
     return 0
 
-
+    line_bot_api.reply_message(
+                               event.reply_token,
+                               TextSendMessage(text=vent.message.text))
 
 def stock():
     stockNumber = '2330'
