@@ -1,4 +1,3 @@
-#!/usr/bin/env python3  
 # -*- coding: utf-8 -*-  
 
 import requests
@@ -44,13 +43,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
-    if event.message.text == '股':
-        result = stock()
+    #if event.message.text == '股':
+    #    result = stock()
 
-    line_bot_api.reply_message(
-                               event.reply_token,
-                               TextSendMessage(text=result))
-    return 0
+    #line_bot_api.reply_message(
+    #                          event.reply_token,
+    #                           TextSendMessage(text=result))
+    #return 0
 
     line_bot_api.reply_message(
                                event.reply_token,
