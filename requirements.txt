@@ -1,6 +1,4 @@
 flask
 gunicorn
-requests
-json
 beautifulsoup4
 line-bot-sdk==1.3.0
