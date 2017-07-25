@@ -36,9 +36,64 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+     if event.message.text == '股':
+        result = stock()
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=result))
+        return 0
+    
+    
+    #line_bot_api.reply_message(
+    #    event.reply_token,
+    #    TextSendMessage(text=event.message.text))
+
+def stock():
+    stockNumber = '2330'
+    url = 'https://tw.finance.yahoo.com/q/q?s='
+    url += stockNumber
+    print(url)
+    
+    #寫header偽裝成瀏覽器瀏覽
+    header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0'}
+    resp = requests.get(url, headers=header ,verify=False)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    
+    #撈出那支股票的標題
+    stockTitle = soup.find('td', width='105').text
+    #print(stockTitle)
+    stockTitle = stockTitle.replace('加到投資組合'.decode('utf8'),'')
+    #print(stockTitle)
+
+    #把欄位撈出來
+    title = []
+    for t in soup.find_all('th', align='center'):
+        #print(t.text)
+        title.append(t.text.encode('utf8'))
+    #最後一個欄位沒用,刪掉    
+    del title[11]
+    #print(title)
+
+    #欄位對應的內容撈出來
+    content = []
+    content.append(stockTitle.encode('utf8'))
+    for info in soup.find_all('td', bgcolor='#FFFfff'): 
+        #print(info.text[0:6].encode('utf8'))
+        #content.append(info.text.replace('\n                ','').replace('成交明細技術　新聞基本　籌碼個股健診'.decode('utf8'),'').encode('utf8'))
+        content.append(info.text.strip()[0:6].encode('utf8'))
+    
+    #print(content)
+
+    dictionary = dict(zip(title,content))
+    #print json.dumps(dictionary, ensure_ascii=False)
+
+    resutString = ''
+    for key,value in dictionary.iteritems():
+        resutString += key + ' ' + value + '\n'
+        #print(key,value)
+
+    print(resutString)
+    return resutString
 
 
 if __name__ == "__main__":
