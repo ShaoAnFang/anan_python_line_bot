@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-  
-
-import requests
-import json
-from bs4 import BeautifulSoup
-
 from flask import Flask, request, abort
 
 from linebot import (
@@ -26,35 +20,25 @@ handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-    
+
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-    
+
     # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    
+
     return 'OK'
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    
-    #if event.message.text == '股':
-    #    result = stock()
-
-    #line_bot_api.reply_message(
-    #                          event.reply_token,
-    #                           TextSendMessage(text=result))
-    #return 0
-
     line_bot_api.reply_message(
-                               event.reply_token,
-                               TextSendMessage(text=vent.message.text))
-
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":
