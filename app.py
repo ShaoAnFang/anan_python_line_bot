@@ -59,49 +59,7 @@ def handle_message(event):
     #    event.reply_token,
     #    TextSendMessage(text=event.message.text))
 
-def stock():
-    url = 'https://www.google.com.hk/finance?q=TPE:2330'
-    header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
-    res = requests.get(url,headers=header,verify=False)
-    #res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text,'html.parser')
 
-    title = soup.find('h3')
-    title = title.text.strip().encode('utf8')
-    #print(title)
-
-    upDown = soup.select('.chr')
-    uString = ''
-    for u in upDown:
-        #print(u.text.strip().encode('utf8'))
-        uString += u.text.strip().encode('utf8')
-        #print(uString)
-
-    key = []
-    for k in soup.select('.key'):
-        #print(k.text.strip().encode('utf8'))
-        key.append(k.text.strip().encode('utf8'))
-
-    val = list()
-    for v in soup.select('.val'):
-        #print(v.text.strip().encode('utf8'))
-        val.append(v.text.strip().encode('utf8'))
-
-    dictionary = dict(zip(key,val))
-    dictionary['漲跌'] = uString
-    del dictionary['啤打系數']
-    del dictionary['機構持股率：']
-    #print(json.dumps(dictionary, ensure_ascii=False))
-
-    resultString = ''
-    resultString += title + '\n'
-
-    for key, value in dictionary.iteritems() :
-        #print key, value
-        resultString += key + ' ' + value + '\n'
-    print resultString
-    
-    return resutString
 
 
 if __name__ == "__main__":
