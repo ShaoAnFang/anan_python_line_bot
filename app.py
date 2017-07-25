@@ -1,3 +1,7 @@
+import requests
+import json
+from bs4 import BeautifulSoup
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -41,7 +45,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=result))
-        return 0
+        
     
     
     #line_bot_api.reply_message(
