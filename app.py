@@ -60,7 +60,7 @@ def stock():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
 
-   title = 'GGWP'
+    title = 'GGWP'
 
     return title
     
