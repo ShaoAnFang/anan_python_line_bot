@@ -80,8 +80,9 @@ def stock():
         #print(v.text.strip().encode('utf8'))
         val.append(v.text.strip())
 
-    dictionary = dict(zip(key,val))
-    dictionary['漲跌'] = uString
+    #dictionary = dict(zip(key,val))
+    #dictionary['漲跌'] = uString
+    
     #del dictionary['啤打系數']
     #del dictionary['機構持股率：']
     #print(json.dumps(dictionary, ensure_ascii=False))
@@ -89,9 +90,9 @@ def stock():
     resultString = ''
     resultString += title + '\n'
 
-    for key, value in dictionary.iteritems() :
+    #for key, value in dictionary.iteritems() :
         #print key, value
-        resultString += key + ' ' + value + '\n'
+    #    resultString += key + ' ' + value + '\n'
         #print resultString
     
 
