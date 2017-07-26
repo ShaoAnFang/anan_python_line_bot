@@ -46,7 +46,7 @@ def handle_message(event):
     #    event.reply_token,
     #    TextSendMessage(text=event.message.text))
 
-    if event.message.text == 'Stock':
+    if event.message.text == '股':
         result = stock()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:  
@@ -71,30 +71,8 @@ def stock():
         uString += u.text.strip().encode('utf8')
         #print(uString)
 
-    key = []
-    for k in soup.select('.key'):
-        #print(k.text.strip().encode('utf8'))
-        key.append(k.text.strip().encode('utf8'))
 
-    val = list()
-    for v in soup.select('.val'):
-        #print(v.text.strip().encode('utf8'))
-        val.append(v.text.strip().encode('utf8'))
-
-    dictionary = dict(zip(key,val))
-    dictionary['漲跌'] = uString
-    del dictionary['啤打系數']
-    del dictionary['機構持股率：']
-    #print(json.dumps(dictionary, ensure_ascii=False))
-
-    resultString = ''
-    resultString += title + '\n'
-
-    for key, value in dictionary.iteritems() :
-        #print key, value
-        resultString += key + ' ' + value + '\n'
-    #print resultString
-    return resutString
+    return title
     
 
 if __name__ == "__main__":
