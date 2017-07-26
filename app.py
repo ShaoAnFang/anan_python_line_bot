@@ -57,9 +57,10 @@ def stock(stockNumber):
         #print(p.text)
         nowPrice += p.text.strip()
     
-    # bld,chr
-    upDown = soup.select('.ch bld')
     #漲跌
+    upDown = soup.select('.chr')
+    if not upDown :
+        upDown = soup.select('.chg')
     uString = ''
     for u in upDown:
         #print(u.text.strip().encode('utf8'))
