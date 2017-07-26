@@ -116,7 +116,7 @@ def stock():
     #股息/收益
     resultString += key[6] + '\n' + val[6] + '\n'
     resultString += '-------------' + '\n'
-    resutlString += 'From Google Stock'
+    #resutlString += 'From Google Stock'
     
     #dictionary = dict(zip(key,val))
     #dictionary['漲跌'] = uString
