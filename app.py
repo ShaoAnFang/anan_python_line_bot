@@ -38,10 +38,6 @@ def callback():
 
     return 'OK'
 
-
-
-
-    
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q=TPE:'
     url += stockNumber
@@ -135,6 +131,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:  
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+        
+  
 
 if __name__ == "__main__":
     app.run()
