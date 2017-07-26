@@ -62,7 +62,10 @@ def stock():
     title = soup.find('h3')
     title = title.text.strip()
     #print(title)
-
+    
+    resultString = ''
+    resultString += title
+    
     upDown = soup.select('.chr')
     uString = ''
     for u in upDown:
@@ -70,20 +73,22 @@ def stock():
         uString += u.text.strip()
         #print(uString)
     
-    resultString = ''
-    
     key = []
     for k in soup.select('.key'):
         #print(k.text.strip().encode('utf8'))
         key.append(k.text.strip())
-        resultString += k.text.strip()
+    
     val = list()
     for v in soup.select('.val'):
         #print(v.text.strip().encode('utf8'))
         val.append(v.text.strip())
-
+    
+    resultString += k[2] + '' + val[2]
+    
+    
     dictionary = dict(zip(key,val))
     dictionary['漲跌'] = uString
+    #resultString += dictionary['漲跌']
     
     #del dictionary['啤打系數']
     #del dictionary['機構持股率：']
@@ -97,7 +102,7 @@ def stock():
     #    resultString += key + ' ' + value + '\n'
         #print resultString
    
-    resultString += dictionary['漲跌']
+    
 
     return resultString
     
