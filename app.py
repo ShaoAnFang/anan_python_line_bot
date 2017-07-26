@@ -47,18 +47,17 @@ def handle_message(event):
     #    TextSendMessage(text=event.message.text))
     msg = event.message.text
     
-    if (msg.index('股') == 0) & (len(msg) == 8):
-        result = stock()
+    if msg.index('股') == 0:
+        stockNumber = msg.split()[1]
+        result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-    #else:  
-    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+    else:  
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
     
-def stock():
-    stockNumber = ''
-    
-    url = 'https://www.google.com.hk/finance?q=TPE:2330'
-    
+def stock(stockNumber):
+    url = 'https://www.google.com.hk/finance?q=TPE:'
+    url += stockNumber
     header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
     res = requests.get(url,headers=header,verify=False)
     res.encoding = 'utf-8'
