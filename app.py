@@ -83,7 +83,7 @@ def stock():
         #print(v.text.strip().encode('utf8'))
         val.append(v.text.strip())
     
-    resultString += k[2] + '' + val[2]
+    resultString += key[2] + '' + val[2]
     
     
     dictionary = dict(zip(key,val))
