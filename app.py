@@ -98,7 +98,6 @@ def stock(stockNumber):
     resultString += '-------------' + '\n'
     #股息/收益
     resultString += key[6] + '\n' + val[6] + '\n'
-    resultString += '-------------' + '\n'
     resutlString += ' Google Stock'
    
 
