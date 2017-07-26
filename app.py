@@ -130,7 +130,7 @@ def handle_message(event):
     
     
     if msg == '安安'
-        list = 'Hello Hello 你可以 \n'+ '\n' + '1. 教我說話'+ '安 你好=Hello World! \n' + '2. 輸入 股 2330 \' + 
+        list = 'Hello Hello 你可以 \n'+ '\n' + '1. 教我說話'+ '安 你好=Hello World! \n' + '2. 輸入 股 2330 \n' + 
         list += '顯示台積電個股資訊'
         
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=list))
