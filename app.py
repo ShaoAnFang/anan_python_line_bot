@@ -59,8 +59,9 @@ def stock():
     res = requests.get(url,headers=header,verify=False)
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
-
-    title = 'GGWP'
+    title = soup.find('h3')
+    title = title.text.strip().encode('utf8')
+    
 
     return title
     
