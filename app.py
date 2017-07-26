@@ -90,9 +90,9 @@ def stock():
     resultString += title + '\n'
 
     for key, value in dictionary.iteritems() :
-    #print key, value
-    resultString += key + ' ' + value + '\n'
-    print resultString
+        #print key, value
+        resultString += key + ' ' + value + '\n'
+        print resultString
     
 
     return resultString
