@@ -60,25 +60,25 @@ def stock():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
     title = soup.find('h3')
-    title = title.text.strip().encode('utf8')
+    title = title.text.strip())
     #print(title)
 
     upDown = soup.select('.chr')
     uString = ''
     for u in upDown:
         #print(u.text.strip().encode('utf8'))
-        uString += u.text.strip().encode('utf8')
+        uString += u.text.strip())
         #print(uString)
 
     key = []
     for k in soup.select('.key'):
         #print(k.text.strip().encode('utf8'))
-        key.append(k.text.strip().encode('utf8'))
+        key.append(k.text.strip())
 
     val = list()
     for v in soup.select('.val'):
         #print(v.text.strip().encode('utf8'))
-        val.append(v.text.strip().encode('utf8'))
+        val.append(v.text.strip())
 
     dictionary = dict(zip(key,val))
     dictionary['漲跌'] = uString
