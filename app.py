@@ -64,7 +64,7 @@ def stock():
     #print(title)
     
     resultString = ''
-    resultString += title
+    resultString += title + '\n'
     
     upDown = soup.select('.chr')
     uString = ''
@@ -93,9 +93,6 @@ def stock():
     #del dictionary['啤打系數']
     #del dictionary['機構持股率：']
     #print(json.dumps(dictionary, ensure_ascii=False))
-
-    
-    resultString += title + '\n'
 
     #for key, value in dictionary.items():
         #print key, value
