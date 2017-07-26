@@ -96,21 +96,27 @@ def stock():
     
     #現價
     resultString += '現價 ' + '\n' + nowPrice + '\n'
+    resultString += '-------------' + '\n'
     #漲跌
     resultString += '漲跌' + '\n' + uString + '\n'
+    resultString += '-------------' + '\n'
     #每股盈餘
     resultString += key[7] + '\n' + val[7] + '\n'
+    resultString += '-------------' + '\n'
     #開盤
     resultString += key[2]+ '\n' + val[2] + '\n'
+    resultString += '-------------' + '\n'
     #範圍
     resultString += key[0] + '\n' + val[0] + '\n'
+    resultString += '-------------' + '\n'
     #52週
     resultString += key[1] + '\n' + val[1] + '\n'
+    resultString += '-------------' + '\n'
     #股息/收益
     resultString += key[6] + '\n' + val[6] + '\n'
     
     dictionary = dict(zip(key,val))
-    dictionary['漲跌'] = uString
+    #dictionary['漲跌'] = uString
     #resultString += dictionary['漲跌']
     
     #del dictionary['啤打系數']
