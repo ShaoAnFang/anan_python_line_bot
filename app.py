@@ -69,28 +69,30 @@ def stock():
         #print(u.text.strip().encode('utf8'))
         uString += u.text.strip()
         #print(uString)
-
+    
+    resultString = ''
+    
     key = []
     for k in soup.select('.key'):
         #print(k.text.strip().encode('utf8'))
         key.append(k.text.strip())
-
+        resultString += k.text.strip()
     val = list()
     for v in soup.select('.val'):
         #print(v.text.strip().encode('utf8'))
         val.append(v.text.strip())
 
-    #dictionary = dict(zip(key,val))
+    dictionary = dict(zip(key,val))
     #dictionary['漲跌'] = uString
     
     #del dictionary['啤打系數']
     #del dictionary['機構持股率：']
     #print(json.dumps(dictionary, ensure_ascii=False))
 
-    resultString = ''
+    
     resultString += title + '\n'
 
-    #for key, value in dictionary.iteritems() :
+    #for key, value in dictionary.items():
         #print key, value
     #    resultString += key + ' ' + value + '\n'
         #print resultString
