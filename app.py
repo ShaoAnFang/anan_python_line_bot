@@ -54,7 +54,9 @@ def mongo():
      #pprint.pprint(a)
      db += a + '\n'
     
-    return mongo
+    
+    
+    return db
 
 
 def stock(stockNumber):
