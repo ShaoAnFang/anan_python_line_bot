@@ -137,7 +137,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
     if len(msg) > 50:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 不要再轉貼廢文囉'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
     
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
