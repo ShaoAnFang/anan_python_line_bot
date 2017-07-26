@@ -70,32 +70,32 @@ def stock():
         uString += u.text.strip())
         #print(uString)
 
-    key = []
-    for k in soup.select('.key'):
+    #key = []
+    #for k in soup.select('.key'):
         #print(k.text.strip().encode('utf8'))
-        key.append(k.text.strip())
+    #    key.append(k.text.strip())
 
-    val = list()
-    for v in soup.select('.val'):
+    #val = list()
+    #for v in soup.select('.val'):
         #print(v.text.strip().encode('utf8'))
-        val.append(v.text.strip())
+    #    val.append(v.text.strip())
 
-    dictionary = dict(zip(key,val))
-    dictionary['漲跌'] = uString
-    del dictionary['啤打系數']
-    del dictionary['機構持股率：']
+    #dictionary = dict(zip(key,val))
+    #dictionary['漲跌'] = uString
+    #del dictionary['啤打系數']
+    #del dictionary['機構持股率：']
     #print(json.dumps(dictionary, ensure_ascii=False))
 
-    resultString = ''
-    resultString += title + '\n'
+    #resultString = ''
+    #resultString += title + '\n'
 
-    for key, value in dictionary.iteritems() :
+    #for key, value in dictionary.iteritems() :
         #print key, value
-        resultString += key + ' ' + value + '\n'
-        print resultString
+    #    resultString += key + ' ' + value + '\n'
+        #print resultString
     
 
-    return resultString
+    return uString
     
 
 if __name__ == "__main__":
