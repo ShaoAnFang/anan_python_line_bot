@@ -127,9 +127,9 @@ def stock(stockNumber):
 def handle_message(event):
     msg = event.message.text
     
-    if msg == 'mongo':
-        dbResult = mongo()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+    #if msg == 'mongo':
+    #    dbResult = mongo()
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
     if msg.index('股') == 0:
         stockNumber = msg.split()[1]
