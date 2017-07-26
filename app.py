@@ -54,7 +54,10 @@ def handle_message(event):
 
     
 def stock():
+    stockNumber = ''
+    
     url = 'https://www.google.com.hk/finance?q=TPE:2330'
+    
     header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
     res = requests.get(url,headers=header,verify=False)
     res.encoding = 'utf-8'
@@ -65,8 +68,16 @@ def stock():
     
     resultString = ''
     resultString += title + '\n'
+    #現價
+    nowPrice = ''
+    for p in soup.select('.pr'):
+        #print(p.text)
+        nowPrice += p.text.strip()
+    
     
     upDown = soup.select('.chr')
+    uString = ''
+    #漲跌
     uString = ''
     for u in upDown:
         #print(u.text.strip().encode('utf8'))
@@ -83,8 +94,20 @@ def stock():
         #print(v.text.strip().encode('utf8'))
         val.append(v.text.strip())
     
-    resultString += key[2] + '' + val[2]
-    
+    #現價
+    resultString += '現價 ' + nowPrice + '\n'
+    #漲跌
+    resultString += '漲跌' + '' + uString + '\n'
+    #每股盈餘
+    resultString += key[7] + '' + val[7] + '\n'
+    #開盤
+    resultString += key[2] + '' + val[2] + '\n'
+    #範圍
+    resultString += key[0] + '' + val[0] + '\n'
+    #52週
+    resultString += key[1] + '' + val[1] + '\n'
+    #股息/收益
+    resultString += key[6] + '' + val[6] + '\n'
     
     dictionary = dict(zip(key,val))
     dictionary['漲跌'] = uString
