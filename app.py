@@ -60,7 +60,7 @@ def stock():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
     title = soup.find('h3')
-    title = title.text.strip().encode('utf8')
+    title = title.text.strip()
     
 
     return title
