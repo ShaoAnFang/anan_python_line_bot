@@ -99,21 +99,9 @@ def stock(stockNumber):
     #股息/收益
     resultString += key[6] + '\n' + val[6] + '\n'
     resultString += '-------------' + '\n'
-    #resutlString += 'From Google Stock'
-    #resultString += '-------------' + '\n'
-    
-    #dictionary = dict(zip(key,val))
-    #dictionary['漲跌'] = uString
-    #resultString += dictionary['漲跌']
-    
-    #del dictionary['啤打系數']
-    #del dictionary['機構持股率：']
-    #print(json.dumps(dictionary, ensure_ascii=False))
+    resutlString += ' Google Stock'
+   
 
-    #for key, value in dictionary.items():
-        #print key, value
-    #    resultString += key + ' ' + value + '\n'
-        #print resultString
 
     return resultString
    
