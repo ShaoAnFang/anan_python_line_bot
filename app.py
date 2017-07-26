@@ -57,20 +57,10 @@ def stock():
     url = 'https://www.google.com.hk/finance?q=TPE:2330'
     header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
     res = requests.get(url,headers=header,verify=False)
-    #res.encoding = 'utf-8'
+    res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
 
-    title = soup.find('h3')
-    title = title.text.strip().encode('utf8')
-    #print(title)
-
-    upDown = soup.select('.chr')
-    uString = ''
-    for u in upDown:
-        #print(u.text.strip().encode('utf8'))
-        uString += u.text.strip().encode('utf8')
-        #print(uString)
-
+   title = 'GGWP'
 
     return title
     
