@@ -46,7 +46,7 @@ def handle_message(event):
     #    event.reply_token,
     #    TextSendMessage(text=event.message.text))
 
-    if event.message.text == '股':
+    if event.message.text == 'Stock':
         result = stock()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:  
