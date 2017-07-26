@@ -53,7 +53,8 @@ def mongo():
     for a in collect.find():
         db += a + '\n'
     
-    
+    if not db:
+        db += 'GG WP'
     
     return db
 
@@ -130,10 +131,10 @@ def handle_message(event):
         dbResult = mongo()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-    #if msg.index('股') == 0:
-    #    stockNumber = msg.split()[1]
-    #    result = stock(stockNumber)
-    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    if msg.index('股') == 0:
+        stockNumber = msg.split()[1]
+        result = stock(stockNumber)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
