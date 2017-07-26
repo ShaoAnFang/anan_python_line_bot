@@ -1,9 +1,8 @@
-
+#!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
 import requests
 import json
 from bs4 import BeautifulSoup
-
 from flask import Flask, request, abort
 
 from linebot import (
