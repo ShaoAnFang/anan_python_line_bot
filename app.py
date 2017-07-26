@@ -131,7 +131,7 @@ def handle_message(event):
         #dbResult = mongo()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='gogo mongo'))
         
-    if msg[0] == '股' and len(msg) == 6:
+    if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
         result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
