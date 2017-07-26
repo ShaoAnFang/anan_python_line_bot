@@ -95,7 +95,7 @@ def stock():
         #print resultString
     
 
-    return uString
+    return title
     
 
 if __name__ == "__main__":
