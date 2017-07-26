@@ -83,7 +83,7 @@ def stock():
         val.append(v.text.strip())
 
     dictionary = dict(zip(key,val))
-    #dictionary['漲跌'] = uString
+    dictionary['漲跌'] = uString
     
     #del dictionary['啤打系數']
     #del dictionary['機構持股率：']
