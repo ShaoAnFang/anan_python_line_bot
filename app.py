@@ -45,10 +45,11 @@ def handle_message(event):
     #line_bot_api.reply_message(
     #    event.reply_token,
     #    TextSendMessage(text=event.message.text))
+    msg = event.message.text
+    stockCheck = '股'
+    gg = msg.index(stockCheck)
     
-     
-    
-    if event.message.text.index('股') == 1 :
+    if gg == 1 :
         result = stock()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:  
