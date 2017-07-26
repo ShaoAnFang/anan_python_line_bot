@@ -51,8 +51,7 @@ def mongo():
     db = ''
     
     for a in collect.find():
-     #pprint.pprint(a)
-     db += a + '\n'
+        db += a + '\n'
     
     
     
