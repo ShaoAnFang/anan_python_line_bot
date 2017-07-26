@@ -110,10 +110,9 @@ def handle_message(event):
         stockNumber = msg.split()[1]
         result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-        return 0
+        
     
-    if msg == '嗨':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
         
   
 
