@@ -118,7 +118,7 @@ def stock(stockNumber):
     resultString += key[1] + '\n' + val[1] + '\n'
     resultString += '-------------' + '\n'
     #股息/收益
-    resultString += key[6] + '\n' + val[6] + '\n' + 'From Google stock'
+    resultString += key[6] + '\n' + val[6] + '\n' resultString + '-------------' + '\n' + 'From Google stock'
    
     return resultString
    
@@ -130,7 +130,7 @@ def handle_message(event):
     
     
     if msg == '安安'
-        menulist = 'Hello Hello 你可以 \n' + '\n' + '1. 教我說話' + '安 你好=Hello World! \n' + '2. 輸入 股 2330 \n'
+        menulist = 'Hello Hello 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n' + '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
 
         
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
