@@ -96,7 +96,8 @@ def stock():
         #print key, value
     #    resultString += key + ' ' + value + '\n'
         #print resultString
-    
+   
+    resultString += dictionary['漲跌']
 
     return resultString
     
