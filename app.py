@@ -127,14 +127,15 @@ def stock(stockNumber):
 def handle_message(event):
     msg = event.message.text
     
-    if msg == 'mongo':
+    if msg == '股 2330':
         #dbResult = mongo()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='gogo mongo'))
+        msglen = len(msg)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msglen))
         
-    if msg[0] == '股' and len(msg) == 8:
-        stockNumber = msg.split()[1]
-        result = stock(stockNumber)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    #if msg[0] == '股' and len(msg) == 8:
+    #    stockNumber = msg.split()[1]
+    #    result = stock(stockNumber)
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
