@@ -47,7 +47,7 @@ def handle_message(event):
     #    TextSendMessage(text=event.message.text))
     msg = event.message.text
     
-    if msg.index('股') == 0:
+    if (msg.index('股') == 0) & (len(msg) == 8):
         result = stock()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     #else:  
