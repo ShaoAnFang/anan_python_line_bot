@@ -45,8 +45,10 @@ def handle_message(event):
     #line_bot_api.reply_message(
     #    event.reply_token,
     #    TextSendMessage(text=event.message.text))
-
-    if event.message.text == '股':
+    
+     
+    
+    if event.message.text.index('股') == 1 :
         result = stock()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:  
@@ -95,6 +97,7 @@ def stock():
         val.append(v.text.strip())
     
     #現價
+    resultString += '-------------' + '\n'
     resultString += '現價 ' + '\n' + nowPrice + '\n'
     resultString += '-------------' + '\n'
     #漲跌
@@ -114,8 +117,10 @@ def stock():
     resultString += '-------------' + '\n'
     #股息/收益
     resultString += key[6] + '\n' + val[6] + '\n'
+    resultString += '-------------' + '\n'
+    resutlString += '-From Google Stock'
     
-    dictionary = dict(zip(key,val))
+    #dictionary = dict(zip(key,val))
     #dictionary['漲跌'] = uString
     #resultString += dictionary['漲跌']
     
