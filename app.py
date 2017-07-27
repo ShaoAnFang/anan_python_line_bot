@@ -1,12 +1,17 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
+import pymongo
 
 import requests
 import json
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 
-
+from pymongo import MongoClient
+uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017,an-shard-00-01-cdgd9.mongodb.net:27017,an-shard-00-02-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
+client = MongoClient(uri)
+db = client['An']
+collect = db['test']
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -41,7 +46,17 @@ def callback():
 
     return 'OK'
 
-
+def mongo():
+    
+    z = list(collect.find())
+    x = dict(z[5])
+    keys = x.keys()
+    value = x.values()
+    v = value[0]
+    
+    return v
+    
+    
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q=TPE:'
     url += stockNumber
@@ -116,8 +131,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
     
     if msg == 'mongo':
-        #dbResult = mongo()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='gogo mongo'))
+        dbResult = mongo()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
