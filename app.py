@@ -46,6 +46,10 @@ def callback():
 
     return 'OK'
 
+@app.route('/GGWP')
+def test():
+    return "<p>Hello World!</p>"
+
 @app.route("/mon", methods=['GET'])
 def mongo():
     
