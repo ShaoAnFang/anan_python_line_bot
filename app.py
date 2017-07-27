@@ -46,7 +46,7 @@ def callback():
 
     return 'OK'
 
-@app.route('/GGWP')
+@app.route('/GGWP', methods=['GET'])
 def test():
     return "<p>Hello World!</p>"
 
