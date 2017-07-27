@@ -58,8 +58,8 @@ def mongo():
     keys = x.keys()
     value = x.values()
     v = value[0]
-
-    return "<p>Hello World! %s</p>" % (v)
+    
+    return "<p>Hello World! str(v)</p>"
 
     
 def stock(stockNumber):
