@@ -136,13 +136,13 @@ def handle_message(event):
         #dbResult = mongo()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='gogo mongo'))
         
-    if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
-        stockNumber = msg.split()[1]
-        result = stock(stockNumber)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    #if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
+    #    stockNumber = msg.split()[1]
+    #    result = stock(stockNumber)
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
-    if len(msg) > 50:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
+    #if len(msg) > 50:
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
     
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
