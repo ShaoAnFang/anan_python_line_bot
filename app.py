@@ -1,17 +1,12 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
 
-import pymongo
 import requests
 import json
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 
-#from pymongo import MongoClient
-#uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017,an-shard-00-01-cdgd9.mongodb.net:27017,an-shard-00-02-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
-#client = MongoClient(uri)
-#db = client['An']
-#collect = db['test']
+
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -45,18 +40,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
-#def mongo():
-    
-#    db = ''
-    
-#    for a in collect.find():
-#        db += a + '\n'
-    
-#    if not db:
-#        db += 'GG WP'
-    
-#    return db
 
 
 def stock(stockNumber):
@@ -141,8 +124,8 @@ def handle_message(event):
         result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
-    if len(msg) > 50:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
+    #if len(msg) > 50:
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
     
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
