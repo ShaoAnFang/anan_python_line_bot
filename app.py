@@ -111,7 +111,7 @@ def handle_message(event):
     msg = event.message.text
     
     if msg == '安安':
-        menulist = 'Hello Hello 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
+        menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
         menulist += '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
     
