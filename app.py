@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 
 from pymongo import MongoClient
-uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017,an-shard-00-01-cdgd9.mongodb.net:27017,an-shard-00-02-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
 client = MongoClient(uri)
 db = client['An']
 collect = db['test']
