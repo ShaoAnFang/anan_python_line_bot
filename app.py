@@ -46,17 +46,17 @@ def callback():
 
     return 'OK'
 
-def mongo():
+#def mongo():
     
-    db = ''
+#    db = ''
     
-    for a in collect.find():
-        db += a + '\n'
+#    for a in collect.find():
+#        db += a + '\n'
     
-    if not db:
-        db += 'GG WP'
+#    if not db:
+#        db += 'GG WP'
     
-    return db
+#    return db
 
 
 def stock(stockNumber):
