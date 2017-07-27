@@ -59,7 +59,7 @@ def mongo():
     value = x.values()
     v = value[0]
     g = "<p>Hello World! {0}</p>".format(v)
-    return g
+    return "<p>Hello pymongo!</p>"
 
     
 def stock(stockNumber):
