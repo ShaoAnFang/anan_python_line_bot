@@ -46,6 +46,7 @@ def callback():
 
     return 'OK'
 
+@app.route("/mon", methods=['GET'])
 def mongo():
     
     z = list(collect.find())
