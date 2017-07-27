@@ -58,9 +58,9 @@ def mongo():
     keys = x.keys()
     value = x.values()
     v = value[0]
-    
-    return v
-    
+
+    return "<p>Hello World! %s</p>" % (v)
+
     
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q=TPE:'
