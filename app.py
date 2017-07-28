@@ -56,7 +56,7 @@ def mongo():
     keys = x.keys()
     value = x.values()
     v = value[0]
-    g = "<p>Hello World! {0}</p>".format(v)
+    g = "<p>Hello World! {}</p>".format(v)
     return "<p>Hello pymongo!</p>"
 
     
