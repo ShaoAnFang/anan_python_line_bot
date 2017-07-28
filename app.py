@@ -76,7 +76,7 @@ def firebaseInsert():
     
     putResult = firebase.put('data',key,getValues)
   
-    return '好的 記住了'
+    return "好的 記住了"
 
     
 def stock(stockNumber):
