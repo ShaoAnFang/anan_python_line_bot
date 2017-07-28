@@ -176,7 +176,7 @@ def handle_message(event):
         
     
     if msg == '電影':
-        buttons_template_message = TemplateSendMessage(
+        buttons_template = TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
                 thumbnail_image_url='https://example.com/image.jpg',
