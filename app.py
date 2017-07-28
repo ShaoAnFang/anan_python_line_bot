@@ -1,15 +1,14 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
 
+import random
 import requests
 import json
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
-from pymongo import MongoClient
-uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
-client = MongoClient(uri)
-db = client['An']
-collect = db['test']
+
+from firebase import firebase
+firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
     
 from linebot import (
     LineBotApi, WebhookHandler
@@ -48,22 +47,36 @@ def callback():
 def test():
     return "Hello World!"
 
-@app.route("/mon", methods=['GET'])
-def mongo():
+@app.route("/queryDB", methods=['GET'])
+def firebaseQuery(key):
+    queryKey = firebase.get('/data',key)
+    if queryKey is None:
+        retrun
+    
+    getValues = firebase.get('/data',key)
+    #print(getResult)
+    #取個數
+    count = len(getValues) - 1
+    #抽亂數
+    randomNumber = random.randint(0,count)
+    #print(getValues[randomNumber])
+    result = getValues[randomNumber]
+  
+    return result
 
-    z = list()
+@app.route("/insertDB", methods=['GET'])
+def firebaseInsert():
     
-    for x in collect.find():
-        z.append(x)
+    key = '紹安'
+    value = 'OC之神'
     
-    x = dict(z[5])
-    keys = x.keys()
-    value = x.values()
-    v = value[0]
-    #g = "<p>Hello World! {}</p>".format(v)
+    getValues = firebase.get('/data',key)
     
-    #"<p>Hello pymongo!</p>"
-    return v
+    getValues.append(value)
+    
+    putResult = firebase.put('data',key,getValues)
+  
+    return '好的 記住了'
 
     
 def stock(stockNumber):
