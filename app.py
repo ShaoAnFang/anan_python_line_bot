@@ -60,10 +60,10 @@ def mongo():
     keys = x.keys()
     value = x.values()
     v = value[0].encode('utf8')
-    g = "<p>Hello World! {}</p>".format(v)
+    #g = "<p>Hello World! {}</p>".format(v)
     
     #"<p>Hello pymongo!</p>"
-    return g
+    return v
 
     
 def stock(stockNumber):
