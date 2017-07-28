@@ -6,12 +6,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
-
 from pymongo import MongoClient
-uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017,an-shard-00-01-cdgd9.mongodb.net:27017,an-shard-00-02-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
-client = MongoClient(uri)
-db = client['An']
-collect = db['test']
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -52,6 +47,10 @@ def test():
 
 @app.route("/mon", methods=['GET'])
 def mongo():
+    uri = "mongodb://ilovet720419:720419@an-shard-00-00-cdgd9.mongodb.net:27017,an-shard-00-01-cdgd9.mongodb.net:27017,an-shard-00-02-cdgd9.mongodb.net:27017/?ssl=true&replicaSet=An-shard-0&authSource=admin"
+    client = MongoClient(uri)
+    db = client['An']
+    collect = db['test']
     
     z = list(collect.find())
     x = dict(z[5])
