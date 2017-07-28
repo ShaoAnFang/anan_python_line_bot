@@ -162,7 +162,7 @@ def handle_message(event):
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
     
     if msg[0] == '安' and msg[1] == ' ':
-        String = msg,split()[1]
+        String = msg.split('安 ')
         key = String.split('=')[0]
         value = String.split('=')[1]
         insertResult = firebaseInsert(key,value)
