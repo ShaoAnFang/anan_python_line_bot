@@ -167,7 +167,7 @@ def handle_message(event):
         key = String.split('=')[0]
         key = key.split()
         #print(key[0])
-        value = String.split('=',)[1]
+        value = String.split('=')[1]
         value = value.split()
         #print(value[0])
         insertResult = firebaseInsert(key,value)
