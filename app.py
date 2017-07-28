@@ -65,16 +65,17 @@ def firebaseQuery(key):
     return result
 
 @app.route('/insertDB', methods=['GET'])
-def firebaseInsert():
-    
-    key = '紹安'
-    value = 'OC之神'
-    
+def firebaseInsert(key,value):
+    #key = '紹安'
+    #value = 'OC之神'
     getValues = firebase.get('/data',key)
-    
-    getValues.append(value)
-    
-    putResult = firebase.put('data',key,getValues)
+    if getValues is None:
+        new = dict()
+        new['0'] = value
+        putResult = firebase.put('data',key,new)
+    else:    
+        getValues.append(value)
+        putResult = firebase.put('data',key,getValues)
   
     return "好的 記住了"
 
@@ -151,18 +152,24 @@ def handle_message(event):
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
         menulist += '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
-    
-    if msg == 'mongo':
-        dbResult = mongo()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        
+
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
         result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
-    if len(msg) > 50:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
+    #if len(msg) > 50:
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 廢文就不用再轉發了吧'))
+    
+    if msg[0] == '安' and msg[1] == ' ':
+        key = msg.split('=')[0]
+        value = msg.split('=')[1]
+        insertResult = firebaseInsert(key,value)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
+        
+    dbResult = queryDB(msg)
+    if dbResult != '':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
