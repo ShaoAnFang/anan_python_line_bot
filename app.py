@@ -66,7 +66,7 @@ def firebaseQuery(key):
 
 @app.route('/insertDB', methods=['GET'])
 def firebaseInsert(key,value):
-    #key = '紹安'
+    #key = '冠宏'
     #value = 'OC之神'
     getValues = firebase.get('/data',key)
     if getValues is None:
@@ -174,7 +174,7 @@ def handle_message(event):
         insertResult = key[0]+ ' = ' + value[0] + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
-    dbResult = queryDB(msg)
+    dbResult = firebaseQuery(msg)
     if dbResult != '':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
