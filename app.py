@@ -47,7 +47,7 @@ def callback():
 def test():
     return "Hello World!"
 
-@app.route("/queryDB", methods=['GET'])
+@app.route('/queryDB', methods=['GET'])
 def firebaseQuery(key):
     queryKey = firebase.get('/data',key)
     if queryKey is None:
@@ -64,7 +64,7 @@ def firebaseQuery(key):
   
     return result
 
-@app.route("/insertDB", methods=['GET'])
+@app.route('/insertDB', methods=['GET'])
 def firebaseInsert():
     
     key = '紹安'
