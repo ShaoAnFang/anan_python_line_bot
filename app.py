@@ -165,9 +165,11 @@ def handle_message(event):
         String = msg.split('安 ')[1]
         #print(String)
         key = String.split('=')[0]
-        #print(key)
-        value = String.split('= ',)[1]
-        #print(value)
+        key = key.split()
+        #print(key[0])
+        value = String.split('=',)[1]
+        value = value.split()
+        #print(value[0])
         insertResult = firebaseInsert(key,value)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
