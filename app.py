@@ -174,9 +174,6 @@ def handle_message(event):
         insertResult = key[0]+ ' = ' + value[0] + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
-    dbResult = firebaseQuery(msg)
-    if dbResult != '':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
     if msg == '電影':
          buttons_template = TemplateSendMessage(
@@ -204,7 +201,9 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, buttons_template)
         return 0
     
-    
+    dbResult = firebaseQuery(msg)
+    if dbResult != '':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
         
