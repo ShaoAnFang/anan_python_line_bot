@@ -170,7 +170,8 @@ def handle_message(event):
         value = String.split('=')[1]
         value = value.split()
         #print(value[0])
-        insertResult = firebaseInsert(key[0],value[0])
+        insertFirebase = firebaseInsert(key[0],value[0])
+        insertResult = insertFirebase + msg + '嗎? \n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     dbResult = queryDB(msg)
