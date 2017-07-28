@@ -2,5 +2,5 @@ flask
 gunicorn
 requests
 beautifulsoup4
-pymongo
+python-firebase
 line-bot-sdk==1.3.0
