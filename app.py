@@ -179,7 +179,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
     if msg == '電影':
-        buttons_template = TemplateSendMessage(
+         buttons_template = TemplateSendMessage(
             alt_text='正妹 template',
             template=ButtonsTemplate(
                 title='選擇服務',
@@ -201,6 +201,8 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, buttons_template)
+        return 0
     
     
     
