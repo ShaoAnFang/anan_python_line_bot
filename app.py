@@ -59,7 +59,7 @@ def mongo():
     x = dict(z[5])
     keys = x.keys()
     value = x.values()
-    v = value[0].encode('utf8')
+    v = value[0]
     #g = "<p>Hello World! {}</p>".format(v)
     
     #"<p>Hello pymongo!</p>"
