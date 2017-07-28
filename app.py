@@ -46,7 +46,7 @@ def callback():
 
 @app.route('/GGWP', methods=['GET'])
 def test():
-    return "<p>Hello World!</p>"
+    return "Hello World!"
 
 @app.route("/mon", methods=['GET'])
 def mongo():
@@ -59,7 +59,7 @@ def mongo():
     x = dict(z[5])
     keys = x.keys()
     value = x.values()
-    v = value[0]
+    v = value[0].encode('utf8')
     g = "<p>Hello World! {}</p>".format(v)
     
     #"<p>Hello pymongo!</p>"
