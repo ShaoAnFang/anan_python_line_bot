@@ -207,7 +207,7 @@ def handle_message(event):
         #event.reply_token
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.reply_token))
     
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.MessageEvent))
         
   
 
