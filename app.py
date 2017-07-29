@@ -51,7 +51,7 @@ def test():
 def firebaseQuery(key):
     queryKey = firebase.get('/data',key)
     if queryKey is None:
-        retrun 
+        retrun '沒資料'
     
     getValues = firebase.get('/data',key)
     #print(getResult)
@@ -203,7 +203,7 @@ def handle_message(event):
         
     
     dbResult = firebaseQuery(msg)
-    if dbResult != '':
+    if (dbResult != "沒資料"):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
