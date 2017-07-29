@@ -158,7 +158,7 @@ def handle_message(event):
         
     if msg == 'id':
         
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))    
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message))    
         
 
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
