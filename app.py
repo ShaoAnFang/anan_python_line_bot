@@ -50,20 +50,35 @@ def test():
     return "Hello World!"
 
 @app.route('/queryDB', methods=['GET'])
-def firebaseQuery(key):
-    queryKey = firebase.get('/data',key)
-    if queryKey is None:
-        retrun 
+def firebaseQuery(message):
     
-    getValues = firebase.get('/data',key)
-    #print(getResult)
-    #取個數
-    count = len(getValues) - 1
-    #抽亂數
-    randomNumber = random.randint(0,count)
-    #print(getValues[randomNumber])
-    result = getValues[randomNumber]
-  
+    #只撈DB的Key做比對,如果沒有則全撈下來和整句比對
+    queryAllValues = []
+    queryAllValues = firebase.get('/data',message)
+    if queryAllValues is not None:
+        #print(getResult)
+        #取個數
+        count = len(queryAllValues) - 1
+        #抽亂數
+        randomNumber = random.randint(0,count)
+        #print(queryAllValues[randomNumber])
+        result = queryAllValues[randomNumber]
+    else:
+        #全撈下
+        queryAllValues = firebase.get('/data',None)
+        #把Key丟進allKeys[]
+        allKeys = queryAllValues.keys()
+        
+        for k in allKeys:
+            message.find(k)
+            #print(msg.find(word))
+            #若找不到 返回值是 -1
+            if message.find(k) != -1:
+                print(queryAllValues[k])
+                queryAllValues[k]
+                count = len(queryAllValues) - 1
+                randomNumber = random.randint(0,count)
+                result = queryAllValues[k]
     return result
 
 @app.route('/insertDB', methods=['GET'])
