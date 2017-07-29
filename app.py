@@ -175,10 +175,13 @@ def handle_message(event):
         key = String.split('=')[0]
         key = key.split()
         #print(key[0])
+        #如果第一個字是空白則去除
         value = String.split('=')[1]
-        value = value.split()
+        if value[0] == ' ':
+            #從第二個字開始算 再裝回去
+            value = value[1:]
         #print(value[0])
-        insertFirebase = firebaseInsert(key[0],value[0])
+        insertFirebase = firebaseInsert(key[0],value)
         insertResult = key[0]+ ' = ' + value[0] + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
