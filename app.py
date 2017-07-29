@@ -25,11 +25,6 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
 
-try:
-   display_name = profile.display_name
-   user_id = profile.user_id
-   picture_url = profile.picture_url
-
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -153,14 +148,13 @@ def stock(stockNumber):
 def handle_message(event):
     msg = event.message.text
     
-    
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
         menulist += '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
         
         #gg = display_name + profile.user_id + picture_url
         
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.userID))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.userId))
       
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
 
