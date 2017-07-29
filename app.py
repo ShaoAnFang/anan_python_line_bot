@@ -205,7 +205,7 @@ def handle_message(event):
     dbResult = firebaseQuery(msg)
     if dbResult != "":
         #event.reply_token
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.reply_token))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
         
