@@ -182,7 +182,7 @@ def handle_message(event):
             value = value[1:]
         #print(value[0])
         insertFirebase = firebaseInsert(key[0],value)
-        insertResult = key[0]+ ' = ' + value[0] + ' 嗎? \n' + insertFirebase + ' !'
+        insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
