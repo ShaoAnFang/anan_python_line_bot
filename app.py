@@ -70,14 +70,13 @@ def firebaseQuery(message):
         allKeys = queryAllValues.keys()
         
         for k in allKeys:
-            message.find(k)
-            #print(msg.find(k))
+            #print(message.find(k))
             #若找不到 返回值是 -1
             if message.find(k) != -1:
                 #print(queryAllValues[k])
                 count = len(queryAllValues) - 1
                 randomNumber = random.randint(0,count)
-                result = queryAllValues[k]
+                result = queryAllValues[randomNumber]
     return result
 
 @app.route('/insertDB', methods=['GET'])
