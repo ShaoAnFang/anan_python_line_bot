@@ -155,6 +155,11 @@ def handle_message(event):
         menulist += '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
 
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=emenulist))
+        
+    if msg == 'id':
+        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))    
+        
 
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
