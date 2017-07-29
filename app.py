@@ -154,7 +154,7 @@ def handle_message(event):
         
         #gg = display_name + profile.user_id + picture_url
         
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
       
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
 
