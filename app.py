@@ -26,6 +26,13 @@ line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFro
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
 
 
+profile = line_bot_api.get_profile(user_id)
+
+print(profile.display_name)
+print(profile.user_id)
+print(profile.picture_url)
+print(profile.status_message)
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -151,13 +158,8 @@ def handle_message(event):
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
         menulist += '2. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
-        
-        #gg = display_name + profile.user_id + picture_url
-        
-        
-        g = str(type(event))
 
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=g))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=profile.user_id))
       
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
 
