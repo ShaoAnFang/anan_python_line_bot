@@ -26,12 +26,7 @@ line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFro
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
 
 
-profile = line_bot_api.get_profile(user_id)
 
-print(profile.display_name)
-print(profile.user_id)
-print(profile.picture_url)
-print(profile.status_message)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -154,6 +149,14 @@ def stock(stockNumber):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    
+    profile = line_bot_api.get_profile(user_id)
+
+    #print(profile.display_name)
+    #print(profile.user_id)
+    #print(profile.picture_url)
+    #print(profile.status_message)
+    
     
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
