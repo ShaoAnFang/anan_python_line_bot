@@ -197,7 +197,9 @@ def handle_message(event):
         if value[0] == ' ':
             #從第二個字開始算 再裝回去
             value = value[1:]
-        #print(value[0])
+            if value == '':
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='不好意思 特殊字元會記不住呢'))
+    
         insertFirebase = firebaseInsert(key[0],value)
         insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
