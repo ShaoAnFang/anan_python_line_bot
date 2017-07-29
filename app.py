@@ -64,18 +64,17 @@ def firebaseQuery(message):
         #print(queryAllValues[randomNumber])
         result = queryAllValues[randomNumber]
     else:
-        #全撈下
+        #全撈下,和整句比對
         queryAllValues = firebase.get('/data',None)
         #把Key丟進allKeys[]
         allKeys = queryAllValues.keys()
         
         for k in allKeys:
             message.find(k)
-            #print(msg.find(word))
+            #print(msg.find(k))
             #若找不到 返回值是 -1
             if message.find(k) != -1:
-                print(queryAllValues[k])
-                queryAllValues[k]
+                #print(queryAllValues[k])
                 count = len(queryAllValues) - 1
                 randomNumber = random.randint(0,count)
                 result = queryAllValues[k]
