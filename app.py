@@ -150,7 +150,7 @@ def stock(stockNumber):
 def handle_message(event):
     msg = event.message.text
     
-    profile = line_bot_api.get_profile(user_id)
+    #profile = line_bot_api.get_profile(user_id)
 
     #print(profile.display_name)
     #print(profile.user_id)
