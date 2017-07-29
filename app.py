@@ -83,7 +83,7 @@ def firebaseInsert(key,value):
 
     
 def stock(stockNumber):
-    url = 'https://www.google.com.hk/finance?q=TPE:'
+    url = 'https://www.google.com.hk/finance?q='
     url += stockNumber
     header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
     res = requests.get(url,headers=header,verify=False)
