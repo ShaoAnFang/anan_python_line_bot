@@ -73,11 +73,12 @@ def firebaseQuery(message):
             #print(message.find(k))
             #若找不到 返回值是 -1
             if message.find(k) != -1:
-                #print(queryAllValues[k])
-                count = len(allKeys) - 1
-                randomNumber = random.randint(0,count)
-                #allkeys陣列裡找到的 k 即是key
+                #print(queryAllKeyAndValues[k])
                 queryAllValues = queryAllKeyAndValues[k]
+                count = len(queryAllValues) - 1
+                randomNumber = random.randint(0,count)
+                
+                
                 result = queryAllValues[randomNumber]
     return result
 
