@@ -205,7 +205,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
-    if event.message.text == "開始玩":
+    if msg == '開始玩':
         buttons_template = TemplateSendMessage(
             alt_text='開始玩 template',
             template=ButtonsTemplate(
