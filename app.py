@@ -165,6 +165,11 @@ def stock(stockNumber):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    
+    n = profile.display_name
+    p = profile.picture_url
+    m = profile.status_message
+    p = n + '\n' + p + '\n' + m
  
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n \n'
@@ -175,11 +180,7 @@ def handle_message(event):
         
         profile = line_bot_api.get_profile(event.source.user_id)
         
-        n = profile.display_name
-        p = profile.picture_url
-        m = profile.status_message
-        
-        p = n + '\n' + p + '\n' + m
+
         
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
         
@@ -208,7 +209,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text='不好意思 特殊字元會記不住呢'))
     
         insertFirebase = firebaseInsert(key[0],value)
-        insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+        insertResult = n + ' 大人是說: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
