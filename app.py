@@ -220,19 +220,11 @@ def handle_message(event):
                     MessageTemplateAction(
                         label='電影',
                         text='電影'
-                    ),
-                    MessageTemplateAction(
-                        label='看廢文',
-                        text='看廢文'
-                    ),
-                    MessageTemplateAction(
-                        label='正妹',
-                        text='正妹'
                     )
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, buttons_template)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=buttons_template))
         
     
     dbResult = firebaseQuery(msg)
