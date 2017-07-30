@@ -173,7 +173,7 @@ def handle_message(event):
         
     if msg == 'id':
         
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source['user_id']))    
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.user_id))    
         
 
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
@@ -206,7 +206,7 @@ def handle_message(event):
     
     if msg == '開始玩':
         buttons_template = TemplateSendMessage(
-            "type": "template",
+            type = 'template',
             alt_text='開始玩 template',
             template=ButtonsTemplate(
                 title='選擇服務',
