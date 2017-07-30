@@ -224,8 +224,8 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='GGWP'))
-        
+        line_bot_api.reply_message(event.reply_token, buttons_template)
+        return 0
     
     dbResult = firebaseQuery(msg)
     if dbResult != "":
