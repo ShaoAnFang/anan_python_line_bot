@@ -205,26 +205,29 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
-    if msg == '電影':
+    if event.message.text == "開始玩":
         buttons_template = TemplateSendMessage(
-            alt_text='Buttons template',
+            alt_text='開始玩 template',
             template=ButtonsTemplate(
-                thumbnail_image_url='https://example.com/image.jpg',
-                title='Menu',
-                text='Please select',
+                title='選擇服務',
+                text='請選擇',
+                thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
                 actions=[
-                    PostbackTemplateAction(
-                        label='postback',
-                        text='postback text',
-                        data='action=buy&itemid=1'
+                    MessageTemplateAction(
+                        label='新聞',
+                        text='新聞'
                     ),
                     MessageTemplateAction(
-                        label='message',
-                        text='message text'
+                        label='電影',
+                        text='電影'
                     ),
-                    URITemplateAction(
-                        label='uri',
-                        uri='http://example.com/'
+                    MessageTemplateAction(
+                        label='看廢文',
+                        text='看廢文'
+                    ),
+                    MessageTemplateAction(
+                        label='正妹',
+                        text='正妹'
                     )
                 ]
             )
