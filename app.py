@@ -216,8 +216,8 @@ def handle_message(event):
             #insertResult = n + '大人說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         #else:
-            insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
+        insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
     if msg == '開始玩':
