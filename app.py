@@ -97,6 +97,26 @@ def firebaseInsert(key,value):
   
     return "好的 記住了"
 
+
+@app.route('/deleteDB', methods=['GET'])
+def firebaseDelete(deleteKey):
+    
+    firebase.delete('/data', deleteKey)        
+    return '好的 已經遺忘'
+    
+
+
+@app.route('/fetchDB', methods=['GET'])
+def firebaseFetch(key):
+       
+    string = ''
+    getValues = firebase.get('/data',key)
+    if getValues is None:
+        return "沒有被寫入呢"
+    else:
+        for x in getValues:
+            string += x +','
+    return string 
     
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
@@ -209,17 +229,30 @@ def handle_message(event):
             if value == '':
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text='不好意思 特殊字元會記不住呢'))
     
-        insertFirebase = firebaseInsert(key[0],value)
+        insertFirebase = firebaseInsert(key[0],value)   
         
         #if event.source.user_id is not None:
         
-            #insertResult = n + '大人說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+            #insertResult = n + '說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         #else:
         insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
-    
+    if msg[0] == '遺' and msg[1] == '忘' and msg[2] ==' ':
+        string = msg.split('遺忘 ')[1]
+        print(string)
+        deleteFirebase = firebaseDelete(string)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=deleteFirebase))
+        
+    if msg[0] == '查' and msg[1] == ' ':
+        string = msg.split('查 ')[1]
+        fetchResult = '關鍵字 ' + string + ' 結果為: '
+        fetchResult += firebaseFetch(String)
+        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=fetchResult))
+        
+        
     if msg == 'temp':
         buttons_template_message = TemplateSendMessage(
             alt_text='Buttons template',
