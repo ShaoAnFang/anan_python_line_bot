@@ -179,6 +179,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
         
     if msg == 'id':
+        profile = line_bot_api.get_profile(event.source.user_id)
+        n = profile.display_name
+        p = profile.picture_url
+        m = profile.status_message
+        p = n + '\n \n' + p + '\n \n' + m
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
         
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
