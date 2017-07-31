@@ -117,7 +117,7 @@ def firebaseFetch(key):
         for x in getValues:
             string += x + ' , '
         #刪掉最後一個逗號
-        last = len(string) - 1
+        last = len(string)
         string = string[0:last]
     return string 
     
