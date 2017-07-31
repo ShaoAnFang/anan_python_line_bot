@@ -220,27 +220,31 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     
-    if msg == '開始玩':
-        buttons_template = TemplateSendMessage(
-            type = 'template',
-            alt_text='開始玩 template',
+    if msg == 'temp':
+        buttons_template_message = TemplateSendMessage(
+            alt_text='Buttons template',
             template=ButtonsTemplate(
-                title='選擇服務',
-                text='請選擇',
-                thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
+                thumbnail_image_url='https://example.com/image.jpg',
+                title='Menu',
+                text='Please select',
                 actions=[
-                    MessageTemplateAction(
-                        label='新聞',
-                        text='新聞'
+                    PostbackTemplateAction(
+                        label='postback',
+                        text='postback text',
+                        data='action=buy&itemid=1'
                     ),
                     MessageTemplateAction(
-                        label='電影',
-                        text='電影'
+                        label='message',
+                        text='message text'
+                    ),
+                    URITemplateAction(
+                        label='uri',
+                        uri='http://example.com/'
                     )
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, buttons_template)
+        line_bot_api.reply_message(event.reply_token, buttons_template_message)
         
     
     dbResult = firebaseQuery(msg)
