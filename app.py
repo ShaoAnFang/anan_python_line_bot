@@ -115,8 +115,10 @@ def firebaseFetch(key):
         string = "沒有被寫入呢"
     else:
         for x in getValues:
-            string += x + ','
-        
+            string += x + ' , '
+        #刪掉最後一個逗號
+        last = len(string) - 1
+        string = string[0:last]
     return string 
     
 def stock(stockNumber):
