@@ -246,11 +246,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=deleteFirebase))
         
     if msg[0] == '查' and msg[1] == ' ':
-        string = msg.split('查 ')[1]
-        fetchResult = '關鍵字 ' + string + ' 結果為: '
-        fetchResult += firebaseFetch(String)
-        
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=fetchResult))
+        string = msg.split('查 ')[1]   
+        fetchResult = firebaseFetch(String)
+        result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
         
     if msg == 'temp':
