@@ -116,7 +116,7 @@ def firebaseFetch(key):
     else:
         for x in getValues:
             string += x +','
-    return string 
+        return string 
     
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
