@@ -112,11 +112,12 @@ def firebaseFetch(key):
     string = ''
     getValues = firebase.get('/data',key)
     if getValues is None:
-        return "沒有被寫入呢"
+        string = "沒有被寫入呢"
     else:
         for x in getValues:
-            string += x +','
-        return string 
+            string += x + ','
+        
+    return string 
     
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
