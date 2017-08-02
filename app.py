@@ -9,7 +9,9 @@ from flask import Flask, request, abort
 
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-    
+queryAllKeyAndValues = firebase.get('/data',None)
+
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -51,36 +53,17 @@ def test():
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
-    
-    #只撈DB的Key做比對,如果沒有則全撈下來和整句比對
-    queryAllValues = []
-    queryAllValues = firebase.get('/data',message)
-    if queryAllValues is not None:
-        #print(getResult)
-        #取個數
-        count = len(queryAllValues) - 1
-        #抽亂數
-        randomNumber = random.randint(0,count)
-        #print(queryAllValues[randomNumber])
-        result = queryAllValues[randomNumber]
-    else:
-        #全撈下,和整句比對
-        queryAllKeyAndValues = firebase.get('/data',None)
-        #把Key丟進allKeys[]
-        allKeys = queryAllKeyAndValues.keys()
-        
-        for k in allKeys:
-            #print(message.find(k))
-            #若找不到 返回值是 -1
-            if message.find(k) != -1:
-                #print(queryAllKeyAndValues[k])
-                queryAllValues = queryAllKeyAndValues[k]
-                count = len(queryAllValues) - 1
-                randomNumber = random.randint(0,count)
-                
-                
-                result = queryAllValues[randomNumber]
-    return result
+    allKeys = queryAllKeyAndValues.keys()
+    for k in allKeys:
+        #print(message.find(k))
+        #若找不到 返回值是 -1
+        if message.find(k) != -1:
+            #print(queryAllKeyAndValues[k])
+            queryAllValues = queryAllKeyAndValues[k]
+            count = len(queryAllValues) - 1
+            randomNumber = random.randint(0,count)
+            result = queryAllValues[randomNumber]
+        return result
 
 @app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
 def firebaseInsert(key,value):
