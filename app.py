@@ -49,7 +49,7 @@ def callback():
 def test():
     return "Hello World!"
 
-@app.route('/queryDB<String:message>', methods=['GET'])
+@app.route('/queryDB/<String:message>', methods=['GET'])
 def firebaseQuery(message):
     
     #只撈DB的Key做比對,如果沒有則全撈下來和整句比對
