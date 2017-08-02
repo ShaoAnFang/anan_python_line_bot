@@ -82,7 +82,7 @@ def firebaseQuery(message):
                 result = queryAllValues[randomNumber]
     return result
 
-@app.route('/insertDB', methods=['GET'])
+@app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
 def firebaseInsert(key,value):
     #key = '冠宏'
     #value = 'OC之神'
@@ -106,7 +106,7 @@ def firebaseDelete(deleteKey):
     
 
 
-@app.route('/fetchDB', methods=['GET'])
+@app.route('/fetchDB/<string:key>', methods=['GET'])
 def firebaseFetch(key):
        
     string = ''
