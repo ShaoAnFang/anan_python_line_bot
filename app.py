@@ -201,12 +201,12 @@ def weather(ChooseCity):
         #print i
         title.append(i)
 
-        content = soup.select('td')
-        data = []
-        for c in content:
-            c = c.text.strip('\n')
-            #print(c.encode('utf8'))
-            data.append(c)
+    content = soup.select('td')
+    data = []
+    for c in content:
+        c = c.text.strip('\n')
+        #print(c.encode('utf8'))
+        data.append(c)
     
     resultString = ''
     resultString += '🌤 ' + city + '  '  + time + '\n\n' 
