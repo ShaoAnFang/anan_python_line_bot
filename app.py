@@ -86,8 +86,6 @@ def firebaseDelete(deleteKey):
     
     firebase.delete('/data', deleteKey)        
     return '好的 已經遺忘'
-    
-
 
 @app.route('/fetchDB/<string:key>', methods=['GET'])
 def firebaseFetch(key):
