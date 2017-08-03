@@ -218,8 +218,8 @@ def weather(ChooseCity):
     resultString += title[1] + '  下雨機率 ' + str(data[7]) + '\n\n' 
 
     resultString += '明日晚上' + str(data[8]) + ' 度\n'
-    resultString += title[2] + '  下雨機率 ' + str(data[11])
-
+    resultString += title[2] + '  下雨機率 ' + str(data[11]) + '\n'
+    resultString += '-交通部氣象局'
     return resultString
 
 
