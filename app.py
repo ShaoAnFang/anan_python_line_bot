@@ -292,7 +292,7 @@ def handle_message(event):
         result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     
-    if msg[0] == '天' msg[1] == '氣' msg[2] == ' ':
+    if msg[0] == '天' and msg[1] == '氣' and msg[2] == ' ':
         ChooseCity = msg.split('天氣 ')[1]
         weatherResult = weather(ChooseCity)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
