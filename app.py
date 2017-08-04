@@ -188,18 +188,18 @@ def constellation(star):
         starAndDate.append(n.text)
         #print(starAndDate)
 
-    today = soup.select('.today')[0].text.strip('\n').encode('utf8')
+    today = soup.select('.today')[0].text.strip('\n')
     today = today.split('\n\n')[0]
     #print today
 
-    title = soup.find('li').text.strip().encode('utf8')
+    title = soup.find('li').text.strip()
     #print(title)
 
-    content = soup.find('article').text.strip().encode('utf8')
+    content = soup.find('article').text.strip()
     #print content
 
     resultString = ''
-    resultString += starAndDate[0].encode('utf8') + ' ' + starAndDate[1].encode('utf8') + '\n'
+    resultString += starAndDate[0] + ' ' + starAndDate[1] + '\n'
     resultString += today + '\n'
     resultString += content + '\n'
     resultString += 'from 唐立淇每日星座運勢'
