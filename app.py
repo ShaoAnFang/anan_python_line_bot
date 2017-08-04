@@ -164,6 +164,49 @@ def stock(stockNumber):
     resultString += key[6] + '\n' + val[6] + '\n' + '-------------' + '\n' + 'From Google stock'
    
     return resultString
+
+
+@app.route('/star', methods=['GET'])
+def constellation(star):
+
+    constellationDict = dict()
+    constellationDict = {'牡羊': 'Aries', '金牛': 'Taurus', '雙子': 'Gemini','巨蟹': 'Cancer',
+                         '獅子': 'Leo', '處女': 'Virgo', '天秤': 'Libra','天蠍': 'Scorpio', 
+                         '射手': 'Sagittarius', '魔羯': 'Capricorn','水瓶': 'Aquarius', '雙魚': 'Pisces'}
+    
+    url = 'http://www.daily-zodiac.com/mobile/zodiac/{}'.format(constellationDict[star])
+    res = requests.get(url,verify=False)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text,'html.parser')
+    #print(soup)
+
+    name = soup.find_all('p')
+    #print(name)
+    starAndDate = []
+    for n in name:
+        #print n.text.encode('utf8')
+        starAndDate.append(n.text)
+        #print(starAndDate)
+
+    today = soup.select('.today')[0].text.strip('\n').encode('utf8')
+    today = today.split('\n\n')[0]
+    #print today
+
+    title = soup.find('li').text.strip().encode('utf8')
+    #print(title)
+
+    content = soup.find('article').text.strip().encode('utf8')
+    #print content
+
+    resultString = ''
+    resultString += starAndDate[0].encode('utf8') + ' ' + starAndDate[1].encode('utf8') + '\n'
+    resultString += today + '\n'
+    resultString += content + '\n'
+    resultString += 'from 唐立淇每日星座運勢'
+    
+    return resultString
+
+
    
 @app.route('/weather', methods=['GET'])
 def weather(ChooseCity):
@@ -293,6 +336,11 @@ def handle_message(event):
         result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     
+    if msg[0] == '星' and msg[1] == '座' and msg[2] == ' ':
+        star = msg.split('星座 ')[1]
+        constellationResult = constellation(star)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=constellationResult))
+        
     if msg[0] == '天' and msg[1] == '氣' and msg[2] == ' ':
         ChooseCity = msg.split('天氣 ')[1]
         weatherResult = weather(ChooseCity)
