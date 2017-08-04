@@ -275,9 +275,9 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
-    if event.source.user_id :
-        profile = line_bot_api.get_profile(event.source.user_id)
-        n = profile.display_name
+    #if event.source.user_id :
+        #profile = line_bot_api.get_profile(event.source.user_id)
+        #n = profile.display_name
         #p = profile.picture_url
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
@@ -322,13 +322,13 @@ def handle_message(event):
     
         insertFirebase = firebaseInsert(key[0],value)   
         
-        if event.source.user_id:
-            
+        if event.source.user_id != "" :
+            profile = line_bot_api.get_profile(event.source.user_id)
+            n = profile.display_name
             insertResult = '嗨! ' + n + '說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
             
         else:
-            
             insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
