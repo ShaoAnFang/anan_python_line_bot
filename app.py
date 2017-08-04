@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-queryAllKeyAndValues = firebase.get('/data',None)
+
 
 
 from linebot import (
@@ -53,6 +53,7 @@ def test():
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
+    queryAllKeyAndValues = firebase.get('/data',None)
     allKeys = queryAllKeyAndValues.keys()
     for k in allKeys:
         #print(message.find(k))
