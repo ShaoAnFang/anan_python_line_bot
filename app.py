@@ -201,7 +201,7 @@ def constellation(star):
     resultString = ''
     resultString += starAndDate[0] + ' ' + starAndDate[1] + '\n'
     resultString += today + '\n'
-    resultString += content + '\n'
+    resultString += content + '\n\n'
     resultString += 'from 唐立淇每日星座運勢'
     
     return resultString
