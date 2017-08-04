@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-
+queryAllKeyAndValues = firebase.get('/data',None)
 
 
 from linebot import (
@@ -53,7 +53,7 @@ def test():
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
-    queryAllKeyAndValues = firebase.get('/data',None)
+    
     allKeys = queryAllKeyAndValues.keys()
     for k in allKeys:
         #print(message.find(k))
@@ -70,6 +70,7 @@ def firebaseQuery(message):
 def firebaseInsert(key,value):
     #key = '冠宏'
     #value = 'OC之神'
+    
     getValues = firebase.get('/data',key)
     if getValues is None:
         new = dict()
@@ -78,7 +79,10 @@ def firebaseInsert(key,value):
     else:    
         getValues.append(value)
         putResult = firebase.put('data',key,getValues)
-  
+    
+    #寫完讓DB重讀一次
+    queryAllKeyAndValues = firebase.get('/data',None)
+    
     return "好的 記住了"
 
 
