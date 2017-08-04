@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-queryAllKeyAndValues = firebase.get('/data',None)
+#queryAllKeyAndValues = firebase.get('/data',None)
 
 
 from linebot import (
@@ -53,7 +53,7 @@ def test():
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
-    
+    queryAllKeyAndValues = firebase.get('/data',None)
     allKeys = queryAllKeyAndValues.keys()
     for k in allKeys:
         #print(message.find(k))
@@ -81,7 +81,7 @@ def firebaseInsert(key,value):
         putResult = firebase.put('data',key,getValues)
     
     #寫完讓DB重讀一次
-    queryAllKeyAndValues = firebase.get('/data',None)
+    #queryAllKeyAndValues = firebase.get('/data',None)
     
     return "好的 記住了"
 
@@ -275,9 +275,9 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
-    #if event.source.user_id is not None:
-        #profile = line_bot_api.get_profile(event.source.user_id)
-        #n = profile.display_name
+    if event.source.user_id :
+        profile = line_bot_api.get_profile(event.source.user_id)
+        n = profile.display_name
         #p = profile.picture_url
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
