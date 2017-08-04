@@ -214,7 +214,7 @@ def weather(ChooseCity):
     cityDict = {'台北': 'Taipei_City', '新北': 'New_Taipei_City', '桃園': 'Taoyuan_City',
           '台中': 'Taichung_City', '台南': 'Tainan_City', '高雄': 'Kaohsiung_City',
           '基隆': 'Keelung_City', '新竹市': 'Hsinchu_City', '新竹縣': 'Hsinchu_County',
-          '苗栗市': 'Miaoli_County', '苗栗縣': 'Changhua_County', '南投': 'Nantou_County',
+          '苗栗': 'Miaoli_County', '彰化': 'Changhua_County', '南投': 'Nantou_County',
           '雲林': 'Yunlin_County', '嘉義市': 'Chiayi_City', '嘉義縣': 'Chiayi_County',
           '屏東': 'Pingtung_County', '宜蘭': 'Yilan_County', '花蓮': 'Hualien_County',
           '台東': 'Taitung_County', '澎湖': 'Penghu_County','金門': 'Kinmen_County',
