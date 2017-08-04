@@ -322,15 +322,15 @@ def handle_message(event):
     
         insertFirebase = firebaseInsert(key[0],value)   
         
-        if event.source.user_id != "" :
-            profile = line_bot_api.get_profile(event.source.user_id)
-            n = profile.display_name
-            insertResult = '嗨! ' + n + '說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
+        #if event.source.user_id != "" :
+            #profile = line_bot_api.get_profile(event.source.user_id)
+            #n = profile.display_name
+            #insertResult = '嗨! ' + n + '說的是: \n' + key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
             
-        else:
-            insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
+        #else:
+        insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
     if msg[0] == '遺' and msg[1] == '忘' and msg[2] ==' ':
         string = msg.split('遺忘 ')[1]
