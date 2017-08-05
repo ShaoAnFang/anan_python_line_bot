@@ -277,14 +277,12 @@ def handle_message(event):
     
     if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
-            'type'= 'sticker',
-            'package_id'= '1',
-            'sticker_id'= '1'
+            type = 'sticker',
+            package_id = '1',
+            sticker_id = '1'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
 
-    
-    
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
         #n = profile.display_name
