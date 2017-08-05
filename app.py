@@ -297,7 +297,7 @@ def handle_message(event):
         p = n + '\n \n' + p + '\n \n' + m
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
         
-    if event.message.type== 'sitcker' :
+    if event.message.type == 'sitcker' :
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text= event.message.type))
         #sticker_message = StickerSendMessage(
         #    package_id= event.message.packageId,
