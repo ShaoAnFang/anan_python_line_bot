@@ -298,11 +298,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
         
     if event.message.type == 'sticker' :
-        sticker_message = StickerSendMessage(
-            package_id= event.message.packageId,
-            sticker_id= event.message.stickerId
-        )
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有跑進來'))
+        #sticker_message = StickerSendMessage(
+        #    package_id= event.message.packageId,
+        #    sticker_id= event.message.stickerId
+        #)
+        
         
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
