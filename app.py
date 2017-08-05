@@ -277,10 +277,10 @@ def handle_message(event):
     
     if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
-            package_id= event.message.packageId,
-            sticker_id= event.message.stickerId
+            package_id= event.message.package_id,
+            sticker_id= event.message.sticker_id
         )
-        line_bot_api.reply_message(event.reply_token, sticker_message))
+        line_bot_api.reply_message(event.reply_token, sticker_message)
 
     
     
