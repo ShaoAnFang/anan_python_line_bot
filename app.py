@@ -277,8 +277,9 @@ def handle_message(event):
     
     if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
-            package_id= '1',
-            sticker_id= '1'
+            'type'= 'sticker',
+            'package_id'= '1',
+            'sticker_id'= '1'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
 
@@ -369,36 +370,30 @@ def handle_message(event):
         weatherResult = weather(ChooseCity)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
         
-    if msg == 'temp':
-        buttons_template_message = TemplateSendMessage(
-            "type": "template",
-            "altText": "this is a buttons template",
-            "template": {
-                "type": "buttons",
-                "thumbnailImageUrl": "https://i.imgur.com/kzi5kKy.jpg",
-                "title": "Menu",
-                 "text": "Please select",
-                 "actions": [
-                    {
-                     "type": "postback",
-                     "label": "Buy",
-                     "data": "action=buy&itemid=123"
-                    },
-                    {
-                     "type": "postback",
-                     "label": "Add to cart",
-                     "data": "action=add&itemid=123"
-                    },
-                    {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                    }
+    if event.message.text == "正妹":
+        buttons_template = TemplateSendMessage(
+            alt_text='正妹 template',
+            template=ButtonsTemplate(
+                title='選擇服務',
+                text='請選擇',
+                thumbnail_image_url='https://i.imgur.com/qKkE2bj.jpg',
+                actions=[
+                    MessageTemplateAction(
+                        label='PTT 表特版 近期大於 10 推的文章',
+                        text='PTT 表特版 近期大於 10 推的文章'
+                    ),
+                    MessageTemplateAction(
+                        label='來張 imgur 正妹圖片',
+                        text='來張 imgur 正妹圖片'
+                    ),
+                    MessageTemplateAction(
+                        label='隨便來張正妹圖片',
+                        text='隨便來張正妹圖片'
+                    )
                 ]
-            } 
+            )
         )
-        line_bot_api.reply_message(event.reply_token, buttons_template_message)
-        
+        line_bot_api.reply_message(event.reply_token, buttons_template)
     
     dbResult = firebaseQuery(msg)
     if dbResult != "":
