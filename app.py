@@ -275,6 +275,15 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
+    if msg == 'sitcker' :
+        #sticker_message = StickerSendMessage(
+        #    package_id= '1',
+        #    sticker_id= '1'
+        #)
+        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id= '1',sticker_id= '1'))
+
+    
+    
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
         #n = profile.display_name
@@ -297,12 +306,7 @@ def handle_message(event):
         p = n + '\n \n' + p + '\n \n' + m
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
         
-    if event.message.type == 'sitcker' :
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= event.message.type))
-        #sticker_message = StickerSendMessage(
-        #    package_id= event.message.packageId,
-        #    sticker_id= event.message.stickerId
-        #)
+
         
         
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
