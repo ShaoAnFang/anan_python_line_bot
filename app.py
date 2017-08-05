@@ -275,12 +275,12 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
-    #if event.message.type == 'sitcker' :
-    #    sticker_message = StickerSendMessage(
-    #        package_id= event.message.package_id,
-    #        sticker_id= event.message.sticker_id
-    #    )
-    #    line_bot_api.reply_message(event.reply_token, sticker_message))
+    if event.message.type == 'sitcker' :
+        sticker_message = StickerSendMessage(
+            package_id= event.message.packageId,
+            sticker_id= event.message.stickerId
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message))
 
     
     
@@ -376,7 +376,7 @@ def handle_message(event):
             "altText": "this is a buttons template",
             "template": {
                 "type": "buttons",
-                "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+                "thumbnailImageUrl": "https://i.imgur.com/kzi5kKy.jpg",
                 "title": "Menu",
                  "text": "Please select",
                  "actions": [
