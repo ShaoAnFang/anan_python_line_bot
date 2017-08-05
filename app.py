@@ -277,8 +277,10 @@ def handle_message(event):
     
     if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
+            {
             package_id= '1',
             sticker_id= '1'
+            }
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
 
@@ -371,7 +373,7 @@ def handle_message(event):
         
     if msg == 'temp':
         buttons_template_message = TemplateSendMessage(
-            "type": "template",
+            {"type": "template",
             "altText": "this is a buttons template",
             "template": {
                 "type": "buttons",
@@ -396,6 +398,7 @@ def handle_message(event):
                     }
                 ]
             }
+           }  
         )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
         
