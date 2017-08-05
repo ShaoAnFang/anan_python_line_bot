@@ -302,7 +302,7 @@ def handle_message(event):
             package_id= event.message.packageId,
             sticker_id= event.message.stickerId
         )
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text = sticker_message))   
+        line_bot_api.reply_message(event.reply_token, sticker_message)
         
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
