@@ -275,7 +275,7 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
-    if event.message.tpye == 'sitcker' :
+    if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
             package_id= event.message.packageId,
             sticker_id= event.message.stickerId
