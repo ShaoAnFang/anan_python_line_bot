@@ -371,7 +371,6 @@ def handle_message(event):
         
     if msg == 'temp':
         buttons_template_message = TemplateSendMessage(
-            {
             "type": "template",
             "altText": "this is a buttons template",
             "template": {
@@ -397,7 +396,6 @@ def handle_message(event):
                     }
                 ]
             }
-          }
         )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
         
