@@ -275,12 +275,12 @@ def weather(ChooseCity):
 def handle_message(event):
     msg = event.message.text
     
-    if msg == 'sitcker' :
-        #sticker_message = StickerSendMessage(
-        #    package_id= '1',
-        #    sticker_id= '1'
-        #)
-        line_bot_api.reply_message(event.reply_token,StickerSendMessage(packageId= '1',stickerId= '1'))
+    if event.message.tpye == 'sitcker' :
+        sticker_message = StickerSendMessage(
+            package_id= event.message.packageId,
+            sticker_id= event.message.stickerId
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message))
 
     
     
