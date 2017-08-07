@@ -314,7 +314,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
     if len(msg) > 50:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='有些文章自己看看就好 這麼長也不會有人看吧'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='未看先猜 __文'))
     
     if msg[0] == '安' and msg[1] == ' ':
         msg =  msg.strip('~!@#$%^&*()|"')
