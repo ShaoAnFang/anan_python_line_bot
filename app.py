@@ -1,6 +1,7 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
 
+import re
 import random
 import requests
 import json
@@ -434,17 +435,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, buttons_template)
         
     if msg == '電影':
+        g = get_movies()
         carousel_template_message = TemplateSendMessage(
         alt_text='電影',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://example.com/item1.jpg',
+                    thumbnail_image_url=g[0]['poster_url'],
                     title='this is menu1',
                     text='description1',
                     actions=[
                         URITemplateAction(
-                            label='uri1',
+                            label=g[0]['ch_name'],
                             uri='http://example.com/1'
                         )
                     ]
