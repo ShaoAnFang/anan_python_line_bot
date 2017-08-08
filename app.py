@@ -173,7 +173,7 @@ def stock(stockNumber):
     return resultString
 
 
-@app.route('/star', methods=['GET'])
+@app.route('/star/<string:star>', methods=['GET'])
 def constellation(star):
 
     constellationDict = dict()
