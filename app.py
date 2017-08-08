@@ -433,12 +433,7 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, buttons_template)
-    
-    if msg == '電':
-        g = get_movies()
-        result = g[0]['poster_url']
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-    
+        
     if msg == '電影':
         g = get_movies()
         carousel_template_message = TemplateSendMessage(
@@ -447,23 +442,45 @@ def handle_message(event):
             columns=[
                 CarouselColumn(
                     thumbnail_image_url=g[0]['poster_url'],
-                    title='this is menu1',
-                    text='description1',
+                    title=g[0]['ch_name'],
+                    text= g[0]['intro'],
                     actions=[
                         URITemplateAction(
-                            label=g[0]['ch_name'],
-                            uri='http://example.com/1'
+                            label='查看',
+                            uri=g[0]['poster_url']
                         )
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://example.com/item2.jpg',
-                    title='this is menu2',
-                    text='description2',
+                    thumbnail_image_url=g[1]['poster_url'],
+                    title=g[1]['ch_name'],
+                    text= g[1]['intro'],
                     actions=[
                         URITemplateAction(
-                            label='uri2',
-                            uri='http://example.com/2'
+                            label='查看',
+                            uri=g[1]['poster_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=g[2]['poster_url'],
+                    title=g[2]['ch_name'],
+                    text= g[2]['intro'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=g[2]['poster_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=g[3]['poster_url'],
+                    title=g[3]['ch_name'],
+                    text= g[3]['intro'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=g[3]['poster_url']
                         )
                     ]
                 )
