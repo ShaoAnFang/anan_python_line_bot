@@ -273,6 +273,48 @@ def weather(ChooseCity):
     return resultString
 
 
+def get_movie_id(url):
+    # e.g. "https://tw.rd.yahoo.com/referurl/movie/thisweek/info/*https://tw.movies.yahoo.com/movieinfo_main.html/id=6707"
+    #      -> match.group(0): "/id=6707"
+    pattern = '/id=\d+'
+    match = re.search(pattern, url)
+    if match is None:
+        return url
+    else:
+        return match.group(0).replace('/id=', '')
+
+def get_date(date_str):
+    # e.g. "上映日期：2017-03-23" -> match.group(0): "2017-03-23"
+    pattern = '\d+-\d+-\d+'
+    match = re.search(pattern, date_str)
+    if match is None:
+        return date_str
+    else:
+        return match.group(0)
+    
+@app.route('/movie', methods=['GET'])
+def get_movies():
+    
+    dom = requests.get('https://tw.movies.yahoo.com/movie_thisweek.html')
+    soup = BeautifulSoup(dom, 'html.parser')
+    movies = []
+    rows = soup.select('#content_l li')
+    Y_INTRO_URL = 'https://tw.movies.yahoo.com/movieinfo_main.html'  # 詳細資訊
+    for row in rows:
+        movie = dict()
+        movie['ch_name'] = row.select('.release_movie_name .gabtn')[0].text.strip()
+        movie['eng_name'] = row.select('.en .gabtn')[0].text.strip()
+        movie['movie_id'] = get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
+        movie['poster_url'] = row.select('img')[0]['src']
+        movie['release_date'] = get_date(row.select('.release_movie_time')[0].text)
+        movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:15] + '...'
+        movie['info_url'] = Y_INTRO_URL + '/id=' + get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
+        movies.append(movie)
+    return movies
+
+
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
