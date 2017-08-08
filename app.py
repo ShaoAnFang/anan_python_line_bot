@@ -297,7 +297,7 @@ def get_date(date_str):
 def get_movies():
     Y_MOVIE_URL = 'https://tw.movies.yahoo.com/movie_thisweek.html'
     dom = requests.get(Y_MOVIE_URL)
-    soup = BeautifulSoup(dom, 'html.parser')
+    soup = BeautifulSoup(dom.text, 'html.parser')
     movies = []
     rows = soup.select('#content_l li')
     Y_INTRO_URL = 'https://tw.movies.yahoo.com/movieinfo_main.html'  # 詳細資訊
