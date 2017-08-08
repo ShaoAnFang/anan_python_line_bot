@@ -294,8 +294,8 @@ def get_date(date_str):
     
 @app.route('/movie', methods=['GET'])
 def get_movies():
-    
-    dom = requests.get('https://tw.movies.yahoo.com/movie_thisweek.html')
+    Y_MOVIE_URL = 'https://tw.movies.yahoo.com/movie_thisweek.html'
+    dom = requests.get(Y_MOVIE_URL)
     soup = BeautifulSoup(dom, 'html.parser')
     movies = []
     rows = soup.select('#content_l li')
