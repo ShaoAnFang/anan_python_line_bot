@@ -433,7 +433,12 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, buttons_template)
-        
+    
+    if msg == '電':
+        g = get_movies()
+        result = g[0]['poster_url']
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    
     if msg == '電影':
         g = get_movies()
         carousel_template_message = TemplateSendMessage(
