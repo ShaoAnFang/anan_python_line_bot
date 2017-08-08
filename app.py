@@ -370,7 +370,7 @@ def handle_message(event):
         weatherResult = weather(ChooseCity)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
         
-    if event.message.text == "正妹":
+    if msg == '正妹':
         buttons_template = TemplateSendMessage(
             alt_text='正妹 template',
             template=ButtonsTemplate(
@@ -394,6 +394,58 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, buttons_template)
+        
+    if msg == '電影':
+        carousel_template_message = TemplateSendMessage(
+        alt_text='Carousel template',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item1.jpg',
+                    title='this is menu1',
+                    text='description1',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback1',
+                            text='postback text1',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageTemplateAction(
+                            label='message1',
+                            text='message text1'
+                        ),
+                        URITemplateAction(
+                            label='uri1',
+                            uri='http://example.com/1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://example.com/item2.jpg',
+                    title='this is menu2',
+                    text='description2',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageTemplateAction(
+                            label='message2',
+                            text='message text2'
+                        ),
+                        URITemplateAction(
+                            label='uri2',
+                            uri='http://example.com/2'
+                        )
+                    ]
+                )
+            ]
+        )
+    )
+    line_bot_api.reply_message(event.reply_token,  carousel_template_message)
+    
+    
     
     dbResult = firebaseQuery(msg)
     if dbResult != "":
