@@ -279,7 +279,6 @@ def handle_message(event):
     
     if event.message.type == 'sitcker' :
         sticker_message = StickerSendMessage(
-            type = 'sticker',
             package_id = '1',
             sticker_id = '1'
         )
