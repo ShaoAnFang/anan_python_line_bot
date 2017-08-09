@@ -274,6 +274,25 @@ def weather(ChooseCity):
     return resultString
 
 
+def get_movie_id(url):
+    # e.g. "https://tw.rd.yahoo.com/referurl/movie/thisweek/info/*https://tw.movies.yahoo.com/movieinfo_main.html/id=6707"
+    #      -> match.group(0): "/id=6707"
+    pattern = '/id=\d+'
+    match = re.search(pattern, url)
+    if match is None:
+        return url
+    else:
+        return match.group(0).replace('/id=', '')
+
+def get_date(date_str):
+    # e.g. "上映日期：2017-03-23" -> match.group(0): "2017-03-23"
+    pattern = '\d+-\d+-\d+'
+    match = re.search(pattern, date_str)
+    if match is None:
+        return date_str
+    else:
+        return match.group(0)
+    
 @app.route('/movie', methods=['GET'])
 def get_movies():
     Y_MOVIE_URL = 'https://tw.movies.yahoo.com/movie_thisweek.html'
