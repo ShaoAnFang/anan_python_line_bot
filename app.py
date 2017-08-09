@@ -494,8 +494,8 @@ def handle_message(event):
     dbResult = firebaseQuery(msg)
     if dbResult != "":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
+    #else:
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
         
   
 
