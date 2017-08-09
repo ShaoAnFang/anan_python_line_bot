@@ -490,11 +490,12 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
-    if msg != "":
-        dbResult = firebaseQuery(msg)
-        if dbResult != "":
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
+
+    dbResult = firebaseQuery(msg)
+    if dbResult != "":
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+    else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
         
   
 
