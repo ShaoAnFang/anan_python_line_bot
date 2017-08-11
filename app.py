@@ -480,17 +480,6 @@ def handle_message(event):
                             uri=g[4]['poster_url']
                         )
                     ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[5]['poster_url'],
-                    title=g[5]['ch_name'],
-                    text= g[5]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[5]['poster_url']
-                        )
-                    ]
                 )
             ]
         )
