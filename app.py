@@ -433,7 +433,7 @@ def handle_message(event):
                     actions=[URITemplateAction(label='查看',uri=i['poster_url'])]
                 )
                 columns.append(CarouselColumn)
-        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
                 
                 
     if msg == '電影':
