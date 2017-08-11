@@ -419,6 +419,23 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, buttons_template)
         
+    if msg == '電':
+        g = get_movies()
+        carousel_template_message = TemplateSendMessage(
+        alt_text='電影',
+        template=CarouselTemplate(
+            columns=[]
+            for i in g:
+                CarouselColumn(
+                    thumbnail_image_url=i['poster_url'],
+                    title=i['ch_name'],
+                    text= i['intro'],
+                    actions=[URITemplateAction(label='查看',uri=i['poster_url'])]
+                )
+                columns.append(CarouselColumn)
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+                
+                
     if msg == '電影':
         g = get_movies()
         carousel_template_message = TemplateSendMessage(
