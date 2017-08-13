@@ -507,9 +507,6 @@ def handle_message(event):
     
     
 
-def timeCheck(start_time):
-    if time.time() - start_time > 12:
-  
 
 if __name__ == "__main__":
     app.run()
