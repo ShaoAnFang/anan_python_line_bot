@@ -504,7 +504,7 @@ def handle_message(event):
         now = str(time.time()).split('.')[0]
         n = int(now)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        if (n - s) > 3:
+        if (n - s) > 10:
             sendTime = time.time()
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
