@@ -493,9 +493,10 @@ def handle_message(event):
     
     if dbResult != '' :
         start_time = time.time()
-        
-        if start_time - time.time() > 10:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        dbResutl += str(start_time)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #if time.time() - start_time > 10:
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
     #else:
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
