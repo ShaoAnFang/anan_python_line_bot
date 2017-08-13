@@ -492,10 +492,11 @@ def handle_message(event):
 
     dbResult = firebaseQuery(msg)
     
-    #global sendTime
-    #st = sendTime
+
     if dbResult != '' :
         #now = datetime.datetime.now()
+        global sendTime
+        st = sendTime
         #if time.time() - st > 3:
         #st = datetime.datetime.now()
         #sendTime = st
