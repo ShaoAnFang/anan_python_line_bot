@@ -493,12 +493,12 @@ def handle_message(event):
 
     dbResult = firebaseQuery(msg)
     
-    
+    global sendTime
     if dbResult != '' :
         #sendTime = time.time()
         now =datetime.datetime.now()
         if (now - sendTime).seconds > 5:
-        global sendTime = datetime.datetime.now()
+        sendTime = datetime.datetime.now()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         
