@@ -492,13 +492,13 @@ def handle_message(event):
 
     dbResult = firebaseQuery(msg)
     
-    global sendTime
-    st = sendTime
+    #global sendTime
+    #st = sendTime
     if dbResult != '' :
-        now = datetime.datetime.now()
-        if time.time() - st > 3:
-        st = datetime.datetime.now()
-        sendTime = st
+        #now = datetime.datetime.now()
+        #if time.time() - st > 3:
+        #st = datetime.datetime.now()
+        #sendTime = st
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         
