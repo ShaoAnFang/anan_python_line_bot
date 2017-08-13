@@ -490,13 +490,13 @@ def handle_message(event):
     
 
     dbResult = firebaseQuery(msg)
+    start_time = time.time()
     
     if dbResult != '' :
-        start_time = time.time()
-        dbResult += str(start_time)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #if time.time() - start_time > 10:
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        if time.time() - start_time > 12:
+            start_time = time.time()
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+            
         
     #else:
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
