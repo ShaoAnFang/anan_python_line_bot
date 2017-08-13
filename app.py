@@ -509,8 +509,8 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         else:
-            cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
+            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
     
 
