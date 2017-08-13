@@ -3,7 +3,6 @@
 
 import re
 import time
-lastsave = 0
 import random
 import requests
 import json
@@ -494,7 +493,7 @@ def handle_message(event):
     if dbResult != '' :
         start_time = time.time()
         
-        if time.time()-start_time > 10:
+        if time.time() - start_time < 10:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
     #else:
