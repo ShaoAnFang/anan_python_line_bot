@@ -3,7 +3,7 @@
 
 import re
 import time
-sendTime = datetime.datetime.now()
+sendTime = time.time()
 import random
 import requests
 import json
