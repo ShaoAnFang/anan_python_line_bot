@@ -495,12 +495,20 @@ def handle_message(event):
 
     if dbResult != '' :
         #now = datetime.datetime.now()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-        #global sendTime
-        #if (time.time() - sendTime) > 3:
-            #sendTime = datetime.datetime.now()
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        global sendTime
+        sendTimeStr = str(sendTime).split('.')[0]
+        s = int(sendTimeStr)
+        
+        now = str(time.time()).split('.')[0]
+        n = int(now)
+        
+        
+        if (s - n) > 3:
+            global sendTime
+            sendTime = datetime.datetime.now()
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         
     #else:
