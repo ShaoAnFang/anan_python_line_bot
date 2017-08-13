@@ -3,6 +3,8 @@
 
 import re
 import time
+import datetime
+sendTime = datetime.datetime.now()
 import random
 import requests
 import json
@@ -490,19 +492,23 @@ def handle_message(event):
     
 
     dbResult = firebaseQuery(msg)
-    start_time = time.time()
+    
     
     if dbResult != '' :
-        if time.time() - start_time > 12:
-            start_time = time.time()
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-            
+        #sendTime = time.time()
+        now =datetime.datetime.now()
+        if (now - sendTime).seconds > 5:
+        sendTime = datetime.datetime.now()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        
         
     #else:
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
     
     
-        
+
+def timeCheck(start_time):
+    if time.time() - start_time > 12:
   
 
 if __name__ == "__main__":
