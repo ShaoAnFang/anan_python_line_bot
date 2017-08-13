@@ -496,11 +496,8 @@ def handle_message(event):
     if dbResult != '' :
         #now = datetime.datetime.now()
         global sendTime
-        st = sendTime
-        now = time.time()
-        if (now - st) > 3:
-            st = datetime.datetime.now()
-            sendTime = st
+        if (time.time() - sendTime) > 3:
+            sendTime = datetime.datetime.now()
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         
