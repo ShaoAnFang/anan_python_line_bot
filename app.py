@@ -316,10 +316,6 @@ def handle_message(event):
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
         
-    msg1 = event.message.text
-    if msg1 == msg :
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg1))
-    
     
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
