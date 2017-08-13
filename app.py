@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import re
+import time
+lastsave = 0
 import random
 import requests
 import json
@@ -339,7 +341,7 @@ def handle_message(event):
         result = stock(stockNumber)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
-    if len(msg) > 50:
+    if len(msg) > 200:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='未看先猜 __文'))
     
     if msg[0] == '安' and msg[1] == ' ':
@@ -486,9 +488,11 @@ def handle_message(event):
     )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
-    dbResult = firebaseQuery(msg)
-    if dbResult != '':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+    global lastsave
+    if time.time() - lastsave > 10: 
+        dbResult = firebaseQuery(msg)
+        if dbResult != '':
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
     #else:
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
     
