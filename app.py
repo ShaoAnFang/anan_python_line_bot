@@ -497,7 +497,7 @@ def handle_message(event):
         #now = datetime.datetime.now()
         global sendTime
         st = sendTime
-        #if time.time() - st > 3:
+        if time.time() - st > 3:
         #st = datetime.datetime.now()
         #sendTime = st
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
