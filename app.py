@@ -3,7 +3,6 @@
 
 import re
 import time
-import datetime
 sendTime = datetime.datetime.now()
 import random
 import requests
@@ -494,11 +493,12 @@ def handle_message(event):
     dbResult = firebaseQuery(msg)
     
     global sendTime
+    st = sendTime
     if dbResult != '' :
-        #sendTime = time.time()
-        now =datetime.datetime.now()
-        if (now - sendTime).seconds > 5:
-        sendTime = datetime.datetime.now()
+        now = datetime.datetime.now()
+        if time.time() - st > 3:
+        st = datetime.datetime.now()
+        sendTime = st
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         
