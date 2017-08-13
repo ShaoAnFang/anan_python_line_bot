@@ -488,11 +488,15 @@ def handle_message(event):
     )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
-    global lastsave
-    if time.time() - lastsave > 10: 
-        dbResult = firebaseQuery(msg)
-        if dbResult != '':
+
+    dbResult = firebaseQuery(msg)
+    
+    if dbResult != '' :
+        start_time = time.time()
+        
+        if time.time()-start_time > 10:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        
     #else:
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
     
