@@ -472,8 +472,9 @@ def handle_message(event):
                             uri=g[3]['poster_url']
                         )
                     ]
-                )
-            ]
+                 )
+              ]
+           )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
