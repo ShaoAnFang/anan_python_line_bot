@@ -110,7 +110,12 @@ def firebaseFetch(key):
         #刪掉最後一個逗號
         last = len(string)
         string = string[0:last]
-    return string 
+    return string
+
+def firebaseChatLog(key):
+    firebase.put('data',key,new)
+
+
     
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
@@ -227,8 +232,7 @@ def weather(ChooseCity):
           '苗栗': 'Miaoli_County', '彰化': 'Changhua_County', '南投': 'Nantou_County',
           '雲林': 'Yunlin_County', '嘉義市': 'Chiayi_City', '嘉義縣': 'Chiayi_County',
           '屏東': 'Pingtung_County', '宜蘭': 'Yilan_County', '花蓮': 'Hualien_County',
-          '台東': 'Taitung_County', '澎湖': 'Penghu_County','金門': 'Kinmen_County',
-          '連江': 'Lienchiang_County'}
+          '台東': 'Taitung_County', '澎湖': 'Penghu_County','金門': 'Kinmen_County','連江': 'Lienchiang_County'}
 
     url = 'http://www.cwb.gov.tw/V7/forecast/taiwan/{}.htm'.format(cityDict[ChooseCity])
     #print(url)
@@ -512,7 +516,9 @@ def handle_message(event):
         #else:
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
+        
     
+    firebaseChatLog(msg)
     
 
 
