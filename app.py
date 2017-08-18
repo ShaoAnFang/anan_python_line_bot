@@ -113,7 +113,7 @@ def firebaseFetch(key):
     return string
 
 def firebaseChatLog(key):
-    firebase.put('data',key,new)
+    firebase.put('ChatLog',key)
 
 
     
