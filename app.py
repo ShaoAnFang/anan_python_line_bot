@@ -281,7 +281,8 @@ def get_movies():
     dom = requests.get(Y_MOVIE_URL)
     soup = BeautifulSoup(dom.text, 'html.parser')
     movies = []
-    rows = soup.select('#content_l li')
+    rows = soup.select('.release_list li')
+    #rows = soup.select('#content_l li')
     Y_INTRO_URL = 'https://tw.movies.yahoo.com/movieinfo_main.html'  # 詳細資訊
     for row in rows:
         movie = dict()
