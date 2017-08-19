@@ -122,7 +122,7 @@ def firebaseChatLog(key):
         arr.append(key)
         firebase.put('/ChatLog',inputDate,arr)
     else:    
-        getChatLog.append(value)
+        getChatLog.append(key)
         firebase.put('/ChatLog',inputDate,getChatLog)
 
         
