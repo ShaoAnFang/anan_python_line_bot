@@ -118,8 +118,9 @@ def firebaseChatLog(key):
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
     if getChatLog is None:
-        new = dict()
-        new['0'] = key
+    arr = []
+    arr.append(key)
+    firebase.put('/ChatLog',inputDate,arr)
         firebase.put('/ChatLog',inputDate,new)
     else:    
         getChatLog.append(value)
