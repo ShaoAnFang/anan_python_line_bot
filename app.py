@@ -4,6 +4,7 @@
 import re
 import time
 sendTime = time.time()
+import datetime
 import random
 import requests
 import json
@@ -80,10 +81,10 @@ def firebaseInsert(key,value):
     if getValues is None:
         new = dict()
         new['0'] = value
-        putResult = firebase.put('data',key,new)
+        firebase.put('data',key,new)
     else:    
         getValues.append(value)
-        putResult = firebase.put('data',key,getValues)
+        firebase.put('data',key,getValues)
     
     #寫完讓DB重讀一次
     #queryAllKeyAndValues = firebase.get('/data',None)
@@ -113,7 +114,18 @@ def firebaseFetch(key):
     return string
 
 def firebaseChatLog(key):
-    firebase.put('ChatLog',key)
+    dd = datetime.datetime.now().date()
+    inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
+    getChatLog = firebase.get('/ChatLog',inputDate)
+    if getChatLog is None:
+        new = dict()
+        new['0'] = key
+        firebase.put('/ChatLog',inputDate,new)
+    else:    
+        getChatLog.append(value)
+        firebase.put('/ChatLog',inputDate,getChatLog)
+
+    
 
 
     
