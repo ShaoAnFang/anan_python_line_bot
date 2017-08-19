@@ -118,18 +118,14 @@ def firebaseChatLog(key):
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
     if getChatLog is None:
-    arr = []
-    arr.append(key)
-    firebase.put('/ChatLog',inputDate,arr)
-        firebase.put('/ChatLog',inputDate,new)
+        arr = []
+        arr.append(key)
+        firebase.put('/ChatLog',inputDate,arr)
     else:    
         getChatLog.append(value)
         firebase.put('/ChatLog',inputDate,getChatLog)
 
-    
-
-
-    
+        
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
     url += stockNumber
