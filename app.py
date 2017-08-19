@@ -347,10 +347,7 @@ def handle_message(event):
         m = profile.status_message
         p = n + '\n \n' + p + '\n \n' + m
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
-        
-
-        
-        
+ 
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
         result = stock(stockNumber)
@@ -503,31 +500,37 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
-
-    dbResult = firebaseQuery(msg)
     
-
+    firebaseChatLog(msg)
+    
+    dbResult = firebaseQuery(msg)
     if dbResult != '' :
-        #now = datetime.datetime.now()
-        
-        
-        global sendTime
-        sendTimeStr = str(sendTime).split('.')[0]
-        s = int(sendTimeStr)
-        
-        now = str(time.time()).split('.')[0]
-        n = int(now)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+
+        #global sendTime
+        #sendTimeStr = str(sendTime).split('.')[0]
+        #s = int(sendTimeStr)
+       
+        #now = str(time.time()).split('.')[0]
+        #n = int(now)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        if (n - s) > 3:
-            sendTime = time.time()
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        
+        #if (n - s) > 3:
+            #sendTime = time.time()
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         #else:
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
-        
     
-    firebaseChatLog(msg)
+    
+    
+    
+    
+    
+    
+        
+   
+
+    
     
 
 
