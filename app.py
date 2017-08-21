@@ -116,7 +116,7 @@ def firebaseFetch(key):
 
 def firebaseChatLog(key):
     tz = pytz.timezone('Asia/Taipei')
-    dd = datetime.datetime.now(tz=tz).date()
+    dd = datetime.datetime.now(tz).date()
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
     if getChatLog is None:
@@ -413,8 +413,8 @@ def handle_message(event):
     if msg == '時間':
         
         tz = pytz.timezone('Asia/Taipei')
-        dd = datetime.datetime.now(tz=tz).date()
-        dt = datetime.datetime.now(tz=tz).time()
+        dd = datetime.datetime.now(tz).date()
+        dt = datetime.datetime.now(tz).time()
         queryTime = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
