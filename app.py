@@ -311,27 +311,10 @@ def get_movies():
         movies.append(movie)
     return movies
 
-@handler.add(self, event, message=None)
-def handel_sticker(event):
-    if event.message.type == 'sticker' :
-        sticker_message = StickerSendMessage(
-           package_id='1',
-           sticker_id='1'
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    
-    if event.message.type != 'text' :
-        sticker_message = StickerSendMessage(
-           package_id='2',
-           sticker_id='2'
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-    
-    
+        
     if msg == '貼圖' :
         sticker_message = StickerSendMessage(
            package_id='1',
