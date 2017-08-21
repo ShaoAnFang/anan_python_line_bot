@@ -318,8 +318,19 @@ def get_movies():
 def handle_message(event):
     msg = event.message.text
     
-    if event.message.type == 'text' :
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.type))
+    if event.message.type != 'text' :
+        
+        try:
+            sticker_message = StickerSendMessage(
+                package_id='1',
+                sticker_id='1'
+            )
+            line_bot_api.reply_message(event.reply_token, sticker_message)
+        except linebot.exceptions.LineBotApiError as e:
+            print(e.status_code)
+            print(e.error.message)
+            print(e.error.details)
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=e.error.message))
         #sticker_message = StickerSendMessage(
            #package_id=event.message.package_id,
            #sticker_id=event.message.sticker_id
