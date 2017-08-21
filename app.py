@@ -318,7 +318,14 @@ def get_movies():
 def handle_message(event):
     msg = event.message.text
     
-    #if event.message.type == 'sticker' :
+    if event.message.type != 'text' :
+        sticker_message = StickerSendMessage(
+           package_id='2',
+           sticker_id='2'
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message)
+    
+    
     if msg == '貼圖' :
         sticker_message = StickerSendMessage(
            package_id='1',
