@@ -408,11 +408,11 @@ def handle_message(event):
         weatherResult = weather(ChooseCity)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
         
-#     if msg = '時間':
-#         date = datetime.datetime.now().date()
-#         dateTime = datetime.datetime.now().time()
-#         queryTime = "{}-{}-{} {}:{}".format(date.year,date.month,date.day,dateTime.hour,dateTime.minute)
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
+    if msg == '時間':
+        dd = datetime.datetime.now().date()
+        dt = datetime.datetime.now().time()
+        queryTime = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
         
     if msg == '正妹':
