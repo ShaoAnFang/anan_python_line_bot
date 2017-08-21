@@ -311,6 +311,15 @@ def get_movies():
         movies.append(movie)
     return movies
 
+
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_message(event):
+    sticker_message = StickerSendMessage(
+        package_id=event.message.package_id,
+        sticker_id=event.message.sticker_id
+    )
+    line_bot_api.reply_message(event.reply_token, sticker_message) 
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
