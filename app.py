@@ -312,7 +312,7 @@ def get_movies():
     return movies
 
 
-@handler.add(MessageEvent, message=StickerMessage)
+@handler.add(MessageEvent, message=None)
 def handle_message(event):
     sticker_message = StickerSendMessage(
         package_id=event.message.package_id,
@@ -330,11 +330,6 @@ def handle_message(event):
            sticker_id='1'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
-        #sticker_message = StickerSendMessage(
-           #package_id=event.message.package_id,
-           #sticker_id=event.message.sticker_id
-        #)
-        #line_bot_api.reply_message(event.reply_token, sticker_message)
 
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
