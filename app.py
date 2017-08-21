@@ -319,13 +319,15 @@ def handle_message(event):
     msg = event.message.text
     
     if event.message.type != 'text' :
-        
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.type))
-        #sticker_message = StickerSendMessage(
-        #    package_id=event.message.package_id,
-        #    sticker_id=event.message.sticker_id
-        #)
-        #line_bot_api.reply_message(event.reply_token, sticker_message)
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.type))
+        sticker_message = StickerSendMessage(
+            package_id='1'
+            sticker_id='1'
+           #package_id=event.message.package_id,
+           #sticker_id=event.message.sticker_id
+            
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message)
 
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
