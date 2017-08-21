@@ -3,6 +3,7 @@
 
 import re
 import time
+import pytz
 sendTime = time.time()
 import datetime
 import random
@@ -409,8 +410,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
         
     if msg == '時間':
-        dd = datetime.datetime.now().date()
-        dt = datetime.datetime.now().time()
+        set(pytz.all_timezones_set)  
+        tz = pytz.timezone('Asia/Taipei')
+        dd = datetime.datetime.now(tz=tz).date()
+        dt = datetime.datetime.now(tz=tz).time()
         queryTime = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
