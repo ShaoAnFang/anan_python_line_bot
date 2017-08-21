@@ -313,7 +313,7 @@ def get_movies():
 
 @handler.add(self, event, message=None)
 def handel_sticker(event):
-        if event.message.type == 'sticker' :
+    if event.message.type == 'sticker' :
         sticker_message = StickerSendMessage(
            package_id='1',
            sticker_id='1'
