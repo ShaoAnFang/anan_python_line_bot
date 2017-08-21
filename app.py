@@ -321,11 +321,11 @@ def handle_message(event):
     if event.message.type != 'text' :
         
         try:
-            sticker_message = StickerSendMessage(
-                package_id='1',
-                sticker_id='1'
-            )
-            line_bot_api.reply_message(event.reply_token, sticker_message)
+#             sticker_message = StickerSendMessage(
+#                 package_id='1',
+#                 sticker_id='1'
+#             )
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='有跑進來'))
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
