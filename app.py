@@ -3,8 +3,7 @@
 
 import re
 import time
-import pytz
-set(pytz.all_timezones_set)  
+import pytz 
 sendTime = time.time()
 import datetime
 import random
