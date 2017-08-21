@@ -408,6 +408,15 @@ def handle_message(event):
         weatherResult = weather(ChooseCity)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=weatherResult))
         
+    if msg = '時間':
+        dd = datetime.datetime.now().date()
+        dt = datetime.datetime.now().time()
+        
+        inputDate = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
+        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=inputDate))
+    
+        
     if msg == '正妹':
         buttons_template = TemplateSendMessage(
             alt_text='正妹 template',
