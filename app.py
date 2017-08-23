@@ -505,7 +505,7 @@ def handle_message(event):
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    #thumbnail_image_url=g[0]['poster_url'],
+                    thumbnail_image_url=g[0]['poster_url'],
                     title=g[0]['ch_name'],
                     text= g[0]['intro'],
                     actions=[
@@ -547,7 +547,7 @@ def handle_message(event):
                             uri=g[3]['poster_url']
                         )
                     ]
-                 ),
+                ),
                 CarouselColumn(
                     thumbnail_image_url=g[4]['poster_url'],
                     title=g[4]['ch_name'],
