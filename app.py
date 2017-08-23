@@ -314,7 +314,7 @@ def get_movies():
 def sticker(key):
     sitckerDict = dict()
     sitckerDict = {'聽歌': {'sticker_id':'103','package_id':'1'}, '想睡': {'sticker_id':'1','package_id':'1'}, 
-                   '生日快樂': {'sticker_id':'427','package_id':'1'}, '吃飽': {'sticker_id':'425','package_id':'1'}
+                   '生日快樂': {'sticker_id':'427','package_id':'1'}, '吃飽': {'sticker_id':'425','package_id':'1'},
                    '騎車': {'sticker_id':'430','package_id':'1'}, '窮': {'sticker_id':'417','package_id':'1'},
                    '很忙': {'sticker_id':'411','package_id':'1'}, '翻滾': {'sticker_id':'423','package_id':'1'},
                    '冷': {'sticker_id':'29','package_id':'2'}, '喝': {'sticker_id':'28','package_id':'2'},
