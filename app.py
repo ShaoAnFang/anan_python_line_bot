@@ -344,9 +344,9 @@ def darkAnan():
     #print randomPageNumber
     if randomPagesNumber != 1195:
         #0~49選不重複的7個數字
-        andomVideoNumbers = random.sample(range(0, 49), 5)
+        randomVideoNumbers = random.sample(range(0, 49), 5)
     else:
-        andomVideoNumbers = random.sample(range(0, 59), 5)
+        randomVideoNumbers = random.sample(range(0, 59), 5)
 
     res = requests.get(AVGLE_LIST_COLLECTIONS_API_URL.format(randomPagesNumber))
     res.encoding='utf8'
@@ -355,7 +355,19 @@ def darkAnan():
     videos = res.json()['response']['videos']
     
     videoRandom = []
-    for x in andomVideoNumbers:
+    for x in randomVideoNumbers:
+        videoRandom.append(videos[x])
+    
+    return videoRandom
+
+def darkAnanQuery(name):
+    url = 'https://api.avgle.com/v1/search/{}/{}'
+    res = requests.get(url.format(name,'0'))
+    videos = res.json()['response']['videos']
+    randomVideoNumbers = random.sample(range(0, len(videos)), 5)
+    
+    videoRandom = []
+    for x in randomVideoNumbers:
         videoRandom.append(videos[x])
     
     return videoRandom
@@ -634,6 +646,75 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)         
     
+    
+    if msg[0] == 'A' and msg[1] == 'V' msg[2] == ' ':
+        name = msg.split('AV ')[1]
+        avgleResult = darkAnanQuery(name)
+        #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
+        carousel_template_message = TemplateSendMessage(
+        alt_text='小電影',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[0]['preview_url'],
+                    title=avgleResult[0]['keyword'][:10],
+                    text= avgleResult[0]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[0]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[1]['preview_url'],
+                    title=avgleResult[1]['keyword'][:10],
+                    text= avgleResult[1]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[1]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[2]['preview_url'],
+                    title=avgleResult[2]['keyword'][:10],
+                    text= avgleResult[2]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[2]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[3]['preview_url'],
+                    title=avgleResult[3]['keyword'][:10],
+                    text= avgleResult[3]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[3]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[4]['preview_url'],
+                    title=avgleResult[4]['keyword'][:10],
+                    text= avgleResult[4]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[4]['video_url']
+                        )
+                    ]
+                )
+              ]
+           )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     firebaseChatLog(msg)
 
