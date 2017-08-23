@@ -551,12 +551,14 @@ def handle_message(event):
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
     if sticker(msg) is not None:
-        sticker_message = StickerSendMessage(
-            package_id = sticker(msg)['package_id'],
-            sticker_id = sticker(msg)['sticker_id']
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-    
+#         sticker_message = StickerSendMessage(
+#             package_id = sticker(msg)['package_id'],
+#             sticker_id = sticker(msg)['sticker_id']
+#         )
+#         line_bot_api.reply_message(event.reply_token, sticker_message)
+
+          gg = sticker(msg)['package_id'] + sticker(msg)['sticker_id']
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text=gg))
     
         
    
