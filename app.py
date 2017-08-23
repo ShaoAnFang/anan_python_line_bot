@@ -336,6 +336,30 @@ def sticker(key):
         
     return 'GG'
 
+deg darkAnan():
+    AVGLE_LIST_COLLECTIONS_API_URL = 'https://api.avgle.com/v1/videos/{}'
+
+    randomPagesNumber = random.randint(0,1195)
+    #page 1195,有60片,其他都50
+    #print randomPageNumber
+    if randomPagesNumber != 1195:
+        andomVideoNumbers = random.sample(range(0, 49), 5)
+    else:
+        andomVideoNumbers = random.sample(range(0, 59), 5)
+
+    res = requests.get(AVGLE_LIST_COLLECTIONS_API_URL.format(randomPagesNumber))
+
+    #print(res.json())
+    videos = []
+    videos = res.json()['response']['videos']
+    
+    videoRandom = []
+    for x in andomVideoNumbers:
+        videoRandom.append(videos[x])
+    
+    return videoRandom
+
+
 @handler.add(MessageEvent, message=None)
 def handle_message(event):
     sticker_message = StickerSendMessage(
@@ -575,9 +599,73 @@ def handle_message(event):
     
 
     
-        
-   
 
+    if msg =='小電影':
+        avgleResult = darkAnan()
+        
+        carousel_template_message = TemplateSendMessage(
+        alt_text='謎之小電影',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[0]['preview_url'],
+                    title=avgleResult[0]['keyword'],
+                    text= avgleResult[0]['title'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[0]['embedded_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[1]['poster_url'],
+                    title=avgleResult[1]['keyword'],
+                    text= avgleResult[1]['title'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[1]['embedded_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[2]['preview_url'],
+                    title=avgleResult[2]['keyword'],
+                    text= avgleResult[2]['title'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[2]['embedded_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[3]['preview_url'],
+                    title=avgleResult[3]['keyword'],
+                    text= avgleResult[3]['title'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[3]['embedded_url']
+                        )
+                    ]
+                 ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[4]['preview_url'],
+                    title=avgleResult[4]['keyword'],
+                    text= avgleResult[4]['title'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[4]['embedded_url']
+                        )
+                    ]
+                 )
+              ]
+           )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
 
