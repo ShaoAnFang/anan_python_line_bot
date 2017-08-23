@@ -514,51 +514,51 @@ def handle_message(event):
                             uri=g[0]['poster_url']
                         )
                     ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[1]['poster_url'],
-                    title=g[1]['ch_name'],
-                    text= g[1]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[1]['poster_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[2]['poster_url'],
-                    title=g[2]['ch_name'],
-                    text= g[2]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[2]['poster_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[3]['poster_url'],
-                    title=g[3]['ch_name'],
-                    text= g[3]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[3]['poster_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[4]['poster_url'],
-                    title=g[4]['ch_name'],
-                    text= g[4]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[4]['poster_url']
-                        )
-                    ]
-                 )
+                )
+#                 CarouselColumn(
+#                     thumbnail_image_url=g[1]['poster_url'],
+#                     title=g[1]['ch_name'],
+#                     text= g[1]['intro'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=g[1]['poster_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=g[2]['poster_url'],
+#                     title=g[2]['ch_name'],
+#                     text= g[2]['intro'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=g[2]['poster_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=g[3]['poster_url'],
+#                     title=g[3]['ch_name'],
+#                     text= g[3]['intro'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=g[3]['poster_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=g[4]['poster_url'],
+#                     title=g[4]['ch_name'],
+#                     text= g[4]['intro'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=g[4]['poster_url']
+#                         )
+#                     ]
+#                  )
               ]
            )
         )
@@ -575,7 +575,7 @@ def handle_message(event):
             columns=[
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[0]['preview_url'],
-                    title=avgleResult[0]['keyword'],
+                    title=avgleResult[0]['keyword'].strip(),
                     #text= avgleResult[0]['title'][:10],
                     actions=[
                         URITemplateAction(
