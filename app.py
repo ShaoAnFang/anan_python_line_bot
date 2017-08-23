@@ -323,7 +323,7 @@ def sticker(key):
                    '彩虹': {'sticker_id':'268','package_id':'4'}, '櫻': {'sticker_id':'604','package_id':'4'},
                    '累': {'sticker_id':'526','package_id':'2'}, '生氣': {'sticker_id':'527','package_id':'2'},
                    '上班': {'sticker_id':'161','package_id':'2'}, '歡迎': {'sticker_id':'247','package_id':'3'},
-                   '升天': {'sticker_id':'161','package_id':'2'}}
+                   '升天': {'sticker_id':'108','package_id':'1'}}
     return sitckerDict[key]
 
 @handler.add(MessageEvent, message=None)
@@ -550,11 +550,10 @@ def handle_message(event):
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
-    stickerResult = sticker(msg)
-    if stickerResult is not None:
+    if sticker(msg) is not None:
         sticker_message = StickerSendMessage(
-            package_id=stickerResult['package_id'],
-            sticker_id=stickerResult['sticker_id']
+            package_id = sticker(msg)['package_id'],
+            sticker_id = sticker(msg)['sticker_id']
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
     
