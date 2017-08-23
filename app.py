@@ -72,6 +72,8 @@ def firebaseQuery(message):
             randomNumber = random.randint(0,count)
             result = queryAllValues[randomNumber]
             return result
+        else:
+            return 'GG'
 
 @app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
 def firebaseInsert(key,value):
@@ -540,8 +542,8 @@ def handle_message(event):
     
     
     #dbResult = firebaseQuery(msg)
-    if firebaseQuery(msg) is not None :
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+    if firebaseQuery(msg) != 'GG':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=firebaseQuery(msg)))
 
     if sticker(msg) is not None:
         sticker_message = StickerSendMessage(
