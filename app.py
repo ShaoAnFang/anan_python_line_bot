@@ -575,8 +575,8 @@ def handle_message(event):
             columns=[
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[0]['preview_url'],
-                    title=avgleResult[0]['keyword'],
-                    text= avgleResult[0]['keyword'],
+                    title='1',
+                    text= '1',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -586,8 +586,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[1]['poster_url'],
-                    title=avgleResult[1]['keyword'],
-                    text= avgleResult[1]['keyword'],
+                    title='2',
+                    text= '2',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -597,8 +597,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[2]['preview_url'],
-                    title=avgleResult[2]['keyword'],
-                    text= avgleResult[2]['keyword'],
+                    title='3',
+                    text= '3',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -608,8 +608,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[3]['preview_url'],
-                    title=avgleResult[3]['keyword'],
-                    text= avgleResult[3]['keyword'],
+                    title='4',
+                    text= '4',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -619,8 +619,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[4]['preview_url'],
-                    title=avgleResult[4]['title'][:35],
-                    text= avgleResult[4]['title'][:35],
+                    title='5',
+                    text= avgleResult[4]['title'],
                     actions=[
                         URITemplateAction(
                             label='查看',
