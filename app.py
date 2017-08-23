@@ -72,8 +72,8 @@ def firebaseQuery(message):
             randomNumber = random.randint(0,count)
             result = queryAllValues[randomNumber]
             return result
-        else:
-            return 'GG'
+    
+    return 'GG'
 
 @app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
 def firebaseInsert(key,value):
