@@ -569,7 +569,7 @@ def handle_message(event):
         avgleResult = darkAnan()
 #         asd = avgleResult[4]['title'] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'] +'\n'+ avgleResult[4]['embedded_url']
 #         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-                  carousel_template_message = TemplateSendMessage(
+        carousel_template_message = TemplateSendMessage(
         alt_text='小電影',
         template=CarouselTemplate(
             columns=[
