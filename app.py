@@ -602,10 +602,10 @@ def handle_message(event):
 
     if msg == '小電影':
         avgleResult = darkAnan()
-        asd = avgleResult[0]['title'] + ' ' + avgleResult[0]['preview_url']
+        asd = avgleResult[0]['title'] + ' ' + avgleResult[0]['preview_url'] +' '+ avgleResult[0]['keyword'] +' '+ avgleResult[0]['embedded_url']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
 #         carousel_template_message = TemplateSendMessage(
-#         alt_text='謎之小電影',
+#         alt_text='小電影',
 #         template=CarouselTemplate(
 #             columns=[
 #                 CarouselColumn(
