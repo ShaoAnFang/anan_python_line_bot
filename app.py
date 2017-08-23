@@ -564,43 +564,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
-    firebaseChatLog(msg)
-
-    
-
-
-#           gg = sticker(msg)['package_id'] + sticker(msg)['sticker_id']
-#           line_bot_api.reply_message(event.reply_token,TextSendMessage(text=gg))
-    
-    
-    dbResult = firebaseQuery(msg)
-    if dbResult != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-
-    if sticker(msg) != 'GG':
-        sticker_message = StickerSendMessage(
-            package_id = sticker(msg)['package_id'],
-            sticker_id = sticker(msg)['sticker_id']
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-        #global sendTime
-        #sendTimeStr = str(sendTime).split('.')[0]
-        #s = int(sendTimeStr)
-       
-        #now = str(time.time()).split('.')[0]
-        #n = int(now)
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        #if (n - s) > 3:
-            #sendTime = time.time()
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #else:
-            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
-    
-
-    
-
-    if msg == '小電影':
+        if msg == '小電影':
         avgleResult = darkAnan()
 #         asd = avgleResult[4]['title'] + ' ' + avgleResult[4]['preview_url'] +' '+ avgleResult[4]['keyword'] +' '+ avgleResult[4]['embedded_url']
 #         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
@@ -651,7 +615,7 @@ def handle_message(event):
                             uri=avgleResult[3]['embedded_url']
                         )
                     ]
-                 ),
+                ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[4]['preview_url'],
                     title=avgleResult[4]['keyword'],
@@ -667,6 +631,45 @@ def handle_message(event):
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+    
+    
+    firebaseChatLog(msg)
+
+    
+
+
+#           gg = sticker(msg)['package_id'] + sticker(msg)['sticker_id']
+#           line_bot_api.reply_message(event.reply_token,TextSendMessage(text=gg))
+    
+    
+    dbResult = firebaseQuery(msg)
+    if dbResult != 'GG':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+
+    if sticker(msg) != 'GG':
+        sticker_message = StickerSendMessage(
+            package_id = sticker(msg)['package_id'],
+            sticker_id = sticker(msg)['sticker_id']
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message)
+        #global sendTime
+        #sendTimeStr = str(sendTime).split('.')[0]
+        #s = int(sendTimeStr)
+       
+        #now = str(time.time()).split('.')[0]
+        #n = int(now)
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
+        #if (n - s) > 3:
+            #sendTime = time.time()
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #else:
+            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
+    
+
+    
+
+
     
     
 
