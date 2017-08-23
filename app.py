@@ -583,49 +583,49 @@ def handle_message(event):
                             uri=avgleResult[0]['video_url']
                         )
                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[1]['poster_url'],
-#                     title=avgleResult[1]['keyword'][:10],
-#                     text= avgleResult[1]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[1]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[2]['preview_url'],
-#                     title=avgleResult[2]['keyword'][:10],
-#                     text= avgleResult[2]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[2]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[3]['preview_url'],
-#                     title=avgleResult[3]['keyword'][:10],
-#                     text= avgleResult[3]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[3]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[4]['preview_url'],
-#                     title=avgleResult[4]['keyword'][:10],
-#                     text= avgleResult[4]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[4]['video_url']
-#                         )
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[1]['poster_url'],
+                    title=avgleResult[1]['keyword'][:10],
+                    text= avgleResult[1]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[1]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[2]['preview_url'],
+                    title=avgleResult[2]['keyword'][:10],
+                    text= avgleResult[2]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[2]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[3]['preview_url'],
+                    title=avgleResult[3]['keyword'][:10],
+                    text= avgleResult[3]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[3]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[4]['preview_url'],
+                    title=avgleResult[4]['keyword'][:10],
+                    text= avgleResult[4]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[4]['video_url']
+                        )
                     ]
                  )
               ]
