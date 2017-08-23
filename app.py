@@ -326,7 +326,15 @@ def sticker(key):
                    '累': {'sticker_id':'526','package_id':'2'}, '生氣': {'sticker_id':'527','package_id':'2'},
                    '上班': {'sticker_id':'161','package_id':'2'}, '歡迎': {'sticker_id':'247','package_id':'3'},
                    '升天': {'sticker_id':'108','package_id':'1'}}
-    return sitckerDict[key]
+    
+    allKeys = sitckerDict.keys()
+    for k in allKeys:
+        #print(message.find(k))
+        #若找不到 返回值是 -1
+        if key.find(k) != -1:
+            return sitckerDict[k]
+        
+    return 'GG'
 
 @handler.add(MessageEvent, message=None)
 def handle_message(event):
@@ -545,7 +553,7 @@ def handle_message(event):
     if dbResult != 'GG':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
-    if sticker(msg) is not None:
+    if sticker(msg) != 'GG':
         sticker_message = StickerSendMessage(
             package_id = sticker(msg)['package_id'],
             sticker_id = sticker(msg)['sticker_id']
