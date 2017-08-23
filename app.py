@@ -344,9 +344,9 @@ def darkAnan():
     #print randomPageNumber
     if randomPagesNumber != 1195:
         #0~49選不重複的7個數字
-        andomVideoNumbers = random.sample(range(0, 49), 7)
+        andomVideoNumbers = random.sample(range(0, 49), 5)
     else:
-        andomVideoNumbers = random.sample(range(0, 59), 7)
+        andomVideoNumbers = random.sample(range(0, 59), 5)
 
     res = requests.get(AVGLE_LIST_COLLECTIONS_API_URL.format(randomPagesNumber))
     res.encoding='utf8'
