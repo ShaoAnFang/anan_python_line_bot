@@ -580,7 +580,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri='http://google.com'
+                            uri=avgleResult[0]['video_url']
                         )
                     ]
                 )
