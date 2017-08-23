@@ -620,7 +620,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[4]['preview_url'],
                     title='5',
-                    text= avgleResult[4]['title'],
+                    text= '5',
                     actions=[
                         URITemplateAction(
                             label='查看',
