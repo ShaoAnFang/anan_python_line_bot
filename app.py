@@ -541,9 +541,9 @@ def handle_message(event):
 #           line_bot_api.reply_message(event.reply_token,TextSendMessage(text=gg))
     
     
-    #dbResult = firebaseQuery(msg)
-    if firebaseQuery(msg) != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=firebaseQuery(msg)))
+    dbResult = firebaseQuery(msg)
+    if dbResult != 'GG':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
     if sticker(msg) is not None:
         sticker_message = StickerSendMessage(
