@@ -530,7 +530,6 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
-    
     firebaseChatLog(msg)
     
     dbResult = firebaseQuery(msg)
@@ -557,8 +556,7 @@ def handle_message(event):
             package_id=stickerResult['package_id'],
             sticker_id=stickerResult['sticker_id']
         )
-    line_bot_api.reply_message(event.reply_token, sticker_message)
-    
+        line_bot_api.reply_message(event.reply_token, sticker_message)
     
     
         
