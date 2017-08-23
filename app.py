@@ -348,6 +348,7 @@ def darkAnan():
         andomVideoNumbers = random.sample(range(0, 59), 5)
 
     res = requests.get(AVGLE_LIST_COLLECTIONS_API_URL.format(randomPagesNumber))
+    res.encoding='utf8'
     #print(res.json())
     videos = []
     videos = res.json()['response']['videos']
@@ -599,9 +600,8 @@ def handle_message(event):
 
     
 
-    if msg =='小電影':
+    if msg == '小電影':
         avgleResult = darkAnan()
-        
         carousel_template_message = TemplateSendMessage(
         alt_text='謎之小電影',
         template=CarouselTemplate(
