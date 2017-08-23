@@ -311,6 +311,20 @@ def get_movies():
         movies.append(movie)
     return movies
 
+def sticker(key):
+    sitckerDict = dict()
+    sitckerDict = {'聽歌': {'sticker_id':'103','package_id':'1'}, '想睡': {'sticker_id':'1','package_id':'1'}, 
+                   '生日快樂': {'sticker_id':'427','package_id':'1'}, '吃飽': {'sticker_id':'425','package_id':'1'}
+                   '騎車': {'sticker_id':'430','package_id':'1'}, '窮': {'sticker_id':'417','package_id':'1'},
+                   '很忙': {'sticker_id':'411','package_id':'1'}, '翻滾': {'sticker_id':'423','package_id':'1'},
+                   '冷': {'sticker_id':'29','package_id':'2'}, '喝': {'sticker_id':'28','package_id':'2'},
+                   '晚安': {'sticker_id':'46','package_id':'2'}, '考試': {'sticker_id':'30','package_id':'2'},
+                   '熱': {'sticker_id':'601','package_id':'4'}, '戒指': {'sticker_id':'276','package_id':'4'},
+                   '彩虹': {'sticker_id':'268','package_id':'4'}, '櫻': {'sticker_id':'604','package_id':'4'},
+                   '累': {'sticker_id':'526','package_id':'2'}, '生氣': {'sticker_id':'527','package_id':'2'},
+                   '上班': {'sticker_id':'161','package_id':'2'}, '歡迎': {'sticker_id':'247','package_id':'3'},
+                   '升天': {'sticker_id':'161','package_id':'2'}}
+    return sitckerDict[key]
 
 @handler.add(MessageEvent, message=None)
 def handle_message(event):
@@ -537,9 +551,13 @@ def handle_message(event):
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
-    
-    
-    
+    stickerResult = sticker(msg)
+    if stickerResult is not None:
+        sticker_message = StickerSendMessage(
+            package_id=stickerResult['package_id'],
+            sticker_id=stickerResult['sticker_id']
+        )
+    line_bot_api.reply_message(event.reply_token, sticker_message)
     
     
     
