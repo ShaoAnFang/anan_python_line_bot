@@ -616,6 +616,17 @@ def handle_message(event):
                             uri=avgleResult[3]['video_url']
                         )
                     ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[4]['preview_url'],
+                    title=avgleResult[4]['keyword'][:10],
+                    text= avgleResult[4]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[4]['video_url']
+                        )
+                    ]
                 )
               ]
            )
