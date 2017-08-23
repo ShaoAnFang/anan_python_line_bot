@@ -576,7 +576,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[0]['preview_url'],
                     title='1',
-                    #text= avgleResult[0]['title'][:10],
+                    text= '1',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -587,7 +587,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[1]['poster_url'],
                     title='2',
-                    #text= avgleResult[1]['title'][:10],
+                    text ='2',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -598,7 +598,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[2]['preview_url'],
                     title='3',
-                    #text= avgleResult[2]['title'][:10],
+                    text= '3',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -609,7 +609,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[3]['preview_url'],
                     title='4',
-                    #text= avgleResult[3]['title'][:10],
+                    text= '4',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -620,7 +620,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[4]['preview_url'],
                     title='5',
-                    #text= avgleResult[4]['title'][:10],
+                    text= '5',
                     actions=[
                         URITemplateAction(
                             label='查看',
