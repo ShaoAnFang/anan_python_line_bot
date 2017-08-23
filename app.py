@@ -568,7 +568,7 @@ def handle_message(event):
     if msg == '小電影':
         avgleResult = darkAnan()
 #         asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))  
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
         carousel_template_message = TemplateSendMessage(
         alt_text='小電影',
         template=CarouselTemplate(
@@ -583,55 +583,74 @@ def handle_message(event):
                             uri=avgleResult[0]['video_url']
                         )
                     ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[1]['poster_url'],
-                    title='2',
-                    text ='2',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[1]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[2]['preview_url'],
-                    title='3',
-                    text= '3',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[2]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[3]['preview_url'],
-                    title='4',
-                    text= '4',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[3]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[4]['preview_url'],
-                    title='5',
-                    text= '5',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[4]['video_url']
-                        )
-                    ]
-                 )
+                )
               ]
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+#         carousel_template_message = TemplateSendMessage(
+#         alt_text='小電影',
+#         template=CarouselTemplate(
+#             columns=[
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[0]['preview_url'],
+#                     title='1',
+#                     text= '1',
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=avgleResult[0]['video_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[1]['poster_url'],
+#                     title='2',
+#                     text ='2',
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=avgleResult[1]['video_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[2]['preview_url'],
+#                     title='3',
+#                     text= '3',
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=avgleResult[2]['video_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[3]['preview_url'],
+#                     title='4',
+#                     text= '4',
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=avgleResult[3]['video_url']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[4]['preview_url'],
+#                     title='5',
+#                     text= '5',
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=avgleResult[4]['video_url']
+#                         )
+#                     ]
+#                  )
+#               ]
+#            )
+#         )
+#         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
     firebaseChatLog(msg)
