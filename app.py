@@ -575,8 +575,8 @@ def handle_message(event):
             columns=[
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[0]['preview_url'],
-                    title='1',
-                    text= '1',
+                    title=avgleResult[0]['keyword'],
+                    text= avgleResult[0]['title'],
                     actions=[
                         URITemplateAction(
                             label='查看',
