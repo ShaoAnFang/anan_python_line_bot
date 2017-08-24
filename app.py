@@ -373,13 +373,13 @@ def darkAnanQuery(name):
     return videoRandom
 
 
-@handler.add(MessageEvent, message=None)
+@handler.add(MessageEvent, message=ImageSendMessage)
 def handle_message(event):
-    sticker_message = StickerSendMessage(
-        package_id=event.message.package_id,
-        sticker_id=event.message.sticker_id
+    image_message = ImageSendMessage(
+        original_content_url='http://i.imgur.com/uPhBqLK.jpg',
+        preview_image_url='http://i.imgur.com/uPhBqLK.jpg'
     )
-    line_bot_api.reply_message(event.reply_token, sticker_message) 
+    line_bot_api.reply_message(event.reply_token, ImageSendMessage) 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -391,6 +391,12 @@ def handle_message(event):
            sticker_id='1'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
+    if msg == '圖' :
+        image_message = ImageSendMessage(
+            original_content_url='http://i.imgur.com/uPhBqLK.jpg',
+            preview_image_url='http://i.imgur.com/uPhBqLK.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, ImageSendMessage)   
 
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
