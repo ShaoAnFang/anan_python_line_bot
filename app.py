@@ -376,8 +376,8 @@ def darkAnanQuery(name):
 @handler.add(MessageEvent, message=ImageSendMessage)
 def handle_message(event):
     image_message = ImageSendMessage(
-        original_content_url='http://i.imgur.com/uPhBqLK.jpg',
-        preview_image_url='http://i.imgur.com/uPhBqLK.jpg'
+        original_content_url='https://i.imgur.com/uPhBqLK.jpg',
+        preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
     )
     line_bot_api.reply_message(event.reply_token, ImageSendMessage) 
 
@@ -393,8 +393,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, sticker_message)
     if msg == '圖' :
         image_message = ImageSendMessage(
-            original_content_url='http://i.imgur.com/uPhBqLK.jpg',
-            preview_image_url='http://i.imgur.com/uPhBqLK.jpg'
+            original_content_url='https://i.imgur.com/uPhBqLK.jpg',
+            preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
         )
         line_bot_api.reply_message(event.reply_token, ImageSendMessage)   
 
