@@ -387,9 +387,10 @@ def aime():
     for image in images:
         imageDict = dict()
         imageDict['imageLink'] = image.link.replace('http', 'https')
-        description = image.description.split('http')[0]
-        imageDict['title'] = description.split('$')[0].strip()
-        imageDict['price'] = '$'+ description.split('$')[1].strip()
+        description = image.description.split('http')[0].strip('\n')
+        imageDict['title&price'] = description 
+        #imageDict['title'] = description.split('$')[0].strip()
+        #imageDict['price'] = '$'+ description.split('$')[1].strip()
         imageDict['shopeeLink'] = image.description.split('$')[1][3:].strip()
         imgurResult.append(imageDict)
         
@@ -793,8 +794,8 @@ def handle_message(event):
             columns=[
                 CarouselColumn(
                     thumbnail_image_url=albumResult[0]['imageLink'],
-                    title=albumResult[0]['title'],
-                    text= albumResult[0]['price'],
+                    title=albumResult[0]['title&price'],
+                    #text= albumResult[0]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -804,8 +805,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=albumResult[1]['imageLink'],
-                    title=albumResult[1]['title'],
-                    text= albumResult[1]['price'],
+                    title=albumResult[1]['title&price'],
+                    #text= albumResult[1]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -815,8 +816,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=albumResult[2]['imageLink'],
-                    title=albumResult[2]['title'],
-                    text= albumResult[2]['price'],
+                    title=albumResult[2]['title&price'],
+                    #text= albumResult[2]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -826,8 +827,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=albumResult[3]['imageLink'],
-                    title=albumResult[3]['title'],
-                    text= albumResult[3]['price'],
+                    title=albumResult[3]['title&price'],
+                    #text= albumResult[3]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -837,8 +838,8 @@ def handle_message(event):
                 ),
                 CarouselColumn(
                     thumbnail_image_url=albumResult[4]['imageLink'],
-                    title=albumResult[4]['title'],
-                    text= albumResult[4]['price'],
+                    title=albumResult[4]['title&price'],
+                    #text= albumResult[4]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
