@@ -772,7 +772,7 @@ def handle_message(event):
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
-    if msg == 'Aime' or 'aime' or 'AIME' :
+    if msg == 'Aime' or msg == 'aime' or msg =='AIME' :
         
         albumResult = aime()
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
