@@ -379,8 +379,11 @@ def aime():
     client_id = '78616d0ac6840e4'
     client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
     client = ImgurClient(client_id,client_secret)
-    images = client.get_album_images('hLZwL')
-    #index = random.randint(0, len(images) - 1)
+    album = ['hLZwL','Qt8En']
+    i = random.randint(0, len(album) - 1)
+    images = client.get_album_images(album[i])
+    
+    index = random.sample(range(0, len(images)),5)
     #url = images[index].link.replace('http', 'https')
     imgurResult = []
     
