@@ -395,13 +395,13 @@ def aime():
         
     return albumResult
 
-@handler.add(MessageEvent, message=ImageMessage)
-def handle_message(event): 
-    image_message = ImageSendMessage(
-        original_content_url='https://i.imgur.com/uPhBqLK.jpg',
-        preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
-    )
-    line_bot_api.reply_message(event.reply_token, image_message) 
+# @handler.add(MessageEvent, message=ImageMessage)
+# def handle_message(event): 
+#     image_message = ImageSendMessage(
+#         original_content_url='https://i.imgur.com/uPhBqLK.jpg',
+#         preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
+#     )
+#     line_bot_api.reply_message(event.reply_token, image_message) 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -775,8 +775,8 @@ def handle_message(event):
             
     if msg == 'Aime' or 'aime' or 'AIME' :
         albumResult = aime()
-        asd = avgleResult[4]['imageLink'] + '\n' + avgleResult[4]['title'] +'\n'+ avgleResult[4]['price'] +'\n'+ avgleResult[4]['shopeeLink']
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
+        album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title'] +'\n'+ albumResult[4]['price'] +'\n'+ albumResult[4]['shopeeLink']
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
 #         carousel_template_message = TemplateSendMessage(
 #         alt_text='Aime',
 #         template=CarouselTemplate(
