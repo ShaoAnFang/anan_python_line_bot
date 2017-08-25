@@ -803,9 +803,9 @@ def handle_message(event):
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url=avgleResult[1]['imageLink'],
-                    title=avgleResult[1]['title'],
-                    text= avgleResult[1]['price'],
+                    thumbnail_image_url=albumResult[1]['imageLink'],
+                    title=albumResult[1]['title'],
+                    text= albumResult[1]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
