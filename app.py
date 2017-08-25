@@ -746,6 +746,33 @@ def handle_message(event):
     
     
     
+    firebaseChatLog(msg)
+
+    dbResult = firebaseQuery(msg)
+    
+    if dbResult != 'GG':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+
+    if sticker(msg) != 'GG':
+        sticker_message = StickerSendMessage(
+            package_id = sticker(msg)['package_id'],
+            sticker_id = sticker(msg)['sticker_id']
+        )
+        line_bot_api.reply_message(event.reply_token, sticker_message)
+        #global sendTime
+        #sendTimeStr = str(sendTime).split('.')[0]
+        #s = int(sendTimeStr)
+       
+        #now = str(time.time()).split('.')[0]
+        #n = int(now)
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
+        #if (n - s) > 3:
+            #sendTime = time.time()
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #else:
+            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
+            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
+            
     if msg == 'Aime' or 'aime' or 'AIME' :
         albumResult = aime()
         asd = avgleResult[4]['imageLink'] + '\n' + avgleResult[4]['title'] +'\n'+ avgleResult[4]['price'] +'\n'+ avgleResult[4]['shopeeLink']
@@ -816,32 +843,7 @@ def handle_message(event):
     
 
 
-    firebaseChatLog(msg)
 
-    dbResult = firebaseQuery(msg)
-    
-    if dbResult != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-
-    if sticker(msg) != 'GG':
-        sticker_message = StickerSendMessage(
-            package_id = sticker(msg)['package_id'],
-            sticker_id = sticker(msg)['sticker_id']
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-        #global sendTime
-        #sendTimeStr = str(sendTime).split('.')[0]
-        #s = int(sendTimeStr)
-       
-        #now = str(time.time()).split('.')[0]
-        #n = int(now)
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        #if (n - s) > 3:
-            #sendTime = time.time()
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #else:
-            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
     
     
 
