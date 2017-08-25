@@ -388,9 +388,9 @@ def aime():
         imageDict = dict()
         imageDict['imageLink'] = image.link.replace('http', 'https')
         description = image.description.split('http')[0]
-        imageDict['title'] = description.split('$')[0]
-        imageDict['price'] = '$'+ description.split('$')[1]
-        imageDict['shopeeLink'] = image.description.split('$')[1][3:]
+        imageDict['title'] = description.split('$')[0].strip()
+        imageDict['price'] = '$'+ description.split('$')[1].strip()
+        imageDict['shopeeLink'] = image.description.split('$')[1][3:].strip()
         imgurResult.append(imageDict)
         
     return imgurResult
@@ -787,69 +787,69 @@ def handle_message(event):
         albumResult = aime()
         album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title'] +'\n'+ albumResult[4]['price'] +'\n'+ albumResult[4]['shopeeLink']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
-#         carousel_template_message = TemplateSendMessage(
-#         alt_text='Aime',
-#         template=CarouselTemplate(
-#             columns=[
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[0]['imageLink'],
-#                     title=albumResult[0]['title'],
-#                     text= albumResult[0]['price'],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[0]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[1]['imageLink'],
-#                     title=avgleResult[1]['title'],
-#                     text= avgleResult[1]['price'],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[1]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[2]['imageLink'],
-#                     title=albumResult[2]['title'],
-#                     text= albumResult[2]['price'],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[2]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[3]['imageLink'],
-#                     title=albumResult[3]['title'],
-#                     text= albumResult[3]['price'],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[3]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[4]['imageLink'],
-#                     title=albumResult[4]['title'][:10],
-#                     text= albumResult[4]['price'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[4]['shopeeLink']
-#                         )
-#                     ]
-#                 )
-#               ]
-#            )
-#         )
-#         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        carousel_template_message = TemplateSendMessage(
+        alt_text='Aime',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[0]['imageLink'],
+                    title=albumResult[0]['title'],
+                    text= albumResult[0]['price'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[0]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[1]['imageLink'],
+                    title=avgleResult[1]['title'],
+                    text= avgleResult[1]['price'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[1]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[2]['imageLink'],
+                    title=albumResult[2]['title'],
+                    text= albumResult[2]['price'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[2]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[3]['imageLink'],
+                    title=albumResult[3]['title'],
+                    text= albumResult[3]['price'],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[3]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[4]['imageLink'],
+                    title=albumResult[4]['title'][:10],
+                    text= albumResult[4]['price'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[4]['shopeeLink']
+                        )
+                    ]
+                )
+              ]
+           )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
 
 
