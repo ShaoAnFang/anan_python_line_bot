@@ -739,16 +739,82 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
+    
+    if msg == 'Aime' or 'aime' or 'AIME' :
+        
+        albumResult = aime()
+        asd = avgleResult[4]['imageLink'] + '\n' + avgleResult[4]['title'] +'\n'+ avgleResult[4]['price'] +'\n'+ avgleResult[4]['shopeeLink']
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
+#         carousel_template_message = TemplateSendMessage(
+#         alt_text='Aime',
+#         template=CarouselTemplate(
+#             columns=[
+#                 CarouselColumn(
+#                     thumbnail_image_url=albumResult[0]['imageLink'],
+#                     title=albumResult[0]['title'],
+#                     text= albumResult[0]['price'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=albumResult[0]['shopeeLink']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=avgleResult[1]['imageLink'],
+#                     title=avgleResult[1]['title'],
+#                     text= avgleResult[1]['price'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=albumResult[1]['shopeeLink']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=albumResult[2]['imageLink'],
+#                     title=albumResult[2]['title'],
+#                     text= albumResult[2]['price'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=albumResult[2]['shopeeLink']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=albumResult[3]['imageLink'],
+#                     title=albumResult[3]['title'],
+#                     text= albumResult[3]['price'],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=albumResult[3]['shopeeLink']
+#                         )
+#                     ]
+#                 ),
+#                 CarouselColumn(
+#                     thumbnail_image_url=albumResult[4]['imageLink'],
+#                     title=albumResult[4]['title'][:10],
+#                     text= albumResult[4]['price'][:10],
+#                     actions=[
+#                         URITemplateAction(
+#                             label='查看',
+#                             uri=albumResult[4]['shopeeLink']
+#                         )
+#                     ]
+#                 )
+#               ]
+#            )
+#         )
+#         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+    
+
+
     firebaseChatLog(msg)
 
-    
-
-
-#           gg = sticker(msg)['package_id'] + sticker(msg)['sticker_id']
-#           line_bot_api.reply_message(event.reply_token,TextSendMessage(text=gg))
-    
-    
     dbResult = firebaseQuery(msg)
+    
     if dbResult != 'GG':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
@@ -771,78 +837,6 @@ def handle_message(event):
         #else:
             #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
             #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
-    
-    if msg == 'Aime' or msg == 'aime' or msg =='AIME' :
-        
-        albumResult = aime()
-        #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-        carousel_template_message = TemplateSendMessage(
-        alt_text='Aime',
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[0]['imageLink'],
-                    title=albumResult[0]['title'],
-                    text= albumResult[0]['price'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[0]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[1]['imageLink'],
-                    title=avgleResult[1]['title'],
-                    text= avgleResult[1]['price'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[1]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[2]['imageLink'],
-                    title=albumResult[2]['title'],
-                    text= albumResult[2]['price'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[2]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[3]['imageLink'],
-                    title=albumResult[3]['title'],
-                    text= albumResult[3]['price'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[3]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[4]['imageLink'],
-                    title=albumResult[4]['title'][:10],
-                    text= albumResult[4]['price'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[4]['shopeeLink']
-                        )
-                    ]
-                )
-              ]
-           )
-        )
-        line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    
-
-
     
     
 
