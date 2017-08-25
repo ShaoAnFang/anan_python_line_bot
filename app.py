@@ -795,7 +795,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=albumResult[0]['imageLink'],
                     title=albumResult[0]['title&price'],
-                    #text= albumResult[0]['price'],
+                    text= '',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -806,7 +806,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=albumResult[1]['imageLink'],
                     title=albumResult[1]['title&price'],
-                    #text= albumResult[1]['price'],
+                    text= '',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -817,7 +817,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=albumResult[2]['imageLink'],
                     title=albumResult[2]['title&price'],
-                    #text= albumResult[2]['price'],
+                    text= '',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -828,7 +828,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=albumResult[3]['imageLink'],
                     title=albumResult[3]['title&price'],
-                    #text= albumResult[3]['price'],
+                    text= '',
                     actions=[
                         URITemplateAction(
                             label='查看',
@@ -839,7 +839,7 @@ def handle_message(event):
                 CarouselColumn(
                     thumbnail_image_url=albumResult[4]['imageLink'],
                     title=albumResult[4]['title&price'],
-                    #text= albumResult[4]['price'],
+                    text= '',
                     actions=[
                         URITemplateAction(
                             label='查看',
