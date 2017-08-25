@@ -387,7 +387,7 @@ def aime():
     for image in images:
         imageDict = dict()
         imageDict['imageLink'] = image.link.replace('http', 'https')
-        description = imgur.description.split('http')[0]
+        description = image.description.split('http')[0]
         imageDict['title'] = title = description.split('$')[0]
         imageDict['price'] = price = '$'+ description.split('$')[1]
         imageDict['shopeeLink'] = image.description.encode('utf8').split('$')[1][3:]
