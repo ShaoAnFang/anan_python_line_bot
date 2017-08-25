@@ -373,15 +373,13 @@ def darkAnanQuery(name):
     return videoRandom
 
 
-@handler.add(MessageEvent, message=None)
-def handle_message(event):
-    if event.message.type != '':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.type))  
-#     image_message = ImageSendMessage(
-#         original_content_url='https://i.imgur.com/uPhBqLK.jpg',
-#         preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
-#     )
-#     line_bot_api.reply_message(event.reply_token, ImageSendMessage) 
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_message(event): 
+    image_message = ImageSendMessage(
+        original_content_url='https://i.imgur.com/uPhBqLK.jpg',
+        preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
+    )
+    line_bot_api.reply_message(event.reply_token, image_message) 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -398,7 +396,7 @@ def handle_message(event):
             original_content_url='https://i.imgur.com/uPhBqLK.jpg',
             preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
         )
-        line_bot_api.reply_message(event.reply_token, ImageSendMessage)   
+        line_bot_api.reply_message(event.reply_token, image_message)   
 
     #if event.source.user_id :
         #profile = line_bot_api.get_profile(event.source.user_id)
