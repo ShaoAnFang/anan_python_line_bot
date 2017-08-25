@@ -390,7 +390,7 @@ def aime():
         description = image.description.split('http')[0]
         imageDict['title'] = description.split('$')[0]
         imageDict['price'] = '$'+ description.split('$')[1]
-        imageDict['shopeeLink'] = image.description.encode('utf8').split('$')[1][3:]
+        imageDict['shopeeLink'] = image.description.split('$')[1][3:]
         imgurResult.append(imageDict)
         
     return imgurResult
