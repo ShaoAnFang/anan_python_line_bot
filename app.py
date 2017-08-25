@@ -798,7 +798,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[0]['imageLink']
+                            uri=albumResult[0]['shopeeLink']
                         )
                     ]
                 ),
@@ -809,7 +809,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[1]['imageLink']
+                            uri=albumResult[1]['shopeeLink']
                         )
                     ]
                 ),
@@ -820,7 +820,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[2]['imageLink']
+                            uri=albumResult[2]['shopeeLink']
                         )
                     ]
                 ),
@@ -831,7 +831,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[3]['imageLink']
+                            uri=albumResult[3]['shopeeLink']
                         )
                     ]
                 ),
@@ -842,7 +842,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[4]['imageLink']
+                            uri=albumResult[4]['shopeeLink']
                         )
                     ]
                 )
