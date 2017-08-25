@@ -755,19 +755,20 @@ def handle_message(event):
     
     
     
-    firebaseChatLog(msg)
+#     firebaseChatLog(msg)
 
-    dbResult = firebaseQuery(msg)
+#     dbResult = firebaseQuery(msg)
     
-    if dbResult != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#     if dbResult != 'GG':
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
-    if sticker(msg) != 'GG':
-        sticker_message = StickerSendMessage(
-            package_id = sticker(msg)['package_id'],
-            sticker_id = sticker(msg)['sticker_id']
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
+#     if sticker(msg) != 'GG':
+#         sticker_message = StickerSendMessage(
+#             package_id = sticker(msg)['package_id'],
+#             sticker_id = sticker(msg)['sticker_id']
+#         )
+#         line_bot_api.reply_message(event.reply_token, sticker_message)
+        
         #global sendTime
         #sendTimeStr = str(sendTime).split('.')[0]
         #s = int(sendTimeStr)
