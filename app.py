@@ -373,7 +373,7 @@ def darkAnanQuery(name):
     return videoRandom
 
 
-@handler.add(MessageEvent, message=ImageSendMessage)
+@handler.add(MessageEvent, message=None)
 def handle_message(event):
     if event.message.type != '':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.type))  
