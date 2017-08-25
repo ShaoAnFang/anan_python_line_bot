@@ -698,91 +698,37 @@ def handle_message(event):
                     thumbnail_image_url=avgleResult[0]['preview_url'],
                     title=avgleResult[0]['keyword'][:10],
                     text= avgleResult[0]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[0]['video_url']
-                        )
-                    ]
+                    actions=[URITemplateAction(label='查看',uri=avgleResult[0]['video_url'])]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[1]['preview_url'],
                     title=avgleResult[1]['keyword'][:10],
                     text= avgleResult[1]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[1]['video_url']
-                        )
-                    ]
+                    actions=[URITemplateAction(label='查看',uri=avgleResult[1]['video_url'])]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[2]['preview_url'],
                     title=avgleResult[2]['keyword'][:10],
                     text= avgleResult[2]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[2]['video_url']
-                        )
-                    ]
+                    actions=[URITemplateAction(label='查看',uri=avgleResult[2]['video_url'])]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[3]['preview_url'],
                     title=avgleResult[3]['keyword'][:10],
                     text= avgleResult[3]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[3]['video_url']
-                        )
-                    ]
+                    actions=[URITemplateAction(label='查看',uri=avgleResult[3]['video_url'])]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=avgleResult[4]['preview_url'],
                     title=avgleResult[4]['keyword'][:10],
                     text= avgleResult[4]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[4]['video_url']
-                        )
-                    ]
+                    actions=[URITemplateAction(label='查看',uri=avgleResult[4]['video_url'])]
                 )
               ]
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    
-    
-    
-#     firebaseChatLog(msg)
 
-#     dbResult = firebaseQuery(msg)
-    
-#     if dbResult != 'GG':
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-
-#     if sticker(msg) != 'GG':
-#         sticker_message = StickerSendMessage(
-#             package_id = sticker(msg)['package_id'],
-#             sticker_id = sticker(msg)['sticker_id']
-#         )
-#         line_bot_api.reply_message(event.reply_token, sticker_message)
-        
-        #global sendTime
-        #sendTimeStr = str(sendTime).split('.')[0]
-        #s = int(sendTimeStr)
-       
-        #now = str(time.time()).split('.')[0]
-        #n = int(now)
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        #if (n - s) > 3:
-            #sendTime = time.time()
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #else:
-            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
             
     if msg == 'Aime' or msg == 'aime' or msg == 'AIME' :
         albumResult = aime()
