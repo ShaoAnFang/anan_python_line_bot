@@ -376,6 +376,9 @@ def darkAnanQuery(name):
 
 
 def aime():
+    client_id = '78616d0ac6840e4'
+    client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
+    client = ImgurClient(client_id,client_secret)
     images = client.get_album_images('hLZwL')
     #index = random.randint(0, len(images) - 1)
     #url = images[index].link.replace('http', 'https')
@@ -742,8 +745,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
+    
     if msg == 'Aime' or 'aime' or 'AIME' :
-        
         albumResult = aime()
         asd = avgleResult[4]['imageLink'] + '\n' + avgleResult[4]['title'] +'\n'+ avgleResult[4]['price'] +'\n'+ avgleResult[4]['shopeeLink']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
