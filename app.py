@@ -798,7 +798,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[0]['shopeeLink']
+                            uri=albumResult[0]['imageLink']
                         )
                     ]
                 ),
@@ -809,7 +809,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[1]['shopeeLink']
+                            uri=albumResult[1]['imageLink']
                         )
                     ]
                 ),
@@ -820,7 +820,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[2]['shopeeLink']
+                            uri=albumResult[2]['imageLink']
                         )
                     ]
                 ),
@@ -831,18 +831,18 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[3]['shopeeLink']
+                            uri=albumResult[3]['imageLink']
                         )
                     ]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=albumResult[4]['imageLink'],
-                    title=albumResult[4]['title'][:10],
-                    text= albumResult[4]['price'][:10],
+                    title=albumResult[4]['title'],
+                    text= albumResult[4]['price'],
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=albumResult[4]['shopeeLink']
+                            uri=albumResult[4]['imageLink']
                         )
                     ]
                 )
