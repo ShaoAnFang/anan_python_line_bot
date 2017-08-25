@@ -382,7 +382,7 @@ def aime():
     images = client.get_album_images('hLZwL')
     #index = random.randint(0, len(images) - 1)
     #url = images[index].link.replace('http', 'https')
-    albumResult = []
+    imgurResult = []
     
     for image in images:
         imageDict = dict()
@@ -391,9 +391,9 @@ def aime():
         imageDict['title'] = description.split('$')[0]
         imageDict['price'] = '$'+ description.split('$')[1]
         imageDict['shopeeLink'] = image.description.encode('utf8').split('$')[1][3:]
-        albumResult.append(imageDict)
+        imgurResult.append(imageDict)
         
-    return albumResult
+    return imgurResult
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
@@ -401,7 +401,16 @@ def aime():
 #         original_content_url='https://i.imgur.com/uPhBqLK.jpg',
 #         preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
 #     )
-#     line_bot_api.reply_message(event.reply_token, image_message) 
+#     line_bot_api.reply_message(event.reply_token, image_message)
+
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_message(event): 
+    sticker_message = StickerSendMessage(
+        package_id = event.message.package_id,
+        sticker_id = event.message.sticker_id
+    )
+    line_bot_api.reply_message(event.reply_token, sticker_message)
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
