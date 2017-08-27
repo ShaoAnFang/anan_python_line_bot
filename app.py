@@ -34,9 +34,6 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
-      
-
-
 
 
 @app.route("/callback", methods=['POST'])
@@ -90,12 +87,10 @@ def firebaseInsert(key,value):
     else:    
         getValues.append(value)
         firebase.put('data',key,getValues)
-    
     #寫完讓DB重讀一次
     #queryAllKeyAndValues = firebase.get('/data',None)
     
     return "好的 記住了"
-
 
 @app.route('/deleteDB', methods=['GET'])
 def firebaseDelete(deleteKey):
@@ -131,7 +126,6 @@ def firebaseChatLog(key):
         getChatLog.append(key)
         firebase.put('/ChatLog',inputDate,getChatLog)
 
-        
 def stock(stockNumber):
     url = 'https://www.google.com.hk/finance?q='
     url += stockNumber
@@ -150,7 +144,6 @@ def stock(stockNumber):
     for p in soup.select('.pr'):
         #print(p.text)
         nowPrice += p.text.strip()
-    
     #漲跌
     upDown = soup.select('.chr')
     if not upDown :
@@ -195,7 +188,6 @@ def stock(stockNumber):
    
     return resultString
 
-
 @app.route('/star/<string:star>', methods=['GET'])
 def constellation(star):
 
@@ -209,7 +201,6 @@ def constellation(star):
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
     #print(soup)
-
     name = soup.find_all('p')
     #print(name)
     starAndDate = []
@@ -217,14 +208,11 @@ def constellation(star):
         #print n.text.encode('utf8')
         starAndDate.append(n.text)
         #print(starAndDate)
-
     today = soup.select('.today')[0].text.strip('\n')
     today = today.split('\n\n')[0]
     #print today
-
     title = soup.find('li').text.strip()
     #print(title)
-
     content = soup.find('article').text.strip()
     #print content
 
@@ -236,8 +224,6 @@ def constellation(star):
     
     return resultString
 
-
-   
 @app.route('/weather', methods=['GET'])
 def weather(ChooseCity):
     cityDict = dict()
@@ -384,18 +370,32 @@ def aime():
     images = client.get_album_images(album[i])
     
     index = random.sample(range(0, len(images)),5)
-    #url = images[index].link.replace('http', 'https')
-    imgurResult = []
     
-    for image in images:
+    imgurResult = []
+    for i in index:
         imageDict = dict()
-        imageDict['imageLink'] = image.link.replace('http', 'https')
-        description = image.description.split('http')[0].strip('\n')
+        imageDict['imageLink'] = images[i].link.replace('http', 'https')
+        description = images[i].description.split('http')[0].strip('\n')
         imageDict['title&price'] = description 
         #imageDict['title'] = description.split('$')[0].strip()
         #imageDict['price'] = '$'+ description.split('$')[1].strip()
-        imageDict['shopeeLink'] = image.description.split('$')[1][3:].strip()
+        imageDict['shopeeLink'] = images[i].description.split('$')[1][3:].strip()
         imgurResult.append(imageDict)
+        
+    #url = images[index].link.replace('http', 'https')
+#     imgurResult = []
+    
+#     for image in images:
+#         imageDict = dict()
+#         imageDict['imageLink'] = image.link.replace('http', 'https')
+#         description = image.description.split('http')[0].strip('\n')
+#         imageDict['title&price'] = description 
+#         #imageDict['title'] = description.split('$')[0].strip()
+#         #imageDict['price'] = '$'+ description.split('$')[1].strip()
+#         imageDict['shopeeLink'] = image.description.split('$')[1][3:].strip()
+#         imgurResult.append(imageDict)
+
+        
         
     return imgurResult
 
@@ -619,73 +619,73 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
-#     if msg == '小電影' or msg == 'AV':
-#         avgleResult = darkAnan()
-#         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
-#         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-#         carousel_template_message = TemplateSendMessage(
-#         alt_text='小電影',
-#         template=CarouselTemplate(
-#             columns=[
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[0]['preview_url'],
-#                     title=avgleResult[0]['keyword'][:10],
-#                     text= avgleResult[0]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[0]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[1]['preview_url'],
-#                     title=avgleResult[1]['keyword'][:10],
-#                     text= avgleResult[1]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[1]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[2]['preview_url'],
-#                     title=avgleResult[2]['keyword'][:10],
-#                     text= avgleResult[2]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[2]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[3]['preview_url'],
-#                     title=avgleResult[3]['keyword'][:10],
-#                     text= avgleResult[3]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[3]['video_url']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=avgleResult[4]['preview_url'],
-#                     title=avgleResult[4]['keyword'][:10],
-#                     text= avgleResult[4]['title'][:10],
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=avgleResult[4]['video_url']
-#                         )
-#                     ]
-#                 )
-#               ]
-#            )
-#         )
-#         line_bot_api.reply_message(event.reply_token, carousel_template_message)         
+    if msg == 'AV':
+        avgleResult = darkAnan()
+        #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
+        carousel_template_message = TemplateSendMessage(
+        alt_text='小電影',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[0]['preview_url'],
+                    title=avgleResult[0]['keyword'][:10],
+                    text= avgleResult[0]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[0]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[1]['preview_url'],
+                    title=avgleResult[1]['keyword'][:10],
+                    text= avgleResult[1]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[1]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[2]['preview_url'],
+                    title=avgleResult[2]['keyword'][:10],
+                    text= avgleResult[2]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[2]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[3]['preview_url'],
+                    title=avgleResult[3]['keyword'][:10],
+                    text= avgleResult[3]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[3]['video_url']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=avgleResult[4]['preview_url'],
+                    title=avgleResult[4]['keyword'][:10],
+                    text= avgleResult[4]['title'][:10],
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=avgleResult[4]['video_url']
+                        )
+                    ]
+                )
+              ]
+           )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)         
     
     
     if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ':
