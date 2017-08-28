@@ -90,6 +90,7 @@ def firebaseInsert(key,value):
         firebase.put('data',key,getValues)
     #寫完讓DB重讀一次
     global queryAllKeyAndValues
+    queryAllKeyAndValues.clear()
     queryAllKeyAndValues = firebase.get('/data',None)
     
     return "好的 記住了"
@@ -97,8 +98,10 @@ def firebaseInsert(key,value):
 @app.route('/deleteDB', methods=['GET'])
 def firebaseDelete(deleteKey):
     firebase.delete('/data', deleteKey)
+    #time.sleep(1.5)
     #刪除完再重新讀取一次DB
     global queryAllKeyAndValues
+    queryAllKeyAndValues.clear()
     queryAllKeyAndValues = firebase.get('/data',None)
     return '好的 已經遺忘'
 
