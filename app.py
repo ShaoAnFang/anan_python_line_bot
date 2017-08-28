@@ -17,9 +17,9 @@ from imgurpython import ImgurClient
 from flask import Flask, request, abort
 
 from firebase import firebase
-databaseURL = config.get('credentials', 'databaseURL')
-firebase = firebase.FirebaseApplication(databaseURL,None)
-#firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+#databaseURL = config.get('credentials', 'databaseURL')
+#firebase = firebase.FirebaseApplication(databaseURL,None)
+firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
 
 
