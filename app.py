@@ -96,8 +96,10 @@ def firebaseInsert(key,value):
 
 @app.route('/deleteDB', methods=['GET'])
 def firebaseDelete(deleteKey):
-    
-    firebase.delete('/data', deleteKey)        
+    firebase.delete('/data', deleteKey)
+    #刪除完再重新讀取一次DB
+    global queryAllKeyAndValues
+    queryAllKeyAndValues = firebase.get('/data',None)
     return '好的 已經遺忘'
 
 @app.route('/fetchDB/<string:key>', methods=['GET'])
