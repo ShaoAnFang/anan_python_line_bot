@@ -545,13 +545,18 @@ def handle_message(event):
         
                                 
     if msg == '電影':
-        if event.source.user_id :
-            profile = line_bot_api.get_profile(event.source.user_id)
-            n = profile.display_name
-            p = profile.picture_url
-            m = profile.status_message
-            z = n + '\n \n' + p + '\n \n' + m
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
+        
+        if event.sourceGroup.group_id:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.sourceGroup.group_id))
+        
+        
+#         if event.source.user_id :
+#             profile = line_bot_api.get_profile(event.source.user_id)
+#             n = profile.display_name
+#             p = profile.picture_url
+#             m = profile.status_message
+#             z = n + '\n \n' + p + '\n \n' + m
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
         
         
 #         g = get_movies()
