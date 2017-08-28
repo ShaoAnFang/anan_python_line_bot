@@ -533,7 +533,7 @@ def handle_message(event):
                 i = profile.user_id
                 m = profile.status_message
                 z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.user_id))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
             
