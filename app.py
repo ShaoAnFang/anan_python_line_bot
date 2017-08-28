@@ -381,22 +381,7 @@ def aime():
         #imageDict['price'] = '$'+ description.split('$')[1].strip()
         imageDict['shopeeLink'] = images[i].description.split('$')[1][3:].strip()
         imgurResult.append(imageDict)
-        
-    #url = images[index].link.replace('http', 'https')
-#     imgurResult = []
-    
-#     for image in images:
-#         imageDict = dict()
-#         imageDict['imageLink'] = image.link.replace('http', 'https')
-#         description = image.description.split('http')[0].strip('\n')
-#         imageDict['title&price'] = description 
-#         #imageDict['title'] = description.split('$')[0].strip()
-#         #imageDict['price'] = '$'+ description.split('$')[1].strip()
-#         imageDict['shopeeLink'] = image.description.split('$')[1][3:].strip()
-#         imgurResult.append(imageDict)
-
-        
-        
+       
     return imgurResult
 
 # @handler.add(MessageEvent, message=ImageMessage)
@@ -426,6 +411,7 @@ def handle_message(event):
            sticker_id='1'
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
+        
     if msg == '圖' :
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/uPhBqLK.jpg',
@@ -440,7 +426,6 @@ def handle_message(event):
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
         
-    
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
         menulist += '2. 輸入 天氣 台北 \n\n'
@@ -829,9 +814,6 @@ def handle_message(event):
 #             cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
 #             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
 
-
-    
-    
 
 
 if __name__ == "__main__":
