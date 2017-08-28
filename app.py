@@ -36,12 +36,12 @@ from linebot.models import *
 
 app = Flask(__name__)
 
-#line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
-#handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
-CHANNEL_ACCESS_TOKEN = config.get('credentials', 'CHANNEL_ACCESS_TOKEN')
-CHANNEL_SECRET = config.get('credentials', 'CHANNEL_SECRET')
-line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(CHANNEL_SECRET)
+line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
+#CHANNEL_ACCESS_TOKEN = config.get('credentials', 'CHANNEL_ACCESS_TOKEN')
+#CHANNEL_SECRET = config.get('credentials', 'CHANNEL_SECRET')
+#line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+#handler = WebhookHandler(CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
