@@ -8,7 +8,7 @@ sendTime = time.time()
 import datetimeimport pytz 
 import random
 import requests 
-import configparser
+#import configparser
 #config = configparser.ConfigParser()
 #config.read('auth.cfg')
 
