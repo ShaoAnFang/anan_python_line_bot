@@ -547,7 +547,7 @@ def handle_message(event):
     if msg == '電影':
         
         if event.source.group_id:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.sourceGroup.group_id))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
         
         
 #         if event.source.user_id :
