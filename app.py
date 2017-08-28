@@ -9,8 +9,8 @@ import datetimeimport pytz
 import random
 import requests 
 import configparser
-config = configparser.ConfigParser()
-config.read('auth.cfg')
+#config = configparser.ConfigParser()
+#config.read('auth.cfg')
 
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
