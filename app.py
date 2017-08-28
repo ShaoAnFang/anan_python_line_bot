@@ -522,15 +522,17 @@ def handle_message(event):
                 profile = line_bot_api.get_profile(event.source.user_id)
                 n = profile.display_name
                 p = profile.picture_url
+                i = profile.user_id
                 m = profile.status_message
-                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.group_id + '\n \n' + str(event.source.user_id)
+                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.group_id + '\n \n' + i
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
             else:
                 profile = line_bot_api.get_profile(event.source.user_id)
                 n = profile.display_name
                 p = profile.picture_url
+                i = profile.user_id
                 m = profile.status_message
-                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + str(event.source.user_id)
+                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
