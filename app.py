@@ -9,7 +9,7 @@ import datetimeimport pytz
 import random
 import requests 
 import configparser
-config = configpaser.ConfigParser()
+config = configparser.ConfigParser()
 config.read('auth.ini')
 
 from bs4 import BeautifulSoup
