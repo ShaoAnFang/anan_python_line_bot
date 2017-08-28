@@ -3,6 +3,7 @@ pytz
 gunicorn
 requests
 imgurpython
+configparser
 beautifulsoup4
 python-firebase
 line-bot-sdk==1.3.0
