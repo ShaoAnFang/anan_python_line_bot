@@ -2,20 +2,23 @@
 # -*- coding: utf-8 -*-
 
 import re
+import json
 import time
 sendTime = time.time()
-import datetime
-import pytz 
+import datetimeimport pytz 
 import random
-import requests
-import json
+import requests 
+import configparser
+config = configpaser.ConfigParser()
+config.read('auth.ini')
 
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
 from flask import Flask, request, abort
 
 from firebase import firebase
-firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+firebase = firebase.FirebaseApplication(databaseURL,None)
+#firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
 
 
@@ -32,9 +35,10 @@ from linebot.models import *
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
-
+#line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
+#handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
