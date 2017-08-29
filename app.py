@@ -9,6 +9,8 @@ import pytz
 import random
 import requests
 import json
+import schedule
+
 
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
@@ -56,6 +58,17 @@ def callback():
 @app.route('/GGWP', methods=['GET'])
 def test():
     return "Hello World!"
+
+schedule.every(10).seconds.do(ding)
+def ding():
+    url = 'https://oapi.dingtalk.com/robot/send?access_token=a49a53cd73a62016fb0e471c49725f617403c220f10cf61a2f41fdf093751f28'
+
+    leaveOffice = '各位夥伴大家辛苦了 下班前請也記得打下班卡'
+
+    jsonBody = {"msgtype":"text","text":{"content":leaveOffice},"at":{"atMobiles":["156xxxx8827","189xxxx8325"],"isAtAll":'false'}}
+    header = {'Content-Type': 'application/json; charset=utf-8'}
+    postRequest = requests.post(url, json = jsonBody, headers = header)
+
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
