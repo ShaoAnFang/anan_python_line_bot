@@ -585,12 +585,8 @@ def handle_message(event):
         
                                 
     if msg == '電影':
-        
         if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
-               
-
-        
         g = get_movies()
         carousel_template_message = TemplateSendMessage(
         alt_text='電影',
@@ -603,7 +599,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[0]['info_url']
+                            uri=g[0]['poster_url']
                         )
                     ]
                 ),
@@ -636,7 +632,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[3]['info_url']
+                            uri=g[3]['poster_url']
                         )
                     ]
                 ),
@@ -647,7 +643,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[4]['info_url']
+                            uri=g[4]['poster_url']
                         )
                     ]
                  )
