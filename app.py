@@ -610,7 +610,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[1]['info_url']
+                            uri=g[1]['poster_url']
                         )
                     ]
                 ),
