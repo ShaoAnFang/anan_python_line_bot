@@ -600,7 +600,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[0]['poster_url']
+                            uri=g[0]['info_url']
                         )
                     ]
                 ),
@@ -611,7 +611,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[1]['poster_url']
+                            uri=g[1]['info_url']
                         )
                     ]
                 ),
@@ -622,7 +622,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[2]['poster_url']
+                            uri=g[2]['info_url']
                         )
                     ]
                 ),
@@ -633,7 +633,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[3]['poster_url']
+                            uri=g[3]['info_url']
                         )
                     ]
                 ),
@@ -644,7 +644,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[4]['poster_url']
+                            uri=g[4]['info_url']
                         )
                     ]
                  )
