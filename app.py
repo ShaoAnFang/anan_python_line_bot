@@ -287,6 +287,16 @@ def weather(ChooseCity):
 
     return resultString
 
+def get_movie_id(url):
+    # e.g. "https://tw.rd.yahoo.com/referurl/movie/thisweek/info/*https://tw.movies.yahoo.com/movieinfo_main.html/id=6707"
+    #      -> match.group(0): "/id=6707"
+    pattern = '/id=\d+'
+    match = re.search(pattern, url)
+    if match is None:
+        return url
+    else:
+        return match.group(0).replace('/id=', '')
+
 @app.route('/movie', methods=['GET'])
 def get_movies():
     Y_MOVIE_URL = 'https://tw.movies.yahoo.com/movie_thisweek.html'
@@ -304,7 +314,7 @@ def get_movies():
         movie['poster_url'] = row.select('img')[0]['src']
         #movie['release_date'] = get_date(row.select('.release_movie_time')[0].text)
         movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:15] + '...'
-        #movie['info_url'] = Y_INTRO_URL + '/id=' + get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
+        movie['info_url'] = Y_INTRO_URL + '/id=' + get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
         movies.append(movie)
     return movies
 
@@ -593,7 +603,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[0]['poster_url']
+                            uri=g[0]['info_url']
                         )
                     ]
                 ),
@@ -604,7 +614,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[1]['poster_url']
+                            uri=g[1]['info_url']
                         )
                     ]
                 ),
@@ -626,7 +636,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[3]['poster_url']
+                            uri=g[3]['info_url']
                         )
                     ]
                 ),
@@ -637,7 +647,7 @@ def handle_message(event):
                     actions=[
                         URITemplateAction(
                             label='查看',
-                            uri=g[4]['poster_url']
+                            uri=g[4]['info_url']
                         )
                     ]
                  )
