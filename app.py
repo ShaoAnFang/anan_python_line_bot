@@ -59,7 +59,7 @@ def callback():
 def test():
     return "Hello World!"
 
-schedule.every(10).seconds.do(ding)
+
 def ding():
     url = 'https://oapi.dingtalk.com/robot/send?access_token=a49a53cd73a62016fb0e471c49725f617403c220f10cf61a2f41fdf093751f28'
 
@@ -69,6 +69,8 @@ def ding():
     header = {'Content-Type': 'application/json; charset=utf-8'}
     postRequest = requests.post(url, json = jsonBody, headers = header)
 
+    
+schedule.every(10).seconds.do(ding)
 
 @app.route('/queryDB/<string:message>', methods=['GET'])
 def firebaseQuery(message):
