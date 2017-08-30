@@ -391,8 +391,8 @@ def aime(key):
         index = random.sample(range(0, len(images)),5)
     else:
         album = 'hoBxs'
-        i = random.randint(0, len(album) - 1)
-        images = client.get_album_images(album[i])
+        #i = random.randint(0, len(album) - 1)
+        images = client.get_album_images(album)
         index = random.sample(range(0, len(images)),5)
         
     imgurResult = []
