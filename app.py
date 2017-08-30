@@ -379,16 +379,22 @@ def darkAnanQuery(name):
     return videoRandom
 
 
-def aime():
+def aime(key):
     client_id = '78616d0ac6840e4'
     client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
     client = ImgurClient(client_id,client_secret)
-    album = ['hLZwL','Qt8En']
-    i = random.randint(0, len(album) - 1)
-    images = client.get_album_images(album[i])
     
-    index = random.sample(range(0, len(images)),5)
-    
+    if key == 'Aime' or key == 'aime': 
+        album = ['hLZwL','Qt8En']
+        i = random.randint(0, len(album) - 1)
+        images = client.get_album_images(album[i])
+        index = random.sample(range(0, len(images)),5)
+    else:
+        album = 'hoBxs'
+        i = random.randint(0, len(album) - 1)
+        images = client.get_album_images(album[i])
+        index = random.sample(range(0, len(images)),5)
+        
     imgurResult = []
     for i in index:
         imageDict = dict()
@@ -769,8 +775,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
 
             
-    if msg == 'Aime' or msg == 'aime' or msg == 'AIME' :
-        albumResult = aime()
+    if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
+        albumResult = aime(msg)
         #album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title'] +'\n'+ albumResult[4]['price'] +'\n'+ albumResult[4]['shopeeLink']
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
         carousel_template_message = TemplateSendMessage(
