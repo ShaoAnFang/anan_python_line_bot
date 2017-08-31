@@ -665,7 +665,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
-    if msg == '小電影' or msg == 'AV' and groupID != 'C54f882fec4c5b8dc538b6d1cee5fc31f':
+    if (msg == '小電影' or msg == 'AV') and groupID != 'C54f882fec4c5b8dc538b6d1cee5fc31f':
         #event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
         avgleResult = darkAnan()
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
