@@ -429,7 +429,10 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-        
+    
+    if event.source.group_id is not None:
+        groupID = event.source.group_id 
+    
     if msg == '貼圖' :
         sticker_message = StickerSendMessage(
            package_id='1',
@@ -662,10 +665,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
-    if msg == '小電影' or msg == 'AV' :
+    if msg == '小電影' or msg == 'AV' or groupID == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
         #event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='流量用盡'))
-    #else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='流量用盡'))
+    else:
         avgleResult = darkAnan()
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
@@ -734,10 +737,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)         
     
     
-    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' :
-        #or event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='流量用盡'))
-    #else:    
+    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' or groupID == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
+        # event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='流量用盡'))
+    else:    
         name = msg.split('AV ')[1]
         avgleResult = darkAnanQuery(name)
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
