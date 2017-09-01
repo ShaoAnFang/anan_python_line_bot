@@ -854,7 +854,11 @@ def handle_message(event):
     dbResult = firebaseQuery(msg)
     
     if dbResult != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        r = random.random()
+        if r > 0.1 :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        else:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去幹紹安'))
 
     if sticker(msg) != 'GG':
         sticker_message = StickerSendMessage(
