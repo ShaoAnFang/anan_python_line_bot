@@ -430,8 +430,8 @@ def handle_message(event):
 def handle_message(event):
     msg = event.message.text
     
-    if event.source.group_id is not None:
-        groupID = event.source.group_id 
+    #if event.source.group_id is not None:
+    #    groupID = event.source.group_id 
     
     if msg == '貼圖' :
         sticker_message = StickerSendMessage(
