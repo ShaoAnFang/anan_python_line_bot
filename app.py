@@ -381,8 +381,10 @@ def darkAnanQuery(name):
 
 
 def aime(key):
-    client_id = '78616d0ac6840e4'
-    client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
+#     client_id = '78616d0ac6840e4'
+#     client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
+    client_id = 'c3e767d450a401e'
+    client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
     client = ImgurClient(client_id,client_secret)
     
     if key == 'Aime' or key == 'aime': 
