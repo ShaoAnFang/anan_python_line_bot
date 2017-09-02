@@ -665,7 +665,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     
-    if (msg == '小電影' or msg == 'AV') and groupID != 'C54f882fec4c5b8dc538b6d1cee5fc31f':
+    if msg == '小電影' or msg == 'AV':
         #event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
         avgleResult = darkAnan()
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
@@ -735,7 +735,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)         
     
     
-    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' and groupID != 'C54f882fec4c5b8dc538b6d1cee5fc31f':
+    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' :
         # event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'   
         name = msg.split('AV ')[1]
         avgleResult = darkAnanQuery(name)
@@ -855,10 +855,10 @@ def handle_message(event):
     
     if dbResult != 'GG':
         r = random.random()
-        if r > 0.1 :
+        if r > 0.07 :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         else:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去幹紹安'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安'))
 
     if sticker(msg) != 'GG':
         sticker_message = StickerSendMessage(
