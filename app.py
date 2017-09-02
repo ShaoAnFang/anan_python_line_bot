@@ -401,7 +401,8 @@ def aime(key):
     imgurResult = []
     for i in index:
         imageDict = dict()
-        imageDict['imageLink'] = images[i].link.replace('http', 'https')
+        #imageDict['imageLink'] = images[i].link.replace('http', 'https')
+        imageDict['imageLink'] = images[i].link
         description = images[i].description.split('http')[0].strip('\n')
         imageDict['title&price'] = description 
         #imageDict['title'] = description.split('$')[0].strip()
@@ -785,7 +786,7 @@ def handle_message(event):
             
     if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
         albumResult = aime(msg)
-        album = albumResult[4]['imageLink'] #+ '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
+        album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
 #         carousel_template_message = TemplateSendMessage(
 #         alt_text=msg,
