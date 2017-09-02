@@ -785,7 +785,7 @@ def handle_message(event):
             
     if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
         albumResult = aime(msg)
-        album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title'] +'\n'+ albumResult[4]['price'] +'\n'+ albumResult[4]['shopeeLink']
+        album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
 #         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
 #         carousel_template_message = TemplateSendMessage(
 #         alt_text=msg,
