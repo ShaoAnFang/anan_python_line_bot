@@ -386,7 +386,7 @@ def aime(key):
     client_id = 'c3e767d450a401e'
     client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
     client = ImgurClient(client_id,client_secret)
-    
+    images = []
     if key == 'Aime' or key == 'aime': 
         album = ['hLZwL','Qt8En']
         i = random.randint(0, len(album) - 1)
@@ -784,72 +784,72 @@ def handle_message(event):
 
             
     if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
-        albumResult = aime(msg)
-        album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
-#         carousel_template_message = TemplateSendMessage(
-#         alt_text=msg,
-#         template=CarouselTemplate(
-#             columns=[
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[0]['imageLink'],
-#                     title=albumResult[0]['title&price'],
-#                     text= ' ',
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[0]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[1]['imageLink'],
-#                     title=albumResult[1]['title&price'],
-#                     text= ' ',
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[1]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[2]['imageLink'],
-#                     title=albumResult[2]['title&price'],
-#                     text= ' ',
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[2]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[3]['imageLink'],
-#                     title=albumResult[3]['title&price'],
-#                     text= ' ',
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[3]['shopeeLink']
-#                         )
-#                     ]
-#                 ),
-#                 CarouselColumn(
-#                     thumbnail_image_url=albumResult[4]['imageLink'],
-#                     title=albumResult[4]['title&price'],
-#                     text= ' ',
-#                     actions=[
-#                         URITemplateAction(
-#                             label='查看',
-#                             uri=albumResult[4]['shopeeLink']
-#                         )
-#                     ]
-#                 )
-#               ]
-#            )
-#         )
-#         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        #albumResult = aime(msg)
+        #album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
+        carousel_template_message = TemplateSendMessage(
+        alt_text=msg,
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[0]['imageLink'],
+                    title=albumResult[0]['title&price'],
+                    text= ' ',
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[0]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[1]['imageLink'],
+                    title=albumResult[1]['title&price'],
+                    text= ' ',
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[1]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[2]['imageLink'],
+                    title=albumResult[2]['title&price'],
+                    text= ' ',
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[2]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[3]['imageLink'],
+                    title=albumResult[3]['title&price'],
+                    text= ' ',
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[3]['shopeeLink']
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=albumResult[4]['imageLink'],
+                    title=albumResult[4]['title&price'],
+                    text= ' ',
+                    actions=[
+                        URITemplateAction(
+                            label='查看',
+                            uri=albumResult[4]['shopeeLink']
+                        )
+                    ]
+                )
+              ]
+           )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
     
     firebaseChatLog(msg)
 
