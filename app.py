@@ -31,6 +31,28 @@ from linebot.models import *
 #)
 
 app = Flask(__name__)
+
+line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
+
+
+@app.route("/callback", methods=['POST'])
+def callback():
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
+
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
+    return 'OK'
+
 @app.route('/GGWP', methods=['GET'])
 def test():
     return "Hello World!"
@@ -390,43 +412,6 @@ def aime(key):
        
     return imgurResult
 
-# def hospital():
-#     tz = pytz.timezone('Asia/Taipei')
-#     dd = datetime.datetime.now(tz).date()
-#     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
-#     chineseYear = dd.year - 1911
-#     m = ''
-#     if dd.month < 10:
-#         m = '0' + str(dd.month)
-
-#     d = ''
-#     if dd.day < 10:
-#         d = '0' + str(dd.day)
-
-#     d1 = ''
-#     if dd.day + 3 < 10:
-#         d1 = '0' + str(dd.day + 1)
-        
-#     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
-    
-#     #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
-#     fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
-#     header = {'Content-Type':'application/x-www-form-urlencoded'}
-
-#     res = requests.post(url ,headers= header, json = fromData)
-#     #res.encoding = 'big5'
-#     #res.encoding = 'utf8'
-#     soup = BeautifulSoup(res.text,'html.parser')
-#     #print soup
-
-#     rows = soup.select('.tablecontent1')
-#     #print len(rows)
-#     result = []
-#     for row in rows:
-#         result.append(row.text.strip())
-    
-#     return result
-
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
 #     image_message = ImageSendMessage(
@@ -471,10 +456,6 @@ def handle_message(event):
         #p = profile.picture_url
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
-#     if msg == '三總':
-#         h = hospital()
-#         g = h[0]
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
         
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
