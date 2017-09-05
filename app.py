@@ -391,41 +391,42 @@ def aime(key):
     return imgurResult
 
 def hospital():
-    tz = pytz.timezone('Asia/Taipei')
-    dd = datetime.datetime.now(tz).date()
-    inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
-    chineseYear = dd.year - 1911
-    m = ''
-    if dd.month < 10:
-        m = '0' + str(dd.month)
+#     tz = pytz.timezone('Asia/Taipei')
+#     dd = datetime.datetime.now(tz).date()
+#     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
+#     chineseYear = dd.year - 1911
+#     m = ''
+#     if dd.month < 10:
+#         m = '0' + str(dd.month)
 
-    d = ''
-    if dd.day < 10:
-        d = '0' + str(dd.day)
+#     d = ''
+#     if dd.day < 10:
+#         d = '0' + str(dd.day)
 
-    d1 = ''
-    if dd.day + 3 < 10:
-        d1 = '0' + str(dd.day + 1)
+#     d1 = ''
+#     if dd.day + 3 < 10:
+#         d1 = '0' + str(dd.day + 1)
         
-    url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
+#     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
     
-    #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
-    fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
-    header = {'Content-Type':'application/x-www-form-urlencoded'}
+#     #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
+#     fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
+#     header = {'Content-Type':'application/x-www-form-urlencoded'}
 
-    res = requests.post(url ,headers= header, json = fromData)
-    #res.encoding = 'big5'
-    #res.encoding = 'utf8'
-    soup = BeautifulSoup(res.text,'html.parser')
-    #print soup
+#     res = requests.post(url ,headers= header, json = fromData)
+#     #res.encoding = 'big5'
+#     #res.encoding = 'utf8'
+#     soup = BeautifulSoup(res.text,'html.parser')
+#     #print soup
 
-    rows = soup.select('.tablecontent1')
-    #print len(rows)
-    result = []
-    for row in rows:
-        result.append(row.text.strip())
+#     rows = soup.select('.tablecontent1')
+#     #print len(rows)
+#     result = []
+#     for row in rows:
+#         result.append(row.text.strip())
     
-    return result
+    return 'ok'
+
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
 #     image_message = ImageSendMessage(
@@ -472,8 +473,8 @@ def handle_message(event):
         #p = n + '\n \n' + p + '\n \n' + m
     if msg == '三總':
         h = hospital()
-        g = h[0]
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=g))
+        #g = h[0]
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
         
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
