@@ -30,7 +30,7 @@ from linebot.models import *
 #    MessageEvent, TextMessage, TextSendMessage,TemplateSendMessage
 #)
 
-app = Flask(__name__)5
+app = Flask(__name__)
 @app.route('/GGWP', methods=['GET'])
 def test():
     return "Hello World!"
@@ -391,41 +391,41 @@ def aime(key):
     return imgurResult
 
 def hospital():
-#     tz = pytz.timezone('Asia/Taipei')
-#     dd = datetime.datetime.now(tz).date()
-#     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
-#     chineseYear = dd.year - 1911
-#     m = ''
-#     if dd.month < 10:
-#         m = '0' + str(dd.month)
+    tz = pytz.timezone('Asia/Taipei')
+    dd = datetime.datetime.now(tz).date()
+    inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
+    chineseYear = dd.year - 1911
+    m = ''
+    if dd.month < 10:
+        m = '0' + str(dd.month)
 
-#     d = ''
-#     if dd.day < 10:
-#         d = '0' + str(dd.day)
+    d = ''
+    if dd.day < 10:
+        d = '0' + str(dd.day)
 
-#     d1 = ''
-#     if dd.day + 3 < 10:
-#         d1 = '0' + str(dd.day + 1)
+    d1 = ''
+    if dd.day + 3 < 10:
+        d1 = '0' + str(dd.day + 1)
         
-#     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
+    url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
     
-#     #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
-#     fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
-#     header = {'Content-Type':'application/x-www-form-urlencoded'}
+    #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
+    fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
+    header = {'Content-Type':'application/x-www-form-urlencoded'}
 
-#     res = requests.post(url ,headers= header, json = fromData)
-#     #res.encoding = 'big5'
-#     #res.encoding = 'utf8'
-#     soup = BeautifulSoup(res.text,'html.parser')
-#     #print soup
+    res = requests.post(url ,headers= header, json = fromData)
+    #res.encoding = 'big5'
+    #res.encoding = 'utf8'
+    soup = BeautifulSoup(res.text,'html.parser')
+    #print soup
 
-#     rows = soup.select('.tablecontent1')
-#     #print len(rows)
-#     result = []
-#     for row in rows:
-#         result.append(row.text.strip())
+    rows = soup.select('.tablecontent1')
+    #print len(rows)
+    result = []
+    for row in rows:
+        result.append(row.text.strip())
     
-    return 'ok'
+    return result
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
@@ -473,7 +473,7 @@ def handle_message(event):
         #p = n + '\n \n' + p + '\n \n' + m
     if msg == '三總':
         h = hospital()
-        #g = h[0]
+        g = h[0]
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
         
     if msg == '安安':
