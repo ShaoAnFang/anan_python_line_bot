@@ -405,7 +405,7 @@ def hospital():
 
     d1 = ''
     if dd.day + 3 < 10:
-        d3 = '0' + str(dd.day + 1)
+        d1 = '0' + str(dd.day + 1)
         
     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
     
