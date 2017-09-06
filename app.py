@@ -436,7 +436,7 @@ def hospital():
     header = {'Content-Type':'application/x-www-form-urlencoded'}
 
     res = requests.post(url ,headers= header, json = fromData)
-    res.encoding = 'big5'
+    #res.encoding = 'big5'
     #res.encoding = 'utf8'
     soup = BeautifulSoup(res.text,'html.parser')
     #print soup
