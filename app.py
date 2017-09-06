@@ -440,14 +440,13 @@ def hospital():
     #res.encoding = 'utf8'
     soup = BeautifulSoup(res.text,'html.parser')
     #print soup
-
     rows = soup.select('.tablecontent1')
     #print len(rows)
-    result = []
+    hospitalResult = []
     for row in rows:
-        result.append(row.text.strip())
+        hospitalResult.append(row.text.strip())
     
-    return result
+    return hospitalResult[0]
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
@@ -495,7 +494,6 @@ def handle_message(event):
         #p = n + '\n \n' + p + '\n \n' + m
     if msg == '三總':
         h = hospital()
-        g = h[0]
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
     
     
