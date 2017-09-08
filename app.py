@@ -98,7 +98,7 @@ def firebaseInsert(key,value):
 @app.route('/deleteDB', methods=['GET'])
 def firebaseDelete(deleteKey):
     firebase.delete('/data', deleteKey)
-    #time.sleep(1.5)
+    time.sleep(2)
     #刪除完再重新讀取一次DB
     global queryAllKeyAndValues
     queryAllKeyAndValues.clear()
