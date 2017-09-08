@@ -422,12 +422,18 @@ def hospital():
         m = '0' + str(dd.month)
 
     d = ''
-    if dd.day < 10:
+    if dd.day <= 9 :
         d = '0' + str(dd.day)
+    else :
+        d = str(dd.day)
 
     d1 = ''
-    if dd.day + 3 < 10:
+    if dd.day < 9 :
         d1 = '0' + str(dd.day + 1)
+    elif dd.day == 9:
+        d1 = str(dd.day + 1)
+    else :
+        d1 = str(dd.day)
         
     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
     
@@ -436,7 +442,7 @@ def hospital():
     header = {'Content-Type':'application/x-www-form-urlencoded'}
 
     res = requests.post(url ,headers= header, json = fromData)
-    res.encode('latin1', 'ignore').decode('big5')
+    res.encoding = res.apparent_encoding
     #res.encoding = 'big5'
     #res.encoding = 'utf8'
     soup = BeautifulSoup(res.text,'html.parser')
