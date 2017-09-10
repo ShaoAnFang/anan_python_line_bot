@@ -503,7 +503,7 @@ def handle_message(event):
         rows = hospital()
         string = ''
         for row in rows:
-            string += row + '\n'
+            string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
     
     
