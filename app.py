@@ -451,7 +451,7 @@ def hospital():
     #print len(rows)
     hospitalResult = []
     for row in rows:
-        hospitalResult.append(row.text.strip('我要預約'))
+        hospitalResult.append(row.text.split('我要預約')[0].strip())
     
     return hospitalResult[0]
 
