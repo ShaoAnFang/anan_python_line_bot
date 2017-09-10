@@ -451,7 +451,7 @@ def hospital():
     #print len(rows)
     hospitalResult = []
     for row in rows:
-        hospitalResult.append(row.text.strip())
+        hospitalResult.append(row.text.strip('我要預約'))
     
     return hospitalResult[0]
 
@@ -501,7 +501,7 @@ def handle_message(event):
         #p = n + '\n \n' + p + '\n \n' + m
     if msg == '松山':
         h = hospital()
-        h += str(len(h))
+        #h += str(len(h))
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
     
     
