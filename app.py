@@ -89,6 +89,7 @@ def firebaseInsert(key,value):
         getValues.append(value)
         firebase.put('data',key,getValues)
     #寫完讓DB重讀一次
+    time.sleep(2)
     global queryAllKeyAndValues
     queryAllKeyAndValues.clear()
     queryAllKeyAndValues = firebase.get('/data',None)
