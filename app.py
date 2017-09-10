@@ -499,8 +499,9 @@ def handle_message(event):
         #p = profile.picture_url
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
-    if msg == '三總':
+    if msg == '松山':
         h = hospital()
+        h += str(len(h))
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
     
     
