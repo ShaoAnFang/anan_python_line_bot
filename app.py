@@ -453,7 +453,7 @@ def hospital():
     for row in rows:
         hospitalResult.append(row.text.split('我要預約')[0].strip())
     
-    return hospitalResult[0]
+    return hospitalResult[0:4]
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
@@ -500,9 +500,11 @@ def handle_message(event):
         #m = profile.status_message
         #p = n + '\n \n' + p + '\n \n' + m
     if msg == '松山':
-        h = hospital()
-        #h += str(len(h))
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=h))
+        rows = hospital()
+        string = ''
+        for row in rows:
+            string += row + '\n'
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
     
     
     if msg == '安安':
