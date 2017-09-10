@@ -433,7 +433,7 @@ def hospital():
     elif dd.day == 9:
         d1 = str(dd.day + 1)
     else :
-        d1 = str(dd.day)
+        d1 = str(dd.day + 1)
         
     url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
     
@@ -905,7 +905,7 @@ def handle_message(event):
     
     if dbResult != 'GG':
         r = random.random()
-        if r > 0.07 :
+        if r > 0.05 :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安'))
