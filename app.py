@@ -591,7 +591,7 @@ def handle_message(event):
     
         if event.source.type =='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
-        elif:
+        else:
             profile = line_bot_api.get_profile(event.source.user_id)
             n = profile.display_name
             p = profile.picture_url
