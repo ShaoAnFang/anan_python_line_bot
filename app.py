@@ -906,13 +906,6 @@ def handle_message(event):
     firebaseChatLog(msg)
 
     dbResult = firebaseQuery(msg)
-    
-    if dbResult != 'GG':
-        #r = random.random()
-        #if r > 0.05 :
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #else:
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安'))
 
     if sticker(msg) != 'GG':
         sticker_message = StickerSendMessage(
@@ -921,6 +914,12 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
         
+    if dbResult != 'GG':
+        #r = random.random()
+        #if r > 0.05 :
+        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #else:
+        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安'))    
         global sendTime
         sendTimeStr = str(sendTime).split('.')[0]
         s = int(sendTimeStr)
