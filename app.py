@@ -476,7 +476,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    global quietStatus
+
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
     
@@ -507,9 +507,11 @@ def handle_message(event):
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
     if msg == '安靜':
+        global quietStatus
         quietStatus = False
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
     if msg == '講話':
+        global quietStatus
         quietStatus = True
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 我講話'))
     if msg == '安安':
@@ -891,6 +893,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
         
+    global quietStatus    
     if dbResult != 'GG' and quietStatus:
         #r = random.random()
         #if r > 0.05 :
