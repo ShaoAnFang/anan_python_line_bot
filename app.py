@@ -587,7 +587,7 @@ def handle_message(event):
         queryTime = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
-    if msg== 'Id' or msg== 'id' 
+    if msg== 'Id' or msg== 'id':
     
         if event.source.type =='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
