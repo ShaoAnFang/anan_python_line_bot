@@ -519,15 +519,7 @@ def handle_message(event):
         menulist += '4. 輸入 電影\n\n'
         menulist += '5. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
-        
-    if msg == 'id':
-        profile = line_bot_api.get_profile(event.source.user_id)
-        n = profile.display_name
-        p = profile.picture_url
-        m = profile.status_message
-        p = n + '\n \n' + p + '\n \n' + m
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=p))    
- 
+       
     if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
         stockNumber = msg.split()[1]
         result = stock(stockNumber)
@@ -595,20 +587,17 @@ def handle_message(event):
         queryTime = "{}-{}-{} {}:{}".format(dd.year,dd.month,dd.day,dt.hour,dt.minute)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
-    if msg== 'Id' or msg== 'id' :
-        
+    if msg== 'Id' or msg== 'id' 
+    
         if event.source.type =='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
-        else:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Group id is none'))
-            
-        if event.source.user_id is not None:            
+        elif:
             profile = line_bot_api.get_profile(event.source.user_id)
             n = profile.display_name
             p = profile.picture_url
             i = profile.user_id
             m = profile.status_message
-            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + '\n \n' + i
+            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
 
     if msg == '正妹':
