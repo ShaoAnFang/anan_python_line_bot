@@ -476,7 +476,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    
+    quietStatus = True
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
     
@@ -506,7 +506,11 @@ def handle_message(event):
         for row in rows:
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
-    
+    if msg == '安靜':
+        quietStatus = True
+        
+    if msg == '講話':
+        quietStatus = False
     
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
@@ -592,37 +596,21 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
     if msg== 'Id' or msg== 'id' :
-        if event.source.user_id :            
-            if event.source.group_id:
-                profile = line_bot_api.get_profile(event.source.user_id)
-                n = profile.display_name
-                p = profile.picture_url
-                i = profile.user_id
-                m = profile.status_message
-                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.group_id + '\n \n' + i
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
-            else:
-                profile = line_bot_api.get_profile(event.source.user_id)
-                n = profile.display_name
-                p = profile.picture_url
-                i = profile.user_id
-                m = profile.status_message
-                z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.user_id))
+        
+        if event.source.group_id is not None:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
         else:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Group id is none'))
             
-    if msg == '使用同行':
+        if event.source.user_id is not None:            
+            profile = line_bot_api.get_profile(event.source.user_id)
+            n = profile.display_name
+            p = profile.picture_url
+            i = profile.user_id
+            m = profile.status_message
+            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + '\n \n' + i
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
 
-        profile = line_bot_api.get_group_member_profile(event.source.group_id)
-        
-#         print(profile.display_name)
-#         print(profile.user_id)
-#         print(profile.picture_url)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=profile))
-        
-        
-        
     if msg == '正妹':
         buttons_template = TemplateSendMessage(
             alt_text='正妹 template',
@@ -914,7 +902,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
         
-    if dbResult != 'GG':
+    if dbResult != 'GG' and quietStatus:
         #r = random.random()
         #if r > 0.05 :
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
@@ -923,11 +911,11 @@ def handle_message(event):
         global sendTime
         sendTimeStr = str(sendTime).split('.')[0]
         s = int(sendTimeStr)
-       
+        
         now = str(time.time()).split('.')[0]
         n = int(now)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
-        if (n - s) > 30:
+        if (n - s) > 10 and :
             sendTime = time.time()
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         #else:
