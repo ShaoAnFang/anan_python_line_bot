@@ -17,7 +17,7 @@ from flask import Flask, request, abort
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
-
+quietStatus = True
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -476,7 +476,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    quietStatus = True
+    global quietStatus
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
     
