@@ -508,10 +508,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
     if msg == '安靜':
         quietStatus = True
-        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
     if msg == '講話':
         quietStatus = False
-    
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 我講話'))
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
         menulist += '2. 輸入 天氣 台北 \n\n'
