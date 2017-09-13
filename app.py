@@ -597,7 +597,7 @@ def handle_message(event):
     
     if msg== 'Id' or msg== 'id' :
         
-        if event.source.group_id is not None:
+        if event.source.type =='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Group id is none'))
