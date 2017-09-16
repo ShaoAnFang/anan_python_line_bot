@@ -930,7 +930,7 @@ def handle_message(event):
         n = int(now)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
         
-        if if event.source.type !='group':
+        if event.source.type !='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         elif not event.source.group_id in quietArr :
