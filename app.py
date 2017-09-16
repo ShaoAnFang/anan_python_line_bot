@@ -930,10 +930,10 @@ def handle_message(event):
         n = int(now)
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
         
-        if event.source.user_id != '':
+        if if event.source.type !='group':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-        if not event.source.group_id in quietArr :
+        elif not event.source.group_id in quietArr :
             if (n - s) > 10 :
                 sendTime = time.time()
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
