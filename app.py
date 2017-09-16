@@ -17,8 +17,8 @@ from flask import Flask, request, abort
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
-quietArr = firebase.get('/QuietGroup',None)
-
+quiet = firebase.get('/QuietGroup',None)
+quietArr = qiuet['group_id']
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -507,27 +507,36 @@ def handle_message(event):
         for row in rows:
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
-        
+    
+    global quiet
     global quietArr
     if msg == '安靜':
         if event.source.group_id in quietArr :
-            
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='已經 安靜哩'))
-            
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='已經安靜哩'))       
         else:    
             quietArr.append(event.source.group_id)
-            firebase.put('QuietGroup',quietArr)
+            firebase.put('QuietGroup','group_id',quietArr)
             #寫完讓DB重讀一次
             time.sleep(2)
+            quiet.clear()
             quietArr.clear()
-            quietArr = firebase.get('/data',None)
+            quiet = firebase.get('/QuietGroup',None)
+            quietArr = quiet['group_id']
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
         
     if msg == '講話':
+        if event.source.group_id in quietArr :
+            quietArr.remove(event.source.group_id)
+            firebase.put('QuietGroup','group_id',quietArr)
+            #寫完讓DB重讀一次
+            time.sleep(2)
+            quiet.clear()
+            quietArr.clear()
+            quiet = firebase.get('/QuietGroup',None)
+            quietArr = quiet['group_id']
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好 我會好好講話'))
+
         
-        
-        
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 我講話'))
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
         menulist += '2. 輸入 天氣 台北 \n\n'
