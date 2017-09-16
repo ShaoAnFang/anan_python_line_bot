@@ -18,7 +18,7 @@ from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
 quiet = firebase.get('/QuietGroup',None)
-quietArr = qiuet['group_id']
+quietArr = quiet['group_id']
 
 from linebot import (
     LineBotApi, WebhookHandler
