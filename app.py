@@ -507,11 +507,20 @@ def handle_message(event):
         for row in rows:
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
+        
     global quietArr
     if msg == '安靜':
         if event.source.group_id in quietArr :
+
+        else:    
+            quietArr.append(event.source.group_id)
+            firebase.put('QuietGroup',quietArr)
+            #寫完讓DB重讀一次
+            time.sleep(2)
+            quietArr.clear()
+            quietArr = firebase.get('/data',None)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
-            
+        
     if msg == '講話':
         
         
