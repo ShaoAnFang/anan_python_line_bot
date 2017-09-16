@@ -17,7 +17,8 @@ from flask import Flask, request, abort
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
-quietStatus = True
+quietArr = firebase.get('/QuietGroup',None)
+
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -476,7 +477,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    global quietStatus
+    
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
     
@@ -506,12 +507,14 @@ def handle_message(event):
         for row in rows:
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
-    if msg == '安靜':
-        
-        quietStatus = False
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
+    if msg == '安靜' and type == 'group':
+        if event.source.group_id in quietArr :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
+            
     if msg == '講話':
-        quietStatus = True
+        
+        
+        
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 我講話'))
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
@@ -892,7 +895,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
             
-    if dbResult != 'GG' and quietStatus:
+    if dbResult != '' and quietStatus:
         #r = random.random()
         #if r > 0.05 :
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
