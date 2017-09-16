@@ -507,7 +507,7 @@ def handle_message(event):
         for row in rows:
             string += row + '\n\n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
-    if msg == '安靜' and type == 'group':
+    if msg == '安靜' and source.message.type == 'group':
         if event.source.group_id in quietArr :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
             
