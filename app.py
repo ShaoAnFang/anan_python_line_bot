@@ -511,7 +511,9 @@ def handle_message(event):
     global quietArr
     if msg == '安靜':
         if event.source.group_id in quietArr :
-
+            
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='已經 安靜哩'))
+            
         else:    
             quietArr.append(event.source.group_id)
             firebase.put('QuietGroup',quietArr)
