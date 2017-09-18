@@ -652,8 +652,9 @@ def handle_message(event):
         
                                 
     if msg == '電影':
-        #if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
+        if event.source.type == 'group' :
+            if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
         
         g = get_movies()
         carousel_template_message = TemplateSendMessage(
@@ -722,7 +723,10 @@ def handle_message(event):
     
     
     if msg == '小電影' or msg == 'AV':
-        #event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
+        if event.source.type == 'group' :
+            if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG'))
+                
         avgleResult = darkAnan()
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
