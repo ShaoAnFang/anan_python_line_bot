@@ -914,11 +914,19 @@ def handle_message(event):
     dbResult = firebaseQuery(msg)
 
     if sticker(msg) != 'GG':
-        sticker_message = StickerSendMessage(
+        if event.source.type !='group':
+            sticker_message = StickerSendMessage(
             package_id = sticker(msg)['package_id'],
             sticker_id = sticker(msg)['sticker_id']
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
+            )
+            line_bot_api.reply_message(event.reply_token, sticker_message)
+        
+        elif not event.source.group_id in quietArr :
+            sticker_message = StickerSendMessage(
+            package_id = sticker(msg)['package_id'],
+            sticker_id = sticker(msg)['sticker_id']
+            )
+            line_bot_api.reply_message(event.reply_token, sticker_message)
             
     if dbResult != 'GG':
         #r = random.random()
