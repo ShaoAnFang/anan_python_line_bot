@@ -122,11 +122,12 @@ def firebaseFetch(key):
         string = string[0:last]
     return string
 
-def firebaseChatLog(key):
+def firebaseChatLog(key,name,id):
     tz = pytz.timezone('Asia/Taipei')
     dd = datetime.datetime.now(tz).date()
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
+    key += name + id
     if getChatLog is None:
         arr = []
         arr.append(key)
@@ -908,9 +909,16 @@ def handle_message(event):
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    
-    firebaseChatLog(msg)
-
+    if event.source.type !='group':
+        
+        profile = line_bot_api.get_profile(event.source.user_id)
+        name = profile.display_name
+        p = profile.picture_url
+        id = profile.user_id
+        m = profile.status_message
+        z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
+        firebaseChatLog(msg,name,id)
+        
     dbResult = firebaseQuery(msg)
 
     if sticker(msg) != 'GG':
