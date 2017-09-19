@@ -909,11 +909,13 @@ def handle_message(event):
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        
     if event.source.type !='group':
         profile = line_bot_api.get_profile(event.source.user_id)
         firebaseChatLog(msg,profile.display_name,profile.user_id)
-    else if 
+    else:
         firebaseChatLog(msg)
+        
     dbResult = firebaseQuery(msg)
 
     if sticker(msg) != 'GG':
