@@ -127,7 +127,10 @@ def firebaseChatLog(key, name='', UserID = ''):
     dd = datetime.datetime.now(tz).date()
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
-    key += '.'+ name + '.' + UserID
+    
+    if name != '' and UserID != '':
+        key += '.'+ name + '.' + UserID
+        
     if getChatLog is None:
         arr = []
         arr.append(key)
