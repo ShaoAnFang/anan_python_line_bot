@@ -122,7 +122,7 @@ def firebaseFetch(key):
         string = string[0:last]
     return string
 
-def firebaseChatLog(key,name,UserID):
+def firebaseChatLog(key, name='', UserID = ''):
     tz = pytz.timezone('Asia/Taipei')
     dd = datetime.datetime.now(tz).date()
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
