@@ -499,12 +499,6 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, image_message)   
 
-    #if event.source.user_id :
-        #profile = line_bot_api.get_profile(event.source.user_id)
-        #n = profile.display_name
-        #p = profile.picture_url
-        #m = profile.status_message
-        #p = n + '\n \n' + p + '\n \n' + m
     if msg == '松山':
         rows = hospital()
         string = ''
@@ -540,7 +534,6 @@ def handle_message(event):
             quietArr = quiet['group_id']
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好 我會好好講話'))
 
-        
     if msg == '安安':
         menulist = 'Hello 我是安安 你可以 \n' + '\n' + '1. 教我說話 \n' + '安 你好=Hello World! \n1.1 查詢教過的關鍵字 \n查 AA\n1.2 刪除 教過的字 \n遺忘 AA \n\n'
         menulist += '2. 輸入 天氣 台北 \n\n'
@@ -925,7 +918,7 @@ def handle_message(event):
         firebaseChatLog(msg,profile.display_name,profile.user_id)
     else:
         #群組
-        if event.source.user_id is not None:
+        if type(event.source.user_id) is str :
             #如果有加好友
             profile = line_bot_api.get_profile(event.source.user_id)
             firebaseChatLog(msg,profile.display_name,profile.user_id)
