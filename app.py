@@ -922,7 +922,7 @@ def handle_message(event):
     elif event.source.user_id is not None:
         profile = line_bot_api.get_profile(event.source.user_id)
         firebaseChatLog(msg,profile.display_name,profile.user_id)
-    else :
+    else event.source.user_id is None:
         firebaseChatLog(msg)
         
     dbResult = firebaseQuery(msg)
