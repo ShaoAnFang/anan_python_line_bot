@@ -913,7 +913,10 @@ def handle_message(event):
     if event.source.type !='group':
         profile = line_bot_api.get_profile(event.source.user_id)
         firebaseChatLog(msg,profile.display_name,profile.user_id)
-    else:
+    elif event.source.user_id is not None:
+        profile = line_bot_api.get_profile(event.source.user_id)
+        firebaseChatLog(msg,profile.display_name,profile.user_id)
+    else :
         firebaseChatLog(msg)
         
     dbResult = firebaseQuery(msg)
