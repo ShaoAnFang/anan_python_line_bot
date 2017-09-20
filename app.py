@@ -917,13 +917,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     if event.source.type !='group':
+        #直接對機器人講
         profile = line_bot_api.get_profile(event.source.user_id)
         firebaseChatLog(msg,profile.display_name,profile.user_id)
-    elif event.source.user_id is not None:
-        profile = line_bot_api.get_profile(event.source.user_id)
-        firebaseChatLog(msg,profile.display_name,profile.user_id)
-    elif event.source.user_id is None:
-        firebaseChatLog(msg)
+    else:
+        #群組
+        if event.source.user_id is not None:
+            #如果有加好友
+            profile = line_bot_api.get_profile(event.source.user_id)
+            firebaseChatLog(msg,profile.display_name,profile.user_id)
+        else:
+            #如果沒加好友則無user_id
+            firebaseChatLog(msg)
         
     dbResult = firebaseQuery(msg)
 
