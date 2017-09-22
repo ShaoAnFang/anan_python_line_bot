@@ -492,10 +492,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, sticker_message)
         
-    if msg == '圖' :
+    if msg == '死宅' :
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/uPhBqLK.jpg',
-            preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
+            original_content_url='https://imgur.com/VF0FSu5.jpg',
+            preview_image_url='https://imgur.com/VF0FSu5.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)   
 
