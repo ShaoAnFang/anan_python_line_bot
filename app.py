@@ -924,6 +924,7 @@ def handle_message(event):
             #如果有加好友
             profile = line_bot_api.get_profile(event.source.user_id)
             firebaseChatLog(msg,profile.display_name,profile.user_id)
+            return
         else:
             #如果沒加好友則無user_id
             firebaseChatLog(msg)
