@@ -952,26 +952,23 @@ def handle_message(event):
         #if r > 0.05 :
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         #else:
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安'))    
-        global sendTime
-        sendTimeStr = str(sendTime).split('.')[0]
-        s = int(sendTimeStr)
+        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安')) 
         
-        now = str(time.time()).split('.')[0]
-        n = int(now)
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sendTimeStr))
         
-        if event.source.type !='group':
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#         global sendTime
+#         sendTimeStr = str(sendTime).split('.')[0]
+#         s = int(sendTimeStr)
         
-        elif not event.source.group_id in quietArr :
-            if (n - s) > 10 :
-                sendTime = time.time()
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#         now = str(time.time()).split('.')[0]
+#         n = int(now)
         
-        #else:
-            #cdTime = '紹安要我不能一直講話 \n還剩{}秒冷卻時間'.format(str(n - s))
-            #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cdTime))
+#         if event.source.type !='group':
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        
+#         elif not event.source.group_id in quietArr :
+#             if (n - s) > 10 :
+#                 sendTime = time.time()
+#                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
 
 
