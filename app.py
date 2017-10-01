@@ -947,6 +947,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sticker_message)
             
     if dbResult != 'GG':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         #r = random.random()
         #if r > 0.05 :
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
