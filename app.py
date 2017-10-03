@@ -507,8 +507,8 @@ def handle_message(event):
         
     if msg == '好朋友' :
         image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/5XILKP5',
-            preview_image_url='https://imgur.com/5XILKP5'
+            original_content_url='https://imgur.com/2jB4sV1.png',
+            preview_image_url='https://imgur.com/2jB4sV1.png'
         )
         line_bot_api.reply_message(event.reply_token, image_message)     
     
