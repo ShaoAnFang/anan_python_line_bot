@@ -498,7 +498,20 @@ def handle_message(event):
             preview_image_url='https://imgur.com/VF0FSu5.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)   
-
+    if msg == '吃懶' :
+        image_message = ImageSendMessage(
+            original_content_url='https://imgur.com/5XILKP5',
+            preview_image_url='https://imgur.com/5XILKP5'
+        )
+        line_bot_api.reply_message(event.reply_token, image_message)  
+        
+    if msg == '好朋友' :
+        image_message = ImageSendMessage(
+            original_content_url='https://imgur.com/5XILKP5',
+            preview_image_url='https://imgur.com/5XILKP5'
+        )
+        line_bot_api.reply_message(event.reply_token, image_message)     
+    
     if msg == '松山':
         rows = hospital()
         string = ''
