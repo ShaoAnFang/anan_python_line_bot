@@ -940,9 +940,7 @@ def handle_message(event):
         else:
             #如果沒加好友則無user_id
             firebaseChatLog(msg)
-        
-    dbResult = firebaseQuery(msg)
-
+            
     if sticker(msg) != 'GG':
         if event.source.type !='group':
             sticker_message = StickerSendMessage(
@@ -958,8 +956,9 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token, sticker_message)
             
+    dbResult = firebaseQuery(msg)
     if dbResult != 'GG':
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         #r = random.random()
         #if r > 0.05 :
@@ -972,8 +971,7 @@ def handle_message(event):
         
         now = str(time.time()).split('.')[0]
         n = int(now)
-        
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+
 #         if event.source.type !='group':
 #             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 #         elif not event.source.group_id in quietArr :
