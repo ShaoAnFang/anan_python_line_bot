@@ -925,7 +925,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
-    firebaseChatLog(msg)    
+    #firebaseChatLog(msg)    
     
     if event.source.type !='group':
         #直接對機器人講
