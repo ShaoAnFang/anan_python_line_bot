@@ -121,21 +121,21 @@ def firebaseFetch(key):
         string = string[0:last]
     return string
 
-def firebaseChatLog(key, name='', UserID = ''):
+def firebaseChatLog(content, name='', userID = ''):
     tz = pytz.timezone('Asia/Taipei')
     dd = datetime.datetime.now(tz).date()
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
     
-    if name != '' and UserID != '':
-        key += '.'+ name + '.' + UserID
+    if name != '' and userID != '':
+        content = name + ':' + content + '.' + userID
         
     if getChatLog is None:
         arr = []
-        arr.append(key)
+        arr.append(content)
         firebase.put('/ChatLog',inputDate,arr)
     else:    
-        getChatLog.append(key)
+        getChatLog.append(content)
         firebase.put('/ChatLog',inputDate,getChatLog)
 
 def stock(stockNumber):
