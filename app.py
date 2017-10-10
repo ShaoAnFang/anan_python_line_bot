@@ -514,7 +514,7 @@ def handle_message(event):
             preview_image_url=imgurAnna)
         line_bot_api.reply_message(event.reply_token, image_message)
         
-     if msg.find('珍惜') != -1 :
+    if msg.find('珍惜') != -1 :
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/syKgMMa.jpg',
             preview_image_url='https://imgur.com/syKgMMa.jpg')
