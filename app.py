@@ -490,7 +490,7 @@ def handle_message(event):
             preview_image_url='https://imgur.com/VF0FSu5.jpg')
         line_bot_api.reply_message(event.reply_token, image_message) 
         
-    if msg == '吃懶' :
+    if msg.find('吃懶') != -1 :
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/5XILKP5.jpg',
             preview_image_url='https://imgur.com/5XILKP5.jpg')
