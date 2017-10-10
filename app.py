@@ -933,20 +933,20 @@ def handle_message(event):
         
     #firebaseChatLog(msg)    
     
-    if event.source.type !='group':
-        #直接對機器人講
-        profile = line_bot_api.get_profile(event.source.user_id)
-        firebaseChatLog(msg,profile.display_name,profile.user_id)
-    else:
-        #群組
-        if type(event.source.user_id) is str :
-            #如果有加好友
-            profile = line_bot_api.get_profile(event.source.user_id)
-            firebaseChatLog(msg,profile.display_name,profile.user_id)
+#     if event.source.type !='group':
+#         #直接對機器人講
+#         profile = line_bot_api.get_profile(event.source.user_id)
+#         firebaseChatLog(msg,profile.display_name,profile.user_id)
+#     else:
+#         #群組
+#         if type(event.source.user_id) is str :
+#             #如果有加好友
+#             profile = line_bot_api.get_profile(event.source.user_id)
+#             firebaseChatLog(msg,profile.display_name,profile.user_id)
             
-        else:
-            #如果沒加好友則無user_id
-            firebaseChatLog(msg)
+#         else:
+#             #如果沒加好友則無user_id
+#             firebaseChatLog(msg)
             
     if sticker(msg) != 'GG':
         if event.source.type !='group':
