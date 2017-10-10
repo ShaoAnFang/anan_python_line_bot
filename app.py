@@ -988,8 +988,8 @@ def handle_message(event):
         now = str(time.time()).split('.')[0]
         n = int(now)
 
-#         if event.source.type != 'group':
-#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        if event.source.type != 'group':
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         if not event.source.group_id in quietArr :
             if (n - s) > 10 :
