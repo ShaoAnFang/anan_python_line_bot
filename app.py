@@ -502,7 +502,7 @@ def handle_message(event):
             preview_image_url='https://imgur.com/2jB4sV1.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
     
-    if msg == '菜包' :
+    if msg.find('菜包') != -1 :
         r = random.randint(0,1)
         if r == 0 :
             imgurAnna = 'https://imgur.com/wggNN0I.jpg'
@@ -512,7 +512,19 @@ def handle_message(event):
         image_message = ImageSendMessage(
             original_content_url=imgurAnna,
             preview_image_url=imgurAnna)
-        line_bot_api.reply_message(event.reply_token, image_message) 
+        line_bot_api.reply_message(event.reply_token, image_message)
+        
+     if msg.find('珍惜') != -1 :
+        image_message = ImageSendMessage(
+            original_content_url='https://imgur.com/syKgMMa.jpg',
+            preview_image_url='https://imgur.com/syKgMMa.jpg')
+        line_bot_api.reply_message(event.reply_token, image_message)
+    
+    if msg.find('珍奶') != -1 :
+        image_message = ImageSendMessage(
+            original_content_url='https://imgur.com/LhMb26k.jpg',
+            preview_image_url='https://imgur.com/LhMb26k.jpg')
+        line_bot_api.reply_message(event.reply_token, image_message)
     
     if msg == '松山':
         rows = hospital()
