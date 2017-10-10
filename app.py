@@ -965,7 +965,7 @@ def handle_message(event):
             
     dbResult = firebaseQuery(msg)
     if dbResult != 'GG':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
         #r = random.random()
         #if r > 0.05 :
@@ -983,10 +983,10 @@ def handle_message(event):
 #         if event.source.type != 'group':
 #             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-#         if not event.source.group_id in quietArr :
-#             if (n - s) > 10 :
-#                 sendTime = time.time()
-#                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+        if not event.source.group_id in quietArr :
+            if (n - s) > 10 :
+                sendTime = time.time()
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
 
 
