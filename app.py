@@ -973,12 +973,12 @@ def handle_message(event):
         #else:
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安')) 
         
-#         global sendTime
-#         sendTimeStr = str(sendTime).split('.')[0]
-#         s = int(sendTimeStr)
+        global sendTime
+        sendTimeStr = str(sendTime).split('.')[0]
+        s = int(sendTimeStr)
         
-#         now = str(time.time()).split('.')[0]
-#         n = int(now)
+        now = str(time.time()).split('.')[0]
+        n = int(now)
 
 #         if event.source.type != 'group':
 #             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
