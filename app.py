@@ -484,38 +484,34 @@ def handle_message(event):
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
     
-    if msg == '貼圖' :
-        sticker_message = StickerSendMessage(
-           package_id='1',
-           sticker_id='1'
-        )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
-        
     if msg == '死宅' :
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/VF0FSu5.jpg',
-            preview_image_url='https://imgur.com/VF0FSu5.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, image_message)   
+            preview_image_url='https://imgur.com/VF0FSu5.jpg')
+        line_bot_api.reply_message(event.reply_token, image_message) 
+        
     if msg == '吃懶' :
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/5XILKP5.jpg',
-            preview_image_url='https://imgur.com/5XILKP5.jpg'
-        )
+            preview_image_url='https://imgur.com/5XILKP5.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)  
         
     if msg == '好朋友' :
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/2jB4sV1.jpg',
-            preview_image_url='https://imgur.com/2jB4sV1.jpg'
-        )
+            preview_image_url='https://imgur.com/2jB4sV1.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
     
     if msg == '菜包' :
+        r = random.randint(0,1)
+        if r == 0 :
+            imgurAnna = 'https://imgur.com/wggNN0I.jpg'
+        else:
+            imgurAnna = 'https://imgur.com/ErV4nbE.jpg'
+        
         image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/ErV4nbE.jpg',
-            preview_image_url='https://imgur.com/ErV4nbE.jpg'
-        )
+            original_content_url=imgurAnna,
+            preview_image_url=imgurAnna)
         line_bot_api.reply_message(event.reply_token, image_message) 
     
     if msg == '松山':
