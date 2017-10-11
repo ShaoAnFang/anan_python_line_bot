@@ -539,14 +539,17 @@ def handle_message(event):
         if event.source.group_id in quietArr :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='已經安靜哩'))       
         else:    
+#             quietArr.append(event.source.group_id)
+#             firebase.put('QuietGroup','group_id',quietArr)
+#             #寫完讓DB重讀一次
+#             time.sleep(2)
+#             quiet.clear()
+#             quietArr.clear()
+#             quiet = firebase.get('/QuietGroup',None)
+#             quietArr = quiet['group_id']
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
             quietArr.append(event.source.group_id)
             firebase.put('QuietGroup','group_id',quietArr)
-            #寫完讓DB重讀一次
-            time.sleep(2)
-            quiet.clear()
-            quietArr.clear()
-            quiet = firebase.get('/QuietGroup',None)
-            quietArr = quiet['group_id']
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
         
     if msg == '講話':
