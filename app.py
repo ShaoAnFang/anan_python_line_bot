@@ -651,32 +651,6 @@ def handle_message(event):
             m = profile.status_message
             z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
-
-    if msg == '正妹':
-        buttons_template = TemplateSendMessage(
-            alt_text='正妹 template',
-            template=ButtonsTemplate(
-                title='選擇服務',
-                text='請選擇',
-                thumbnail_image_url='https://i.imgur.com/qKkE2bj.jpg',
-                actions=[
-                    MessageTemplateAction(
-                        label='PTT 表特版 近期大於 10 推的文章',
-                        text='PTT 表特版 近期大於 10 推的文章'
-                    ),
-                    MessageTemplateAction(
-                        label='來張 imgur 正妹圖片',
-                        text='來張 imgur 正妹圖片'
-                    ),
-                    MessageTemplateAction(
-                        label='隨便來張正妹圖片',
-                        text='隨便來張正妹圖片'
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, buttons_template)
-        
                                 
     if msg == '電影':
         if event.source.type == 'group' :
