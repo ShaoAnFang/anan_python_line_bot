@@ -460,6 +460,15 @@ def hospital():
     
     return hospitalResult[0:4]
 
+# LocationMessage
+@handler.add(MessageEvent, message=LocationMessage)
+def handle_message(event): 
+    locationInfo = '地區:' + event.message.address[:10] + '\n\n'
+    locationInfo += '經緯度: ' '(' + str(event.message.longitude)[:8] +','+ str(event.message.latitude)[:8] + ')'+ '\n\n'
+    locationInfo += '向阿寶請示雄三發射許可' + '\n' +'請稍候'
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event))) 
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=locationInfo)) 
+    
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_message(event): 
 #     image_message = ImageSendMessage(
