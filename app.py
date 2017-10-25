@@ -337,7 +337,8 @@ def sticker(key):
                    '彩虹': {'sticker_id':'268','package_id':'4'}, '櫻': {'sticker_id':'604','package_id':'4'},
                    '累': {'sticker_id':'526','package_id':'2'}, '生氣': {'sticker_id':'527','package_id':'2'},
                    '上班': {'sticker_id':'161','package_id':'2'}, '歡迎': {'sticker_id':'247','package_id':'3'},
-                   '升天': {'sticker_id':'108','package_id':'1'}}
+                   '升天': {'sticker_id':'108','package_id':'1'}, '喇叭': {'sticker_id':'414','package_id':'1'},
+                   '下雨': {'sticker_id':'507','package_id':'2'}}
     
     allKeys = sitckerDict.keys()
     for k in allKeys:
