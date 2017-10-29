@@ -490,15 +490,10 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event))) 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-    
-    if msg == '死宅' :
-        image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/VF0FSu5.jpg',
-            preview_image_url='https://imgur.com/VF0FSu5.jpg')
-        line_bot_api.reply_message(event.reply_token, image_message) 
+     
         
     if msg.find('吃懶') != -1 :
         image_message = ImageSendMessage(
