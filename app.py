@@ -646,16 +646,16 @@ def handle_message(event):
     
     if msg== 'Id' or msg== 'id':
     
-        if event.source.type =='group':
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
-        else:
-            profile = line_bot_api.get_profile(event.source.user_id)
-            n = profile.display_name
-            p = profile.picture_url
-            i = profile.user_id
-            m = profile.status_message
-            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
+        #if event.source.type =='group':
+        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
+        #else:
+        profile = line_bot_api.get_profile(event.source.user_id)
+        n = profile.display_name
+        p = profile.picture_url
+        i = profile.user_id
+        m = profile.status_message
+        z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=z))
                                 
     if msg == '電影':
         if event.source.type == 'group' :
