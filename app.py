@@ -490,7 +490,7 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event))) 
+
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
      
