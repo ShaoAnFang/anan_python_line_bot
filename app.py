@@ -645,7 +645,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=queryTime))
     
     if msg== 'Id' or msg== 'id':
-    
         #if event.source.type =='group':
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
         #else:
@@ -660,7 +659,7 @@ def handle_message(event):
         else: 
             z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
-                                
+
     if msg == '電影':
         if event.source.type == 'group' :
             if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
@@ -926,21 +925,17 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     #firebaseChatLog(msg)    
-    
-#     if event.source.type !='group':
-#         #直接對機器人講
-#         profile = line_bot_api.get_profile(event.source.user_id)
-#         firebaseChatLog(msg,profile.display_name,profile.user_id)
-#     else:
-#         #群組
-#         if type(event.source.user_id) is str :
-#             #如果有加好友
-#             profile = line_bot_api.get_profile(event.source.user_id)
-#             firebaseChatLog(msg,profile.display_name,profile.user_id)
-            
-#         else:
-#             #如果沒加好友則無user_id
-#             firebaseChatLog(msg)
+    if event.source.type !='group':
+        #直接對機器人講
+        profile = line_bot_api.get_profile(event.source.user_id)
+        z = '單獨(user_id):' + profile.user_id
+        firebaseChatLog(msg,profile.display_name,z)
+    else:
+        #群組裡講
+        z = '群組(group_id):' + event.source.group_id
+        profile = line_bot_api.get_profile(event.source.user_id)
+        firebaseChatLog(msg,profile.display_name,z)
+
             
     if sticker(msg) != 'GG':
         if event.source.type !='group':
