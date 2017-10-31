@@ -497,7 +497,7 @@ def handle_message(event):
     if msg.find('籃球') != -1:
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
-            preview_image_url='https://imgur.com/2jB4sV1.jpg')
+            preview_image_url='https://imgur.com/tCtYGfK.jpg')
         line_bot_api.reply_message(event.reply_token, video_message) 
         
     if msg.find('吃懶') != -1 :
