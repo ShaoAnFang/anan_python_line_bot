@@ -491,7 +491,6 @@ def handle_message(event):
 def handle_message(event):
     msg = event.message.text
 
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
@@ -654,7 +653,9 @@ def handle_message(event):
     if msg== 'Id' or msg== 'id':
         #if event.source.type =='group':
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
-        #else:
+        #else: U2d03587159a3c498954ac891fc2d17e8
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= event.source.user_id))
+        
         profile = line_bot_api.get_profile(event.source.user_id)
         n = profile.display_name
         p = profile.picture_url
