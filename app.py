@@ -491,7 +491,6 @@ def handle_message(event):
 def handle_message(event):
     msg = event.message.text
 
-
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
      
@@ -655,12 +654,13 @@ def handle_message(event):
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
         #else: 
 
-        
         profile = line_bot_api.get_profile(event.source.user_id)
         n = profile.display_name
         p = profile.picture_url
-        #i = profile.user_id
+        i = profile.user_id
         m = profile.status_message
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= n))
+
         if not m:
             z = n + '\n \n' + p + '\n \n' + '\n \n' + event.source.user_id
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
@@ -933,12 +933,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     #firebaseChatLog(msg)    
-    if event.source.type !='group':
+    if event.source.type =='user':
         #直接對機器人講
         profile = line_bot_api.get_profile(event.source.user_id)
         z = '單獨(user_id):' + event.source.user_id
         firebaseChatLog(msg,profile.display_name,z)
-    else:
+    elif event.source.type == 'group':
         #群組裡講
         z = '群組(group_id):' + event.source.group_id
         profile = line_bot_api.get_profile(event.source.user_id)
