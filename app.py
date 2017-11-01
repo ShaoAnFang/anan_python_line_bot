@@ -532,8 +532,8 @@ def handle_message(event):
     
     if msg.find('珍奶') != -1 :
         image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/LhMb26k.jpg',
-            preview_image_url='https://imgur.com/LhMb26k.jpg')
+            original_content_url='https://imgur.com/3XBTU2t.jpg',
+            preview_image_url='https://imgur.com/3XBTU2t.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
     
     if msg == '松山':
