@@ -932,18 +932,24 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
-    #firebaseChatLog(msg)    
-    if event.source.type =='user':
+    #firebaseChatLog(msg)
+    profile = line_bot_api.get_profile(event.source.user_id)
+    if event.source.type =='user' :
         #直接對機器人講
-        profile = line_bot_api.get_profile(event.source.user_id)
         z = '單獨(user_id):' + event.source.user_id
-        firebaseChatLog(msg,profile.display_name,z)
+        if profile.display_name is None:
+            firebaseChatLog(msg,'抓不到Name',z)  
+        else:
+            firebaseChatLog(msg,profile.display_name,z)   
+            
     elif event.source.type == 'group':
         #群組裡講
         z = '群組(group_id):' + event.source.group_id
-        profile = line_bot_api.get_profile(event.source.user_id)
-        firebaseChatLog(msg,profile.display_name,z)
-
+        if profile.display_name is None:
+            firebaseChatLog(msg,'抓不到Name',z)
+        else:
+            firebaseChatLog(msg,profile.display_name,z)
+            
             
     if sticker(msg) != 'GG':
         if event.source.type !='group':
