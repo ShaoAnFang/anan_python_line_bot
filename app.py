@@ -653,19 +653,19 @@ def handle_message(event):
     if msg== 'Id' or msg== 'id':
         #if event.source.type =='group':
         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.source.group_id))
-        #else: U2d03587159a3c498954ac891fc2d17e8
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= event.source.user_id))
+        #else: 
+
         
         profile = line_bot_api.get_profile(event.source.user_id)
         n = profile.display_name
         p = profile.picture_url
-        i = profile.user_id
+        #i = profile.user_id
         m = profile.status_message
         if not m:
-            z = n + '\n \n' + p + '\n \n' + '\n \n' + i
+            z = n + '\n \n' + p + '\n \n' + '\n \n' + event.source.user_id
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
         else: 
-            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + i
+            z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.user_id
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
 
     if msg == '電影':
@@ -936,7 +936,7 @@ def handle_message(event):
     if event.source.type !='group':
         #直接對機器人講
         profile = line_bot_api.get_profile(event.source.user_id)
-        z = '單獨(user_id):' + profile.user_id
+        z = '單獨(user_id):' + event.source.user_id
         firebaseChatLog(msg,profile.display_name,z)
     else:
         #群組裡講
