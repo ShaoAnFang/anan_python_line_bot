@@ -470,14 +470,16 @@ def handle_message(event):
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event))) 
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=locationInfo)) 
     
-# @handler.add(MessageEvent, message=ImageMessage)
-# def handle_message(event): 
-#     image_message = ImageSendMessage(
-#         original_content_url='https://i.imgur.com/uPhBqLK.jpg',
-#         preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
-#     )
-#     line_bot_api.reply_message(event.reply_token, image_message)
-
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_message(event): 
+    #image_message = ImageSendMessage(
+    #    original_content_url='https://i.imgur.com/uPhBqLK.jpg',
+    #    preview_image_url='https://i.imgur.com/uPhBqLK.jpg'
+    #)
+    #line_bot_api.reply_message(event.reply_token, image_message)
+    
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
+    
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_message(event): 
     sticker_message = StickerSendMessage(
