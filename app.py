@@ -232,8 +232,23 @@ def constellation(star):
     resultString += starAndDate[0] + ' ' + starAndDate[1] + '\n'
     resultString += today + '\n'
     resultString += content + '\n\n'
-    resultString += 'from 唐立淇每日星座運勢'
-    
+    resultString += 'from 唐立淇每日星座運勢' + '\n\n'
+    resultString += '----以下是小歐星座網站----' + '\n'
+
+    urlOrz= 'https://horoscope.dice4rich.com/?sign=aries'
+    res = requests.get(urlOrz)
+    soup = BeautifulSoup(res.text,'html.parser')
+
+    title = soup.select('.current .title')
+    content = soup.select('.current .content')
+    for i in range(len(title)+len(content)):
+        if i%2 == 0:
+            print(title[int(i/2)].text.strip())
+            resultString += title[int(i/2)].text.strip() + '\n'
+        else:
+            print(content[int(i/2)].text)
+            resultString += content[int(i/2)].text + '\n\n'
+
     return resultString
 
 @app.route('/weather', methods=['GET'])
