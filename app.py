@@ -236,6 +236,7 @@ def constellation(star):
     resultString += '----以下是小歐星座網站----' + '\n'
 
     urlOrz= 'https://horoscope.dice4rich.com/?sign={}'.format(constellationDict[star])
+    urlOrz = urlOrz.lower()
     res = requests.get(urlOrz)
     soup = BeautifulSoup(res.text,'html.parser')
 
