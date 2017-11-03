@@ -233,7 +233,7 @@ def constellation(star):
     resultString += today + '\n'
     resultString += content + '\n\n'
     resultString += 'from 唐立淇每日星座運勢' + '\n\n'
-    resultString += '----以下是小歐星座網站----' + '\n'
+    resultString += '-以下是小歐星座網站-' + '\n'
 
     urlOrz= 'https://horoscope.dice4rich.com/?sign={}'.format(constellationDict[star])
     urlOrz = urlOrz.lower()
