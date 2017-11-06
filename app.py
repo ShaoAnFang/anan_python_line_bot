@@ -511,8 +511,6 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-     
-        
     if msg == '重抓':
         global queryAllKeyAndValues
         queryAllKeyAndValues.clear()
@@ -534,18 +532,6 @@ def handle_message(event):
         image_message = ImageSendMessage(
             original_content_url='https://imgur.com/2jB4sV1.jpg',
             preview_image_url='https://imgur.com/2jB4sV1.jpg')
-        line_bot_api.reply_message(event.reply_token, image_message)
-    
-    if msg.find('菜包') != -1 :
-        r = random.randint(0,1)
-        if r == 0 :
-            imgurAnna = 'https://imgur.com/wggNN0I.jpg'
-        else:
-            imgurAnna = 'https://imgur.com/ErV4nbE.jpg'
-        
-        image_message = ImageSendMessage(
-            original_content_url=imgurAnna,
-            preview_image_url=imgurAnna)
         line_bot_api.reply_message(event.reply_token, image_message)
         
     if msg.find('珍惜') != -1 :
@@ -886,7 +872,6 @@ def handle_message(event):
            )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-
             
     if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
         albumResult = aime(msg)
@@ -1008,8 +993,6 @@ def handle_message(event):
         if not event.source.group_id in quietArr and (n - s) > 10:
             sendTime = time.time()
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-
-
 
 if __name__ == "__main__":
     app.run()
