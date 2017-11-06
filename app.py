@@ -89,11 +89,11 @@ def firebaseInsert(key,value):
         getValues.append(value)
         firebase.put('data',key,getValues)
     #寫完 停兩秒 再讀取DB一次
-    time.sleep(2)
+    #time.sleep(2)
     global queryAllKeyAndValues
-    queryAllKeyAndValues.clear()
-    queryAllKeyAndValues = firebase.get('/data',None)
-    
+    #queryAllKeyAndValues.clear()
+    #queryAllKeyAndValues = firebase.get('/data',None)
+    queryAllKeyAndValues[key] = value
     return "好的 記住了"
 
 @app.route('/deleteDB', methods=['GET'])
@@ -512,6 +512,12 @@ def handle_message(event):
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
      
+        
+    if msg == '重抓':
+        global queryAllKeyAndValues
+        queryAllKeyAndValues.clear()
+        queryAllKeyAndValues = firebase.get('/data',None)
+        
     if msg.find('籃球') != -1:
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
