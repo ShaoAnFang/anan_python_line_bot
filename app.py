@@ -536,8 +536,9 @@ def handle_message(event):
         
     if msg.find('珍惜') != -1 :
         image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/syKgMMa.jpg',
-            preview_image_url='https://imgur.com/syKgMMa.jpg')
+            #https://imgur.com/syKgMMa.jpg
+            original_content_url='https://imgur.com/Htn9qxf.jpg',
+            preview_image_url='https://imgur.com/Htn9qxf.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
     
     if msg.find('珍奶') != -1 :
