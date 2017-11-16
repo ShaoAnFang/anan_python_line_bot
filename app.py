@@ -15,8 +15,8 @@ from imgurpython import ImgurClient
 from flask import Flask, request, abort
 
 from firebase import firebase
-firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-queryAllKeyAndValues = firebase.get('/data',None)
+firebaseDB = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+queryAllKeyAndValues = firebaseDB.get('/data',None)
 quiet = firebase.get('/QuietGroup',None)
 quietArr = quiet['group_id']
 
@@ -89,11 +89,11 @@ def firebaseInsert(key,value):
         getValues.append(value)
         firebase.put('data',key,getValues)
     #寫完 停兩秒 再讀取DB一次
-    #time.sleep(2)
+    time.sleep(2)
     global queryAllKeyAndValues
-    #queryAllKeyAndValues.clear()
-    #queryAllKeyAndValues = firebase.get('/data',None)
-    queryAllKeyAndValues[key] = value
+    queryAllKeyAndValues.clear()
+    queryAllKeyAndValues = firebase.get('/data',None)
+    #queryAllKeyAndValues[key] = value
     return "好的 記住了"
 
 @app.route('/deleteDB', methods=['GET'])
