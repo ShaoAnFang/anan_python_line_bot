@@ -15,8 +15,8 @@ from imgurpython import ImgurClient
 from flask import Flask, request, abort
 
 from firebase import firebase
-firebaseDB = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-queryAllKeyAndValues = firebaseDB.get('/data',None)
+firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+queryAllKeyAndValues = firebase.get('/data',None)
 quiet = firebase.get('/QuietGroup',None)
 quietArr = quiet['group_id']
 
