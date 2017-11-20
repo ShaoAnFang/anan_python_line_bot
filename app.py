@@ -401,6 +401,14 @@ def darkAnanQuery(name):
     
     return videoRandom
 
+def handsome():
+    client_id = 'c3e767d450a401e'
+    client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
+    client = ImgurClient(client_id,client_secret)
+    image = random.sample(range(0, len(images)),1)
+    imgurResult = image.link
+    
+    return imgurResult
 
 def aime(key):
 #     client_id = '78616d0ac6840e4'
@@ -408,7 +416,8 @@ def aime(key):
     client_id = 'c3e767d450a401e'
     client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
     client = ImgurClient(client_id,client_secret)
-
+    images = client.get_album_images('hjCtM')
+    
     if key == 'Aime' or key == 'aime': 
         album = ['hLZwL','Qt8En']
         i = random.randint(0, len(album) - 1)
@@ -515,7 +524,14 @@ def handle_message(event):
         global queryAllKeyAndValues
         queryAllKeyAndValues.clear()
         queryAllKeyAndValues = firebase.get('/data',None)
-        
+    
+    if msg.find('抽') != -1:
+        result = handsome()
+        image_message = ImageSendMessage(
+            original_content_url=result,
+            preview_image_url=result)
+        line_bot_api.reply_message(event.reply_token, image_message)
+    
     if msg.find('籃球') != -1:
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
