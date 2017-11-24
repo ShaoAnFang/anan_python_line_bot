@@ -492,7 +492,6 @@ def wine():
     # Extract and print all of the values
     #list_of_hashes = sheet.get_all_records()
     list_of_hashes = sheet.get_all_values()
-    pp = pprint.PrettyPrinter()
 
     notYet = list()
     did = list()
