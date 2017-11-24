@@ -480,6 +480,7 @@ def hospital():
     
     return hospitalResult[0:4]
 
+@app.route('/wine', methods=['GET'])
 def wine():
 
     scope = ['https://spreadsheets.google.com/feeds']
