@@ -10,6 +10,9 @@ import random
 import requests
 import json
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
 from flask import Flask, request, abort
@@ -401,14 +404,6 @@ def darkAnanQuery(name):
     
     return videoRandom
 
-def handsome():
-    client_id = 'c3e767d450a401e'
-    client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
-    client = ImgurClient(client_id,client_secret)
-    images = client.get_album_images('hjCtM')
-    index = random.randint(0, len(images) - 1)
-    
-    return images[index].link
 
 def aime(key):
 #     client_id = '78616d0ac6840e4'
@@ -416,8 +411,7 @@ def aime(key):
     client_id = 'c3e767d450a401e'
     client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
     client = ImgurClient(client_id,client_secret)
-    
-    
+
     if key == 'Aime' or key == 'aime': 
         album = ['hLZwL','Qt8En']
         i = random.randint(0, len(album) - 1)
@@ -486,6 +480,52 @@ def hospital():
     
     return hospitalResult[0:4]
 
+def wine():
+
+    scope = ['https://spreadsheets.google.com/feeds']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+    client = gspread.authorize(creds)
+    
+    # Find a workbook by name and open the first sheet
+    # Make sure you use the right name here.
+    sheet = client.open("酒吧巡迴清單").sheet1
+    # Extract and print all of the values
+    #list_of_hashes = sheet.get_all_records()
+    list_of_hashes = sheet.get_all_values()
+    pp = pprint.PrettyPrinter()
+
+    notYet = list()
+    did = list()
+    totalCount = ''
+    notYetCount = ''
+    didCount = ''
+    for sh in range(sheet.row_count):
+        #row需要 + 4
+        sh = sh + 4
+        #print(list_of_hashes[sh])
+        if list_of_hashes[sh][2] == '':
+            #店名是空就跳出
+            #print(int(list_of_hashes[sh][0]) -1)
+            totalCount = str(int(list_of_hashes[sh][0]) -1)
+            break 
+        elif list_of_hashes[sh][1] == '':
+            #還沒去過
+            notYet.append(list_of_hashes[sh][2] + '\n' + list_of_hashes[sh][3] + '\n' + list_of_hashes[sh][5])
+        else:
+            #已到訪
+            did.append(list_of_hashes[sh][2] + '\n' + list_of_hashes[sh][3] + '\n' + list_of_hashes[sh][5])
+
+    #print(notYet)
+    notYetCount = str(len(notYet))
+    # print(notYetCount)
+    # print(random.choice(notYet))
+    didCount = str(len(did))
+    print(didCount)
+    print(did)
+
+    return random.choice(notYet)
+
+
 # LocationMessage
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_message(event): 
@@ -524,14 +564,12 @@ def handle_message(event):
         global queryAllKeyAndValues
         queryAllKeyAndValues.clear()
         queryAllKeyAndValues = firebase.get('/data',None)
-    
-    if msg.find('抽') != -1:
-        result = handsome()
-        image_message = ImageSendMessage(
-            original_content_url=result,
-            preview_image_url=result)
-        line_bot_api.reply_message(event.reply_token, image_message)
-    
+
+    if msg.find('哪喝'):
+        w = wine()
+        w += '\n\n這家如何呢!?'
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=w))
+
     if msg.find('籃球') != -1:
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
