@@ -7,4 +7,4 @@ beautifulsoup4
 python-firebase
 line-bot-sdk==1.3.0
 paho-mqtt
-schedule
+gspread oauth2client
