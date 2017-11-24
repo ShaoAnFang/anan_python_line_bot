@@ -577,7 +577,7 @@ def handle_message(event):
         queryAllKeyAndValues.clear()
         queryAllKeyAndValues = firebase.get('/data',None)
 
-    if msg.find('哪喝'):
+    if msg.find('哪喝') != -1:
         w = wine()
         w += '\n\n這家如何呢!?'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=w))
