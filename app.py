@@ -437,6 +437,15 @@ def aime(key):
        
     return imgurResult
 
+def handsome():
+    client_id = 'c3e767d450a401e'
+    client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
+    client = ImgurClient(client_id,client_secret)
+    images = client.get_album_images('hjCtM')
+    index = random.randint(0, len(images) - 1)
+    
+    return images[index].link
+
 def hospital():
     tz = pytz.timezone('Asia/Taipei')
     dd = datetime.datetime.now(tz).date()
@@ -577,6 +586,13 @@ def handle_message(event):
         queryAllKeyAndValues.clear()
         queryAllKeyAndValues = firebase.get('/data',None)
 
+    if msg.find('抽') != -1:
+        result = handsome()
+        image_message = ImageSendMessage(
+            original_content_url=result,
+            preview_image_url=result)
+        line_bot_api.reply_message(event.reply_token, image_message)
+    
     if msg.find('哪喝') != -1:
         w = wine()
         w += '\n\n這家如何呢!?'
