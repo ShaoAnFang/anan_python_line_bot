@@ -607,7 +607,7 @@ def handle_message(event):
     if msg.find('上車') != -1:
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.mp4?alt=media&token=4a20b5ca-d129-496a-a0b3-1d820204a3c1',
-            preview_image_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/test.jpg?alt=media&token=0fdd9065-09ff-4e56-a84f-9b3935067365')
+            preview_image_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.png?alt=media&token=c3238c0d-3207-4d6d-9867-0bfa80381263')
         line_bot_api.reply_message(event.reply_token, video_message)
         
     if msg.find('吃懶') != -1 :
