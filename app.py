@@ -658,14 +658,13 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
+    if msg == '沒填生日':
+        m = birthday(msg)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
         m = birthday(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
-
-    if msg.find('沒填生日') != -1:
-        m = birthday(msg)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg == '重抓':
