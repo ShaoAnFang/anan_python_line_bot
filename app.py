@@ -661,7 +661,7 @@ def handle_message(event):
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
-        m = birthday(msg)
+        m = birthday(string)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg.find('沒填生日') != -1:
