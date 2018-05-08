@@ -618,7 +618,7 @@ def birthday(date):
     else:
         if date in dictionary:
             memberStr = ''
-            for m in dictionary[da]:
+            for m in dictionary[date]:
                 memberStr += m + ','
             return memberStr
         else:
