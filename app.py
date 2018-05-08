@@ -603,27 +603,27 @@ def birthday(date):
             break
 
     #print(dictionary)
-    if date != '沒填生日':
-        da = str(date)
-        da = da[0] + da[1] + '/' + da[2] + da[3]
+    # if date != '沒填生日':
+    da = str(date)
+    da = da[0] + da[1] + '/' + da[2] + da[3]
 
-        if da in dictionary:
-            memberStr = ''
-            for m in dictionary[da]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
-
+    if da in dictionary:
+        memberStr = ''
+        for m in dictionary[da]:
+            memberStr += m + ','
+        return memberStr
     else:
+        return '沒資料'
 
-        if date in dictionary:
-            memberStr = ''
-            for m in dictionary[date]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
+    # else:
+
+    #     if date in dictionary:
+    #         memberStr = ''
+    #         for m in dictionary[date]:
+    #             memberStr += m + ','
+    #         return memberStr
+    #     else:
+    #         return '沒資料'
 
 # LocationMessage
 @handler.add(MessageEvent, message=LocationMessage)
@@ -661,12 +661,12 @@ def handle_message(event):
     #    groupID = event.source.group_id 
     if msg == '沒填生日':
         m = birthday(msg)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
         m = birthday(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg == '重抓':
         global queryAllKeyAndValues
