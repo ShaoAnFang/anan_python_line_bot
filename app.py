@@ -616,6 +616,7 @@ def birthday(date):
             return '沒資料'
 
     else:
+
         if date in dictionary:
             memberStr = ''
             for m in dictionary[date]:
@@ -660,12 +661,12 @@ def handle_message(event):
     #    groupID = event.source.group_id 
     if msg == '沒填生日':
         m = birthday(msg)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
         m = birthday(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
 
     if msg == '重抓':
         global queryAllKeyAndValues
