@@ -606,14 +606,15 @@ def birthday(date):
     # if date != '沒填生日':
     da = str(date)
     da = da[0] + da[1] + '/' + da[2] + da[3]
-
-    if da in dictionary:
-        memberStr = ''
-        for m in dictionary[da]:
-            memberStr += m + ','
-        return memberStr
-    else:
-        return '沒資料'
+    
+    return da
+    # if da in dictionary:
+    #     memberStr = ''
+    #     for m in dictionary[da]:
+    #         memberStr += m + ','
+    #     return memberStr
+    # else:
+    #     return '沒資料'
 
     # else:
 
