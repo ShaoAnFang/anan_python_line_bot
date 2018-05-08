@@ -504,7 +504,7 @@ def wine():
       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
       "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/testsheet%40groupalbum-166505.iam.gserviceaccount.com"
     }
-    scope = ['https://spreadsheets.google.com/feeds']
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
     client = gspread.authorize(creds)
     
@@ -561,7 +561,7 @@ def birthday(date):
       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
       "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/testsheet%40groupalbum-166505.iam.gserviceaccount.com"
     }
-    scope = ['https://spreadsheets.google.com/feeds']
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
     client = gspread.authorize(creds)
 
@@ -603,26 +603,26 @@ def birthday(date):
             break
 
     #print(dictionary)
-    if date != '沒填生日':
-        da = str(date)
-        da = da[0] + da[1] + '/' + da[2] + da[3]
-
-        if da in dictionary:
-            memberStr = ''
-            for m in dictionary[da]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
-
+    # if date != '沒填生日':
+    da = str(date)
+    d = da[0] + da[1] + '/' + da[2] + da[3]
+    if d in dictionary:
+        memberStr = ''
+        for m in dictionary[d]:
+            memberStr += m + ','
+        return memberStr
     else:
-        if date in dictionary:
-            memberStr = ''
-            for m in dictionary[da]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
+        return '沒資料'
+
+    # else:
+
+    #     if date in dictionary:
+    #         memberStr = ''
+    #         for m in dictionary[date]:
+    #             memberStr += m + ','
+    #         return memberStr
+    #     else:
+    #         return '沒資料'
 
 # LocationMessage
 @handler.add(MessageEvent, message=LocationMessage)
@@ -658,14 +658,13 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
+    # if msg == '沒填生日':
+    #     m = birthday(msg)
+    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
         m = birthday(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
-
-    if msg.find('沒填生日') != -1:
-        m = birthday(msg)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg == '重抓':
