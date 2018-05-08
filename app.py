@@ -606,7 +606,7 @@ def birthday(date):
     # if date != '沒填生日':
     da = str(date)
     da = da[0] + da[1] + '/' + da[2] + da[3]
-    
+
     return da
     # if da in dictionary:
     #     memberStr = ''
@@ -666,8 +666,8 @@ def handle_message(event):
 
     if msg.find('生日') != -1:
         string = msg.split('生日')[1]
-        m = birthday(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
+        #m = birthday(string)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
 
     if msg == '重抓':
         global queryAllKeyAndValues
