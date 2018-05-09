@@ -603,7 +603,7 @@ def birthday(date):
             break
 
     #print(dictionary)
-    if date != '沒填生日':
+    if date != '沒生日':
         da = str(date)
         d = da[0] + da[1] + '/' + da[2] + da[3]
         if d in dictionary:
@@ -613,9 +613,7 @@ def birthday(date):
             return memberStr
         else:
             return '沒資料'
-
     else:
-
         if date in dictionary:
             memberStr = ''
             for m in dictionary[date]:
@@ -658,7 +656,7 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-    if msg == '沒填生日':
+    if msg == '沒生日':
         m = birthday(msg)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
