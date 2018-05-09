@@ -589,15 +589,15 @@ def birthday(date):
                     dictionary[list_of_hashes[sh][3]] = name
             else:
                 #沒填生日
-                if '沒填生日' in dictionary:
+                if '沒生日' in dictionary:
                     names = list()
-                    names = dictionary['沒填生日']
+                    names = dictionary['沒生日']
                     names.append(list_of_hashes[sh][1])
-                    dictionary['沒填生日'] = names
+                    dictionary['沒生日'] = names
                 else:
                     name = list()
                     name.append(list_of_hashes[sh][1])
-                    dictionary['沒填生日'] = name
+                    dictionary['沒生日'] = name
         else:
             #名字欄位為空則跳出
             break
