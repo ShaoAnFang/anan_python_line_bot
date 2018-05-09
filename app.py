@@ -589,21 +589,21 @@ def birthday(date):
                     dictionary[list_of_hashes[sh][3]] = name
             else:
                 #沒填生日
-                if '沒生日' in dictionary:
+                if '沒填生日' in dictionary:
                     names = list()
-                    names = dictionary['沒生日']
+                    names = dictionary['沒填生日']
                     names.append(list_of_hashes[sh][1])
-                    dictionary['沒生日'] = names
+                    dictionary['沒填生日'] = names
                 else:
                     name = list()
                     name.append(list_of_hashes[sh][1])
-                    dictionary['沒生日'] = name
+                    dictionary['沒填生日'] = name
         else:
             #名字欄位為空則跳出
             break
 
     #print(dictionary)
-    if date != '沒生日':
+    if date != '沒填生日':
         da = str(date)
         d = da[0] + da[1] + '/' + da[2] + da[3]
         if d in dictionary:
@@ -613,7 +613,9 @@ def birthday(date):
             return memberStr
         else:
             return '沒資料'
+
     else:
+
         if date in dictionary:
             memberStr = ''
             for m in dictionary[date]:
@@ -621,6 +623,102 @@ def birthday(date):
             return memberStr
         else:
             return '沒資料'
+
+@app.route('/bLady/<string:name>', methods=['GET'])
+def bLady(name):
+
+    f = {
+      "type": "service_account",
+      "project_id": "groupalbum-166505",
+      "private_key_id": "7e1b6365be1d48cec5716c208abbf7a7ce0f5095",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDhNbntwtEgks5\nL5LXIaNwVjyt76L5P5YaG5eQSkoXpNHXuLoPf73yNuT1s7kTArf7sgPwaPess2+K\nDzKPnLc9Bkq728TC5D0lL4hzEKsDe/PdBqLfvoakNySEpJxXziFh/XjlND+BtkXD\nJe15xmuLc9bLZa6uQBWJdzTIoewSStfPMOoghAwLBYDAmlMzuzkK+690SiBUisb0\nOU6Sw96wsX86MO6wKIKBvgMTuegt0I6zVTei1LMsyjQplmFMuF0AUjfuQwo0BS0r\n3Kd0zdZs8OBBTitqfujKpaEVVVm4F6jopWsDqEJkT6LaaRfXRrPZ7p1Mxuv3c3TU\nSBeHzZwhAgMBAAECggEALGm1g4dB6PsL6V6UJYg/nxoHyJ8Bz0qRZzbTU/R8JijL\nfgw5P6IN3MJ5ehKsPNRGRMdoO6ksca+E68COBK9dtGAEg+3lITxFY3gLr8+eeTkj\n6RZD0z1tSko4YmUeGpf5X0/7sV0P/AASksS/0ASxk0jqBuP/LRfjjIlmlRirDnBJ\n46tv5de9XZlH1Twy0fG6+yFJGWd4uLQQm++O8xJ5loyDu7ZdWSYcJ9Bta4Ur41fb\n96tEvk7PnQ9dvGWLs00qIuSSZOigEIk5AuCxeKaMeR3SmdsK7jPuKQ5ZX3i/qcub\n6TIeVvtiZMLcAP5u+aFkTUVOKdE1dY1MEY3xbO/SXQKBgQDyZH28y+7udVwbl6mD\nbaBiqvQFKzHBVhE+x/dyx3Frm5r8ok30MKy375SdNligiGcSbLoLOIg5UJ31BTjf\nWb9f8WblQiHtpixMBbk5PghOwXulq95IOmYDsYR7Hx15KtsVPODBCO4w56RMgFAd\nK2KQa2Cg1nqr4fCCTLKd/AKdHwKBgQDOfrXvl1grKe77Fbb61KkaWqj+/9jCl2vo\nOxyl344BgEDBoXaW+YRmv4y4HXowritVP57URlT46Gq5V6gezGL6elTv6AGXYkRd\nFJGm+QUIj6WFSiQXGVlbdb1RIJrWysb1tb3T77nbAcN8Hgp3U2A+n/dSnO5sTLLG\nzV2sZbdevwKBgQDjoL131CfQZgQWoWl+VC//GL3KMNMr1dCiHZXigyufO2TkBOOi\nAyfgICx3Kvc14oKxCcv5B6Dd+jgsRjgvf4+54PCZMW69R4Vn6yQTfo68rvSYE3vO\nZpEwvL9GBGVgSX+uRRpoDSPqZ06izQjvK7QHHd+Di4dt7OM46h//Pw+RTwKBgBc8\nvR6UKnDZDDKnM+swKUN09lWT1wG25obAuC2WZbWXiDICCIVe2N5zKdPCRXDa+Ldk\nLGx46bEE/pWS3rFwkKbdQ1eoBR3TChxrZySiG0XmXFsOh9ctnBelvUM25xXKxe76\nn70M2h5iKWx7OPRKpqcFe2CJlm8LhobGr4bp/2OjAoGAZjANDFWt8sz1x4hqzdvj\nkKUGGlo66E00II8N1dN5oOfs7mlGBgX9X8uNqCQkewA5yx4lq1YkjiNrucsk8et0\n0lhVXm2k3Bae57gKoGOJ1iSlZpnLQD9sOJCavm39crCRrVtSsiy6vIsc+B3YV+jX\nNIuqgLPiszH2b+00HQMmLi0=\n-----END PRIVATE KEY-----\n",
+      "client_email": "testsheet@groupalbum-166505.iam.gserviceaccount.com",
+      "client_id": "117086094069483849270",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://accounts.google.com/o/oauth2/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/testsheet%40groupalbum-166505.iam.gserviceaccount.com"
+    }
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
+    client = gspread.authorize(creds)
+
+    sheet = client.open("100").sheet1
+    list_of_hashes = sheet.get_all_values()
+
+    nameDictionary = dict()
+    for row in list_of_hashes:
+        #名字 全名 手機 認識日 生日 
+        #星座 嚐好 喜歡的食 討厭的食 交往過
+        # FM FH	FK	FS events
+        if row[0] != '名字':
+            dictionary = dict()
+            for index in range(len(row)):
+                
+                if index == 1 and row[index] != '':
+                    dictionary['全名'] = row[index]
+                    
+                if index == 2 and row[index] != '':
+                    dictionary['手機'] = row[index]     
+
+                if index == 3 and row[index] != '':
+                    dictionary['認識日'] = row[index]
+
+                if index == 4 and row[index] != '':
+                    dictionary['生日'] = row[index]
+
+                if index == 5 and row[index] != '':
+                    dictionary['星座'] = row[index]
+
+                if index == 6 and row[index] != '':
+                    dictionary['嚐好'] = row[index]
+
+                if index == 7 and row[index] != '':
+                    dictionary['喜歡的食物'] = row[index]
+
+                if index == 8 and row[index] != '':
+                    dictionary['討厭的食物'] = row[index]
+
+                if index == 9 and row[index] != '':
+                    dictionary['交往過的對象'] = row[index]
+
+                if index == 10 and row[index] != '':
+                    dictionary['FM'] = row[index]    
+
+                if index == 11 and row[index] != '':
+                    dictionary['FH'] = row[index] 
+
+                if index == 12 and row[index] != '':
+                    dictionary['FK'] = row[index]  
+
+                if index == 13 and row[index] != '':
+                    dictionary['FS'] = row[index] 
+
+                if index == 14 and row[index] != '':
+                    eventCount = len(row)
+                    if eventCount > 14:
+                        events = list()
+                        for x in range(14, eventCount):
+                            events.append(row[x])
+                            dictionary['events'] = events
+                    else:    
+                        dictionary['events'] = row[index]
+
+                nameDictionary[row[0]] = dictionary
+
+    nd = nameDictionary[name]
+
+    finalStr = ''
+    for k in nd.keys():
+        if k == 'events':
+            for e in nd[k]:
+                #print(e)
+                finalStr += e + '\n'
+        else:
+            #print("{}:{}".format(k,nd[k]))
+            finalStr += '{}:{}'.format(k,nd[k]) + '\n'
+
+    return finalStr
 
 # LocationMessage
 @handler.add(MessageEvent, message=LocationMessage)
@@ -656,7 +754,13 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-    if msg == '沒生日':
+
+    if msg.find('100') != -1:
+        string = msg.split('100')[1]
+        m = bLady(string)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
+
+    if msg == '沒填生日':
         m = birthday(msg)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
