@@ -365,12 +365,11 @@ def sticker(key):
                    '冷': {'sticker_id':'29','package_id':'2'}, '喝': {'sticker_id':'28','package_id':'2'},
                    '晚安': {'sticker_id':'46','package_id':'2'}, '考試': {'sticker_id':'30','package_id':'2'},
                    '熱': {'sticker_id':'601','package_id':'4'}, '戒指': {'sticker_id':'277','package_id':'4'},
-                   '鑽': {'sticker_id':'276','package_id':'4'}, '唱': {'sticker_id':'413','package_id':'1'},
-                   '彩虹': {'sticker_id':'268','package_id':'4'}, '櫻': {'sticker_id':'604','package_id':'4'},
-                   '累': {'sticker_id':'526','package_id':'2'}, '生氣': {'sticker_id':'527','package_id':'2'},
-                   '上班': {'sticker_id':'161','package_id':'2'}, '歡迎': {'sticker_id':'247','package_id':'3'},
-                   '升天': {'sticker_id':'108','package_id':'1'}, '喇叭': {'sticker_id':'414','package_id':'1'},
-                   '下雨': {'sticker_id':'507','package_id':'2'}}
+                   '鑽': {'sticker_id':'276','package_id':'4'}, '彩虹': {'sticker_id':'268','package_id':'4'}, 
+                   '櫻': {'sticker_id':'604','package_id':'4'}, '累': {'sticker_id':'526','package_id':'2'}, 
+                   '生氣': {'sticker_id':'527','package_id':'2'}, '上班': {'sticker_id':'161','package_id':'2'}, 
+                   '歡迎': {'sticker_id':'247','package_id':'3'}, '升天': {'sticker_id':'108','package_id':'1'}, 
+                   '喇叭': {'sticker_id':'414','package_id':'1'}, '下雨': {'sticker_id':'507','package_id':'2'}}
     
     allKeys = sitckerDict.keys()
     for k in allKeys:
