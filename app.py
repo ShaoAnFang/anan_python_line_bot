@@ -167,24 +167,22 @@ def stock(stockNumber):
     info = soup.find_all('td', class_='iyjjgb')
     #print(info)
     for index, element in enumerate(info):
-            if index == 0:
-                  resultString+= '-------------' + '\n'
-                  resultString+= '開盤: '+ element.text + '\n'
-            if index == 1:
-                  resultString+= '最高: '+ element.text + '\n'
-            if index == 2:
-                  resultString+= '最低: '+ element.text + '\n'
-            if index == 3:
-                  resultString+= '本益比: '+ element.text + '\n'
-            if index == 7:
-                  resultString+= '上次收盤價: '+ element.text + '\n'
-                  resultString+= 'From Google'
-                  
+        if index == 0:
+            resultString+= '-------------' + '\n'
+            resultString+= '開盤: '+ element.text + '\n'
+        if index == 1:
+            resultString+= '最高: '+ element.text + '\n'
+        if index == 2:
+            resultString+= '最低: '+ element.text + '\n'
+        if index == 3:
+            resultString+= '本益比: '+ element.text + '\n'
+        if index == 7:
+            resultString+= '上次收盤價: '+ element.text + '\n'
+            resultString+= 'From Google'
     return resultString
 
 @app.route('/star/<string:star>', methods=['GET'])
 def constellation(star):
-
     constellationDict = dict()
     constellationDict = {'牡羊': 'Aries', '金牛': 'Taurus', '雙子': 'Gemini','巨蟹': 'Cancer',
                          '獅子': 'Leo', '處女': 'Virgo', '天秤': 'Libra','天蠍': 'Scorpio', 
