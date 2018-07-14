@@ -161,59 +161,25 @@ def stock(stockNumber):
     res = requests.get(url,headers=header,verify=False)
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
-    title = soup.find('h3')
-    title = title.text.strip()
-    #print(title)
-    
-    resultString = ''
-    resultString += title + '\n'
-    #現價
-    nowPrice = ''
-    for p in soup.select('.pr'):
-        #print(p.text)
-        nowPrice += p.text.strip()
-    #漲跌
-    upDown = soup.select('.chr')
-    if not upDown :
-        upDown = soup.select('.chg')
-    uString = ''
-    for u in upDown:
-        #print(u.text.strip().encode('utf8'))
-        uString += u.text.strip()
-        #print(uString)
-    
-    key = []
-    for k in soup.select('.key'):
-        #print(k.text.strip().encode('utf8'))
-        key.append(k.text.strip())
-    
-    val = list()
-    for v in soup.select('.val'):
-        #print(v.text.strip().encode('utf8'))
-        val.append(v.text.strip())
-    
-    #現價
-    resultString += '-------------' + '\n'
-    resultString += '現價 ' + '\n' + nowPrice + '\n'
-    resultString += '-------------' + '\n'
-    #漲跌
-    resultString += '漲跌' + '\n' + uString + '\n'
-    resultString += '-------------' + '\n'
-    #每股盈餘
-    resultString += key[7] + '\n' + val[7] + '\n'
-    resultString += '-------------' + '\n'
-    #開盤
-    resultString += key[2]+ '\n' + val[2] + '\n'
-    resultString += '-------------' + '\n'
-    #範圍
-    resultString += key[0] + '\n' + val[0] + '\n'
-    resultString += '-------------' + '\n'
-    #52週
-    resultString += key[1] + '\n' + val[1] + '\n'
-    resultString += '-------------' + '\n'
-    #股息/收益
-    resultString += key[6] + '\n' + val[6] + '\n' + '-------------' + '\n' + 'From Google stock'
-   
+    title = soup.find('div', class_='PyJv1b kno-fb-ctx')
+    #print(title.text)
+    resultString = '{}'.format(title.text) + '\n'
+    info = soup.find_all('td', class_='iyjjgb')
+    #print(info)
+    for index, element in enumerate(info):
+            if index == 0:
+                  resultString+= '-------------' + '\n'
+                  resultString+= '開盤: '+ element.text + '\n'
+            if index == 1:
+                  resultString+= '最高: '+ element.text + '\n'
+            if index == 2:
+                  resultString+= '最低: '+ element.text + '\n'
+            if index == 3:
+                  resultString+= '本益比: '+ element.text + '\n'
+            if index == 7:
+                  resultString+= '上次收盤價: '+ element.text + '\n'
+                  resultString+= 'From Google'
+                  
     return resultString
 
 @app.route('/star/<string:star>', methods=['GET'])
