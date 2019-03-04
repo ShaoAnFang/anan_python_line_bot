@@ -1,40 +1,28 @@
 #!/usr/bin/env python3 
 # -*- coding: utf-8 -*-
-
 import re
 import time
-sendTime = time.time()
-import datetime
+import json
 import pytz 
 import random
-import requests
-import json
-
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+import requests
+import datetime
 
+from firebase import firebase
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
 from flask import Flask, request, abort
 
-from firebase import firebase
+from oauth2client.service_account import ServiceAccountCredentials
+from Module import Aime, Constellation, Weather, Movies, GoogleSheet, TemplateSend, Sticker
+
+sendTime = time.time()
+
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 queryAllKeyAndValues = firebase.get('/data',None)
 quiet = firebase.get('/QuietGroup',None)
 quietArr = quiet['group_id']
-
-f = {
-      "type": "service_account",
-      "project_id": "groupalbum-166505",
-      "private_key_id": "7e1b6365be1d48cec5716c208abbf7a7ce0f5095",
-      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDhNbntwtEgks5\nL5LXIaNwVjyt76L5P5YaG5eQSkoXpNHXuLoPf73yNuT1s7kTArf7sgPwaPess2+K\nDzKPnLc9Bkq728TC5D0lL4hzEKsDe/PdBqLfvoakNySEpJxXziFh/XjlND+BtkXD\nJe15xmuLc9bLZa6uQBWJdzTIoewSStfPMOoghAwLBYDAmlMzuzkK+690SiBUisb0\nOU6Sw96wsX86MO6wKIKBvgMTuegt0I6zVTei1LMsyjQplmFMuF0AUjfuQwo0BS0r\n3Kd0zdZs8OBBTitqfujKpaEVVVm4F6jopWsDqEJkT6LaaRfXRrPZ7p1Mxuv3c3TU\nSBeHzZwhAgMBAAECggEALGm1g4dB6PsL6V6UJYg/nxoHyJ8Bz0qRZzbTU/R8JijL\nfgw5P6IN3MJ5ehKsPNRGRMdoO6ksca+E68COBK9dtGAEg+3lITxFY3gLr8+eeTkj\n6RZD0z1tSko4YmUeGpf5X0/7sV0P/AASksS/0ASxk0jqBuP/LRfjjIlmlRirDnBJ\n46tv5de9XZlH1Twy0fG6+yFJGWd4uLQQm++O8xJ5loyDu7ZdWSYcJ9Bta4Ur41fb\n96tEvk7PnQ9dvGWLs00qIuSSZOigEIk5AuCxeKaMeR3SmdsK7jPuKQ5ZX3i/qcub\n6TIeVvtiZMLcAP5u+aFkTUVOKdE1dY1MEY3xbO/SXQKBgQDyZH28y+7udVwbl6mD\nbaBiqvQFKzHBVhE+x/dyx3Frm5r8ok30MKy375SdNligiGcSbLoLOIg5UJ31BTjf\nWb9f8WblQiHtpixMBbk5PghOwXulq95IOmYDsYR7Hx15KtsVPODBCO4w56RMgFAd\nK2KQa2Cg1nqr4fCCTLKd/AKdHwKBgQDOfrXvl1grKe77Fbb61KkaWqj+/9jCl2vo\nOxyl344BgEDBoXaW+YRmv4y4HXowritVP57URlT46Gq5V6gezGL6elTv6AGXYkRd\nFJGm+QUIj6WFSiQXGVlbdb1RIJrWysb1tb3T77nbAcN8Hgp3U2A+n/dSnO5sTLLG\nzV2sZbdevwKBgQDjoL131CfQZgQWoWl+VC//GL3KMNMr1dCiHZXigyufO2TkBOOi\nAyfgICx3Kvc14oKxCcv5B6Dd+jgsRjgvf4+54PCZMW69R4Vn6yQTfo68rvSYE3vO\nZpEwvL9GBGVgSX+uRRpoDSPqZ06izQjvK7QHHd+Di4dt7OM46h//Pw+RTwKBgBc8\nvR6UKnDZDDKnM+swKUN09lWT1wG25obAuC2WZbWXiDICCIVe2N5zKdPCRXDa+Ldk\nLGx46bEE/pWS3rFwkKbdQ1eoBR3TChxrZySiG0XmXFsOh9ctnBelvUM25xXKxe76\nn70M2h5iKWx7OPRKpqcFe2CJlm8LhobGr4bp/2OjAoGAZjANDFWt8sz1x4hqzdvj\nkKUGGlo66E00II8N1dN5oOfs7mlGBgX9X8uNqCQkewA5yx4lq1YkjiNrucsk8et0\n0lhVXm2k3Bae57gKoGOJ1iSlZpnLQD9sOJCavm39crCRrVtSsiy6vIsc+B3YV+jX\nNIuqgLPiszH2b+00HQMmLi0=\n-----END PRIVATE KEY-----\n",
-      "client_email": "testsheet@groupalbum-166505.iam.gserviceaccount.com",
-      "client_id": "117086094069483849270",
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://accounts.google.com/o/oauth2/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/testsheet%40groupalbum-166505.iam.gserviceaccount.com"
-}
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -51,7 +39,6 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
-
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -154,196 +141,55 @@ def firebaseChatLog(content, name='', userID = ''):
         getChatLog.append(content)
         firebase.put('/ChatLog',inputDate,getChatLog)
 
-def stock(stockNumber):
-    url = 'https://www.google.com.hk/finance?q='
-    url += stockNumber
-    header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
-    res = requests.get(url,headers=header,verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text,'html.parser')
-    title = soup.find('div', class_='PyJv1b kno-fb-ctx')
-    #print(title.text)
-    resultString = '{}'.format(title.text) + '\n'
-    info = soup.find_all('td', class_='iyjjgb')
-    #print(info)
-    for index, element in enumerate(info):
-        if index == 0:
-            resultString+= '-------------' + '\n'
-            resultString+= '開盤: '+ element.text + '\n'
-        if index == 1:
-            resultString+= '最高: '+ element.text + '\n'
-        if index == 2:
-            resultString+= '最低: '+ element.text + '\n'
-        if index == 3:
-            resultString+= '本益比: '+ element.text + '\n'
-        if index == 7:
-            resultString+= '上次收盤價: '+ element.text + '\n'
-            resultString+= 'From Google'
-    return resultString
+
+# def stock(stockNumber):
+#     url = 'https://www.google.com.hk/finance?q='
+#     url += stockNumber
+#     header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
+#     res = requests.get(url,headers=header,verify=False)
+#     res.encoding = 'utf-8'
+#     soup = BeautifulSoup(res.text,'html.parser')
+#     title = soup.find('div', class_='PyJv1b kno-fb-ctx')
+#     #print(title.text)
+#     resultString = '{}'.format(title.text) + '\n'
+#     info = soup.find_all('td', class_='iyjjgb')
+#     #print(info)
+#     for index, element in enumerate(info):
+#         if index == 0:
+#             resultString+= '-------------' + '\n'
+#             resultString+= '開盤: '+ element.text + '\n'
+#         if index == 1:
+#             resultString+= '最高: '+ element.text + '\n'
+#         if index == 2:
+#             resultString+= '最低: '+ element.text + '\n'
+#         if index == 3:
+#             resultString+= '本益比: '+ element.text + '\n'
+#         if index == 7:
+#             resultString+= '上次收盤價: '+ element.text + '\n'
+#             resultString+= 'From Google'
+#     return resultString
+
 
 @app.route('/star/<string:star>', methods=['GET'])
-def constellation(star):
-    constellationDict = dict()
-    constellationDict = {'牡羊': 'Aries', '金牛': 'Taurus', '雙子': 'Gemini','巨蟹': 'Cancer',
-                         '獅子': 'Leo', '處女': 'Virgo', '天秤': 'Libra','天蠍': 'Scorpio', 
-                         '射手': 'Sagittarius', '魔羯': 'Capricorn','水瓶': 'Aquarius', '雙魚': 'Pisces'}
-    
-    url = 'http://www.daily-zodiac.com/mobile/zodiac/{}'.format(constellationDict[star])
-    res = requests.get(url,verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text,'html.parser')
-    #print(soup)
-    name = soup.find_all('p')
-    #print(name)
-    starAndDate = []
-    for n in name:
-        #print n.text.encode('utf8')
-        starAndDate.append(n.text)
-        #print(starAndDate)
-    today = soup.select('.today')[0].text.strip('\n')
-    today = today.split('\n\n')[0]
-    #print today
-    title = soup.find('li').text.strip()
-    #print(title)
-    content = soup.find('article').text.strip()
-    #print content
-
-    resultString = ''
-    resultString += starAndDate[0] + ' ' + starAndDate[1] + '\n'
-    resultString += today + '\n'
-    resultString += content + '\n\n'
-    resultString += 'from 唐立淇每日星座運勢' + '\n\n'
-    resultString += '-以下是小歐星座網站-' + '\n'
-
-    urlOrz= 'https://horoscope.dice4rich.com/?sign={}'.format(constellationDict[star])
-    urlOrz = urlOrz.lower()
-    res = requests.get(urlOrz)
-    soup = BeautifulSoup(res.text,'html.parser')
-
-    title = soup.select('.current .title')
-    content = soup.select('.current .content')
-    for i in range(len(title)+len(content)):
-        if i%2 == 0:
-            print(title[int(i/2)].text.strip())
-            resultString += title[int(i/2)].text.strip() + '\n'
-        else:
-            print(content[int(i/2)].text)
-            resultString += content[int(i/2)].text + '\n\n'
-
+def getConstellation(star):
+    resultString = Constellation.constellation(star)
     return resultString
 
 @app.route('/weather', methods=['GET'])
 def weather(ChooseCity):
-    cityDict = dict()
-    cityDict = {'台北': 'Taipei_City', '新北': 'New_Taipei_City', '桃園': 'Taoyuan_City',
-          '台中': 'Taichung_City', '台南': 'Tainan_City', '高雄': 'Kaohsiung_City',
-          '基隆': 'Keelung_City', '新竹市': 'Hsinchu_City', '新竹縣': 'Hsinchu_County',
-          '苗栗': 'Miaoli_County', '彰化': 'Changhua_County', '南投': 'Nantou_County',
-          '雲林': 'Yunlin_County', '嘉義市': 'Chiayi_City', '嘉義縣': 'Chiayi_County',
-          '屏東': 'Pingtung_County', '宜蘭': 'Yilan_County', '花蓮': 'Hualien_County',
-          '台東': 'Taitung_County', '澎湖': 'Penghu_County','金門': 'Kinmen_County','連江': 'Lienchiang_County'}
-
-    url = 'http://www.cwb.gov.tw/V7/forecast/taiwan/{}.htm'.format(cityDict[ChooseCity])
-    #print(url)
-    #header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
-    #res = requests.get(url,headers=header,verify=False)
-    res = requests.get(url,verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text,'html.parser')
-    #print soup
-    city = soup.select('.currentPage')[0].text
-    #print(city)
-    time = soup.select('.Issued')[0].text
-    time = time.split(': ')[1]
-    time = time.split(' ')[0]
-    #print(time)
-
-    imgTitle = soup.find_all('img')
-
-    title = []
-    for i in imgTitle: 
-        i = str(i).split('title="')[1]
-        i = str(i).split('"/>')[0]
-        #print i
-        title.append(i)
-
-    content = soup.select('td')
-    data = []
-    for c in content:
-        c = c.text.strip('\n')
-        #print(c.encode('utf8'))
-        data.append(c)
-    
-    resultString = ''
-    resultString += '🌤 ' + city + '  '  + time + '\n\n' 
-
-    resultString += '今晚至明晨 ' + str(data[0])  + '度\n' 
-    resultString += title[0] + '  下雨機率 ' + str(data[3]) + '\n\n' 
-
-    resultString += '明日白天' + str(data[4]) + ' 度\n'
-    resultString += title[1] + '  下雨機率 ' + str(data[7]) + '\n\n' 
-
-    resultString += '明日晚上' + str(data[8]) + ' 度\n'
-    resultString += title[2] + '  下雨機率 ' + str(data[11]) + '\n'
-
+    resultString = Weather.weather(ChooseCity)
     return resultString
-
-def get_movie_id(url):
-    # e.g. "https://tw.rd.yahoo.com/referurl/movie/thisweek/info/*https://tw.movies.yahoo.com/movieinfo_main.html/id=6707"
-    #      -> match.group(0): "/id=6707"
-    pattern = '/id=\d+'
-    match = re.search(pattern, url)
-    if match is None:
-        return url
-    else:
-        return match.group(0).replace('/id=', '')
 
 @app.route('/movie', methods=['GET'])
 def get_movies():
-    Y_MOVIE_URL = 'https://tw.movies.yahoo.com/movie_thisweek.html'
-    dom = requests.get(Y_MOVIE_URL)
-    soup = BeautifulSoup(dom.text, 'html.parser')
-    movies = []
-    rows = soup.select('.release_list li')
-    #rows = soup.select('#content_l li')
-    Y_INTRO_URL = 'https://tw.movies.yahoo.com/movieinfo_main.html'  # 詳細資訊
-    for row in rows:
-        movie = dict()
-        movie['ch_name'] = row.select('.release_movie_name .gabtn')[0].text.strip()
-        movie['eng_name'] = row.select('.en .gabtn')[0].text.strip()
-        #movie['movie_id'] = get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
-        movie['poster_url'] = row.select('img')[0]['src']
-        #movie['release_date'] = get_date(row.select('.release_movie_time')[0].text)
-        movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:15] + '...'
-        #movie['info_url'] = row.select('.release_movie_name .gabtn')[0]['href']
-        movie['info_url'] = Y_INTRO_URL + '/id=' + get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
-        movies.append(movie)
+    movies = Movies.get_movies()
     return movies
 
 def sticker(key):
-    sitckerDict = dict()
-    sitckerDict = {'聽歌': {'sticker_id':'103','package_id':'1'}, '想睡': {'sticker_id':'1','package_id':'1'}, 
-                   '生日快樂': {'sticker_id':'427','package_id':'1'}, ' 飽': {'sticker_id':'425','package_id':'1'},
-                   '騎車': {'sticker_id':'430','package_id':'1'}, '窮': {'sticker_id':'417','package_id':'1'},
-                   '很忙': {'sticker_id':'411','package_id':'1'}, '翻滾': {'sticker_id':'423','package_id':'1'},
-                   '冷': {'sticker_id':'29','package_id':'2'}, '喝': {'sticker_id':'28','package_id':'2'},
-                   '晚安': {'sticker_id':'46','package_id':'2'}, '考試': {'sticker_id':'30','package_id':'2'},
-                   '熱': {'sticker_id':'601','package_id':'4'}, '戒指': {'sticker_id':'277','package_id':'4'},
-                   '鑽': {'sticker_id':'276','package_id':'4'}, '彩虹': {'sticker_id':'268','package_id':'4'}, 
-                   '櫻': {'sticker_id':'604','package_id':'4'}, '累': {'sticker_id':'526','package_id':'2'}, 
-                   '生氣': {'sticker_id':'527','package_id':'2'}, '上班': {'sticker_id':'161','package_id':'2'}, 
-                   '歡迎': {'sticker_id':'247','package_id':'3'}, '升天': {'sticker_id':'108','package_id':'1'}, 
-                   '喇叭': {'sticker_id':'414','package_id':'1'}, '下雨': {'sticker_id':'507','package_id':'2'}}
-    
-    allKeys = sitckerDict.keys()
-    for k in allKeys:
-        #print(message.find(k))
-        #若找不到 返回值是 -1
-        if key.find(k) != -1:
-            return sitckerDict[k]
-        
-    return 'GG'
+    searchResult = Sticker.sticker(key)
+    return searchResult
 
+#AVgle API
 def darkAnan():
     AVGLE_LIST_COLLECTIONS_API_URL = 'https://api.avgle.com/v1/videos/{}'
 
@@ -380,37 +226,9 @@ def darkAnanQuery(name):
     
     return videoRandom
 
-
+#存取imgur
 def aime(key):
-#     client_id = '78616d0ac6840e4'
-#     client_secret = 'aef2b708acb068e5f7a6262190da024cc29b9b26'
-    client_id = 'c3e767d450a401e'
-    client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
-    client = ImgurClient(client_id,client_secret)
-
-    if key == 'Aime' or key == 'aime': 
-        album = ['hLZwL','Qt8En']
-        i = random.randint(0, len(album) - 1)
-        images = client.get_album_images(album[i])
-        index = random.sample(range(0, len(images)),5)
-    else:
-        album = 'hoBxs'
-        #i = random.randint(0, len(album) - 1)
-        images = client.get_album_images(album)
-        index = random.sample(range(0, len(images)),5)
-        
-    imgurResult = []
-    for i in index:
-        imageDict = dict()
-        #imageDict['imageLink'] = images[i].link.replace('http', 'https')
-        imageDict['imageLink'] = images[i].link
-        description = images[i].description.split('http')[0].strip('\n')
-        imageDict['title&price'] = description 
-        #imageDict['title'] = description.split('$')[0].strip()
-        #imageDict['price'] = '$'+ description.split('$')[1].strip()
-        imageDict['shopeeLink'] = images[i].description.split('$')[1][3:].strip()
-        imgurResult.append(imageDict)
-       
+    imgurResult = Aime.aime(key)
     return imgurResult
 
 def handsome():
@@ -422,250 +240,21 @@ def handsome():
     
     return images[index].link
 
-def hospital():
-    tz = pytz.timezone('Asia/Taipei')
-    dd = datetime.datetime.now(tz).date()
-    #inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
-    chineseYear = dd.year - 1911
-    m = ''
-    if dd.month < 10:
-        m = '0' + str(dd.month)
-
-    d = ''
-    if dd.day <= 9 :
-        d = '0' + str(dd.day)
-    else :
-        d = str(dd.day)
-
-    d1 = ''
-    if dd.day < 9 :
-        d1 = '0' + str(dd.day + 1)
-    elif dd.day == 9:
-        d1 = str(dd.day + 1)
-    else :
-        d1 = str(dd.day + 1)
-        
-    url = 'http://reg.807.mnd.gov.tw/stepB1.asp'
-    
-    #gg = "syear=106&smonth=09&sday=05&eyear=106&emonth=09&eday=12&SectNO=14&EmpNO=0117937&isQuery=1"
-    fromData = "syear={}&smonth={}&sday={}&eyear={}&emonth={}&eday={}&SectNO=&EmpNO=&isQuery=1".format(chineseYear,m,d,chineseYear,m,d1)
-    header = {'Content-Type':'application/x-www-form-urlencoded'}
-
-    res = requests.post(url ,headers= header, json = fromData)
-    res.encoding = res.apparent_encoding
-    #res.encoding = 'big5'
-    #res.encoding = 'utf8'
-    soup = BeautifulSoup(res.text,'html.parser')
-    #print soup
-    rows = soup.select('.tablecontent1')
-    #print len(rows)
-    hospitalResult = []
-    for row in rows:
-        hospitalResult.append(row.text.split('我要預約')[0].strip())
-    
-    return hospitalResult[0:4]
-
 @app.route('/wine', methods=['GET'])
 def wine():
-
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
-    client = gspread.authorize(creds)
-    
-    # Find a workbook by name and open the first sheet
-    # Make sure you use the right name here.
-    sheet = client.open("酒吧巡迴清單").sheet1
-    # Extract and print all of the values
-    #list_of_hashes = sheet.get_all_records()
-    list_of_hashes = sheet.get_all_values()
-
-    notYet = list()
-    did = list()
-    totalCount = ''
-    notYetCount = ''
-    didCount = ''
-    for sh in range(sheet.row_count):
-        #row需要 + 4
-        sh = sh + 4
-        #print(list_of_hashes[sh])
-        if list_of_hashes[sh][2] == '':
-            #店名是空就跳出
-            #print(int(list_of_hashes[sh][0]) -1)
-            totalCount = str(int(list_of_hashes[sh][0]) -1)
-            break 
-        elif list_of_hashes[sh][1] == '':
-            #還沒去過
-            notYet.append(list_of_hashes[sh][2] + '\n' + list_of_hashes[sh][3] + '\n' + list_of_hashes[sh][5])
-        else:
-            #已到訪
-            did.append(list_of_hashes[sh][2] + '\n' + list_of_hashes[sh][3] + '\n' + list_of_hashes[sh][5])
-
-    #print(notYet)
-    notYetCount = str(len(notYet))
-    # print(notYetCount)
-    # print(random.choice(notYet))
-    didCount = str(len(did))
-    print(didCount)
-    print(did)
-
-    return random.choice(notYet)
+    notYet = GoogleSheet.wine()
+    return notYet
 
 @app.route('/birthday/<string:date>', methods=['GET'])
 def birthday(date):
-
-
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
-    client = gspread.authorize(creds)
-
-    sheet = client.open("TestList").sheet1
-    list_of_hashes = sheet.get_all_values()
-    dictionary = dict()
-
-    for sh in range(sheet.row_count):
-        #row需要 + 4, 前四row沒資料
-        sh = sh + 4
-        #print(list_of_hashes[sh])
-        if list_of_hashes[sh][1] != '':
-            #生日 = list_of_hashes[sh][3]
-            #名字 = list_of_hashes[sh][1]
-            if list_of_hashes[sh][3] != '':
-                #有填生日
-                if list_of_hashes[sh][3] in dictionary:
-                    names = list()
-                    names = dictionary[list_of_hashes[sh][3]]
-                    names.append(list_of_hashes[sh][1])
-                    dictionary[list_of_hashes[sh][3]] = names
-                else:
-                    name = list()
-                    name.append(list_of_hashes[sh][1])
-                    dictionary[list_of_hashes[sh][3]] = name
-            else:
-                #沒填生日
-                if '沒填生日' in dictionary:
-                    names = list()
-                    names = dictionary['沒填生日']
-                    names.append(list_of_hashes[sh][1])
-                    dictionary['沒填生日'] = names
-                else:
-                    name = list()
-                    name.append(list_of_hashes[sh][1])
-                    dictionary['沒填生日'] = name
-        else:
-            #名字欄位為空則跳出
-            break
-
-    #print(dictionary)
-    if date != '沒填生日':
-        da = str(date)
-        d = da[0] + da[1] + '/' + da[2] + da[3]
-        if d in dictionary:
-            memberStr = ''
-            for m in dictionary[d]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
-
-    else:
-
-        if date in dictionary:
-            memberStr = ''
-            for m in dictionary[date]:
-                memberStr += m + ','
-            return memberStr
-        else:
-            return '沒資料'
-
-@app.route('/bLady/<string:name>', methods=['GET'])
-def bLady(name):
-
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(f, scope)
-    client = gspread.authorize(creds)
-
-    sheet = client.open("100").sheet1
-    list_of_hashes = sheet.get_all_values()
-
-    nameDictionary = dict()
-    for row in list_of_hashes:
-        #名字 全名 手機 認識日 生日 
-        #星座 嚐好 喜歡的食 討厭的食 交往過
-        # FM FH	FK	FS events
-        if row[0] != '名字':
-            dictionary = dict()
-            for index in range(len(row)):
-                
-                if index == 1 and row[index] != '':
-                    dictionary['全名'] = row[index]
-                    
-                if index == 2 and row[index] != '':
-                    dictionary['手機'] = row[index]     
-
-                if index == 3 and row[index] != '':
-                    dictionary['認識日'] = row[index]
-
-                if index == 4 and row[index] != '':
-                    dictionary['生日'] = row[index]
-
-                if index == 5 and row[index] != '':
-                    dictionary['星座'] = row[index]
-
-                if index == 6 and row[index] != '':
-                    dictionary['嚐好'] = row[index]
-
-                if index == 7 and row[index] != '':
-                    dictionary['喜歡的食物'] = row[index]
-
-                if index == 8 and row[index] != '':
-                    dictionary['討厭的食物'] = row[index]
-
-                if index == 9 and row[index] != '':
-                    dictionary['交往過的對象'] = row[index]
-
-                if index == 10 and row[index] != '':
-                    dictionary['FM'] = row[index]    
-
-                if index == 11 and row[index] != '':
-                    dictionary['FH'] = row[index] 
-
-                if index == 12 and row[index] != '':
-                    dictionary['FK'] = row[index]  
-
-                if index == 13 and row[index] != '':
-                    dictionary['FS'] = row[index] 
-
-                if index == 14 and row[index] != '':
-                    eventCount = len(row)
-                    if eventCount > 14:
-                        events = list()
-                        for x in range(14, eventCount):
-                            events.append(row[x])
-                            dictionary['events'] = events
-                    else:    
-                        dictionary['events'] = row[index]
-
-                nameDictionary[row[0]] = dictionary
-
-    nd = nameDictionary[name]
-
-    finalStr = ''
-    for k in nd.keys():
-        if k == 'events':
-            for e in nd[k]:
-                #print(e)
-                finalStr += e + '\n'
-        else:
-            #print("{}:{}".format(k,nd[k]))
-            finalStr += '{}:{}'.format(k,nd[k]) + '\n'
-
-    return finalStr
+    result = GoogleSheet.birthday(date)
+    return result
 
 # LocationMessage
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_message(event): 
-    locationInfo = '地區:' + event.message.address[:10] + '\n\n'
-    locationInfo += '經緯度: ' '(' + str(event.message.longitude)[:8] +' ,'+ str(event.message.latitude)[:8] + ' )'+ '\n\n'
+    locationInfo = '地區:' + event.message.address[:20] + '\n\n'
+    locationInfo += '經緯度: ' '(' + str(event.message.longitude)[:10] +' ,'+ str(event.message.latitude)[:10] + ' )'+ '\n\n'
     locationInfo += '向阿寶請示雄三發射許可' + '\n' +'請稍候'
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event))) 
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=locationInfo)) 
@@ -689,17 +278,26 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token, sticker_message)
 
 
+@handler.add(MessageEvent, message=AudioMessage)
+def handle_message(event): 
+    msgType = event.message.type
+    id = event.message.id
+    m = 'msgType:' + msgType + '\n' + 'id:' + id
+    url = 'https://api.line.me/v2/bot/message/{}/content'.format(id)
+    headers =  {'Authorization':'Bearer E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=' }
+    response = requests.get(url, headers=headers)
+    #print(response)
+    with open('{}.m4a'.format(id), 'wb') as f:
+        f.write(response.content)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-
-    if msg.find('100') != -1:
-        string = msg.split('100')[1]
-        m = bLady(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
     if msg == '沒填生日':
         m = birthday(msg)
@@ -715,7 +313,7 @@ def handle_message(event):
         queryAllKeyAndValues.clear()
         queryAllKeyAndValues = firebase.get('/data',None)
 
-    if msg.find('抽') != -1:
+    if msg == '抽':
         result = handsome()
         image_message = ImageSendMessage(
             original_content_url=result,
@@ -727,13 +325,13 @@ def handle_message(event):
         w += '\n\n這家如何呢!?'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=w))
 
-    if msg.find('籃球') != -1:
+    if msg == '籃球':
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
             preview_image_url='https://imgur.com/tCtYGfK.jpg')
         line_bot_api.reply_message(event.reply_token, video_message) 
         
-    if msg.find('上車') != -1:
+    if msg == '上車':
         video_message = VideoSendMessage(
             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.mp4?alt=media&token=4a20b5ca-d129-496a-a0b3-1d820204a3c1',
             preview_image_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.png?alt=media&token=c3238c0d-3207-4d6d-9867-0bfa80381263')
@@ -763,13 +361,6 @@ def handle_message(event):
             original_content_url='https://imgur.com/3XBTU2t.jpg',
             preview_image_url='https://imgur.com/3XBTU2t.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
-    
-    if msg == '松山':
-        rows = hospital()
-        string = ''
-        for row in rows:
-            string += row + '\n\n'
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=string))
     
     global quiet
     global quietArr
@@ -807,13 +398,12 @@ def handle_message(event):
         menulist += '2. 輸入 天氣 台北 \n\n'
         menulist += '3. 輸入 星座 天蠍\n\n'
         menulist += '4. 輸入 電影\n\n'
-        menulist += '5. 輸入 股 2330 \n' + '顯示該股票代碼的即時查詢 \n'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=menulist))
        
-    if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
-        stockNumber = msg.split()[1]
-        result = stock(stockNumber)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    # if msg[0] == '股' and msg[1] == ' ' and len(msg) == 6:
+    #     stockNumber = msg.split()[1]
+    #     result = stock(stockNumber)
+    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         
     #if len(msg) > 200:
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='未看先猜 __文'))
@@ -862,7 +452,7 @@ def handle_message(event):
     
     if msg[0] == '星' and msg[1] == '座' and msg[2] == ' ':
         star = msg.split('星座 ')[1]
-        constellationResult = constellation(star)
+        constellationResult = getConstellation(star)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=constellationResult))
         
     if msg[0] == '天' and msg[1] == '氣' and msg[2] == ' ':
@@ -900,72 +490,9 @@ def handle_message(event):
         if event.source.type == 'group' :
             if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text=''))
-        
         g = get_movies()
-        carousel_template_message = TemplateSendMessage(
-        alt_text='電影',
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url=g[0]['poster_url'],
-                    title=g[0]['ch_name'],
-                    text= g[0]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[0]['info_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[1]['poster_url'],
-                    title=g[1]['ch_name'],
-                    text= g[1]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[1]['info_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[2]['poster_url'],
-                    title=g[2]['ch_name'],
-                    text= g[2]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[2]['info_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[3]['poster_url'],
-                    title=g[3]['ch_name'],
-                    text= g[3]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[3]['info_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=g[4]['poster_url'],
-                    title=g[4]['ch_name'],
-                    text= g[4]['intro'],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=g[4]['info_url']
-                        )
-                    ]
-                 )
-              ]
-           )
-        )
+        carousel_template_message = TemplateSend.moive(g)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    
     
     if msg == '小電影' or msg == 'AV':
         if event.source.type == 'group' and event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
@@ -974,189 +501,29 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG WP'))
             
         avgleResult = darkAnan()
-        #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-        carousel_template_message = TemplateSendMessage(
-        alt_text='小電影',
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[0]['preview_url'],
-                    title=avgleResult[0]['keyword'][:10],
-                    text= avgleResult[0]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[0]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[1]['preview_url'],
-                    title=avgleResult[1]['keyword'][:10],
-                    text= avgleResult[1]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[1]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[2]['preview_url'],
-                    title=avgleResult[2]['keyword'][:10],
-                    text= avgleResult[2]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[2]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[3]['preview_url'],
-                    title=avgleResult[3]['keyword'][:10],
-                    text= avgleResult[3]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[3]['video_url']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[4]['preview_url'],
-                    title=avgleResult[4]['keyword'][:10],
-                    text= avgleResult[4]['title'][:10],
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=avgleResult[4]['video_url']
-                        )
-                    ]
-                )
-              ]
-           )
-        )
+        carousel_template_message = TemplateSend.avgleSearch(avgleResult)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)         
     
     
-    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' :
+    if msg[0] == 'A' and msg[1] == 'V' and msg[2] == ' ' and len(msg) >= 4:
+        #帶有人名的查詢 'AV XXXX'
         if event.source.type == 'group' and event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=''))
         elif event.source.user_id == 'U2e046844ad61d32e4e091b2db7dbc53f':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='GG WP'))
         # event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f'
-        
         name = msg.split('AV ')[1]
         avgleResult = darkAnanQuery(name)
         #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-        carousel_template_message = TemplateSendMessage(
-        alt_text=msg,
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[0]['preview_url'],
-                    title=avgleResult[0]['keyword'][:10],
-                    text= avgleResult[0]['title'][:10],
-                    actions=[URITemplateAction(label='查看',uri=avgleResult[0]['video_url'])]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[1]['preview_url'],
-                    title=avgleResult[1]['keyword'][:10],
-                    text= avgleResult[1]['title'][:10],
-                    actions=[URITemplateAction(label='查看',uri=avgleResult[1]['video_url'])]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[2]['preview_url'],
-                    title=avgleResult[2]['keyword'][:10],
-                    text= avgleResult[2]['title'][:10],
-                    actions=[URITemplateAction(label='查看',uri=avgleResult[2]['video_url'])]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[3]['preview_url'],
-                    title=avgleResult[3]['keyword'][:10],
-                    text= avgleResult[3]['title'][:10],
-                    actions=[URITemplateAction(label='查看',uri=avgleResult[3]['video_url'])]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=avgleResult[4]['preview_url'],
-                    title=avgleResult[4]['keyword'][:10],
-                    text= avgleResult[4]['title'][:10],
-                    actions=[URITemplateAction(label='查看',uri=avgleResult[4]['video_url'])]
-                )
-              ]
-           )
-        )
+        carousel_template_message = TemplateSend.avgleSearch(avgleResult, titleText=msg)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            
+        
     if msg == 'Aime' or msg == 'aime' or msg == 'AlittleSheep' or msg == '小綿羊':
         albumResult = aime(msg)
         #album = albumResult[4]['imageLink'] + '\n' + albumResult[4]['title&price'] +'\n' + albumResult[4]['shopeeLink']
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
-        carousel_template_message = TemplateSendMessage(
-        alt_text=msg,
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[0]['imageLink'],
-                    title=albumResult[0]['title&price'],
-                    text= ' ',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[0]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[1]['imageLink'],
-                    title=albumResult[1]['title&price'],
-                    text= ' ',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[1]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[2]['imageLink'],
-                    title=albumResult[2]['title&price'],
-                    text= ' ',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[2]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[3]['imageLink'],
-                    title=albumResult[3]['title&price'],
-                    text= ' ',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[3]['shopeeLink']
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url=albumResult[4]['imageLink'],
-                    title=albumResult[4]['title&price'],
-                    text= ' ',
-                    actions=[
-                        URITemplateAction(
-                            label='查看',
-                            uri=albumResult[4]['shopeeLink']
-                        )
-                    ]
-                )
-              ]
-           )
-        )
+        carousel_template_message = TemplateSend.aime(albumResult, msg)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     #firebaseChatLog(msg)
