@@ -117,9 +117,9 @@ def sportsChannel():
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="HBO-HD",
-                text= "HBO-HD",
-                actions=[URITemplateAction(label='查看', uri=redir("http://198.16.106.58:8278/hbohd_twn/playlist.m3u8?tid=m8d785f4e022616401837&ct=17877&tsum=56e767abfc65234db52b017576b00403"))]
+                title="ANIMAX",
+                text= "ANIMAX",
+                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/anxax0714.m3u8"))]
             )
         ]
         )
