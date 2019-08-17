@@ -111,13 +111,13 @@ def sportsChannel():
                 title="FOX體育3台",
                 text= "FOX體育3台",
                 actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/foxsport3hd_twn/playlist.m3u8?tid=m5d584d8f204e14267960&ct=17895&tsum=a75615ebe28f1eaa5d552ec102136011")]
-            )#,
-            #CarouselColumn(
-            #    thumbnail_image_url=g[4]['poster_url'],
-            #    title=g[4]['ch_name'],
-            #    text= g[4]['intro'],
-            #    actions=[URITemplateAction(label='查看', uri=g[4]['info_url'])]
-            #)
+            ),
+            CarouselColumn(
+                thumbnail_image_url="",
+                title="FOX體育3台",
+                text= "FOX體育3台",
+                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/foxsport3hd_twn/playlist.m3u8?tid=m5d584d8f204e14267960&ct=17895&tsum=a75615ebe28f1eaa5d552ec102136011")]
+            )
         ]
         )
     )
