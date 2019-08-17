@@ -1,5 +1,8 @@
 #from linebot.models import TemplateSendMessage
 from linebot.models import *
+import hashlib 
+import requests
+from datetime import datetime
 
 def moive(g):
     carousel_template_message = TemplateSendMessage(
@@ -84,6 +87,8 @@ def avgleSearch(avgleResult,titleText='小電影'):
     return carousel_template_message
 
 def sportsChannel():
+
+
     carousel_template_message = TemplateSendMessage(
     alt_text='體育台',
     template=CarouselTemplate(
@@ -102,26 +107,39 @@ def sportsChannel():
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="HBO",
-                text= "HBO",
-                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/hbo7188.m3u8")]
-            ),
-            CarouselColumn(
-                thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title="壹電視新聞",
                 text= "壹電視新聞",
                 actions=[URITemplateAction(label='查看', uri="http://www.bouosu.com/dvr/mt9txb8x/cggmv7m5/index.m3u8")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="衛視電影台",
-                text= "衛視電影台",
-                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/stxxmvx0714.m3u8")]
+                title="愛爾達體育1台",
+                text= "愛爾達體育1台",
+                actions=[URITemplateAction(label='查看', uri=redir("http://pcb.myds.me/token/MOD/04.m3u8?CH=200"))]
+            ),
+            CarouselColumn(
+                thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+                title="Eleven Sports Plus",
+                text= "Eleven Sports Plus",
+                actions=[URITemplateAction(label='查看', uri=redir("http://pcb.myds.me/token/GtTV/playlist.m3u8?mid=241&sid=14035&cid=14195"))]
             )
         ]
         )
     )
     return carousel_template_message
+
+def redir(urlString):
+    #print(int(datetime.now().timestamp()))
+    nowTimestamp = int(datetime.now().timestamp())
+    token = "CA0670498B2C9B1C" + str(nowTimestamp + 5)
+    result = hashlib.md5(token.encode())
+    tokenMD5 = result.hexdigest()
+    tokenString = "&st={}&token={}".format(str(nowTimestamp), tokenMD5)
+    urlString = urlString + tokenString
+    #print(urlString)
+    r = requests.get(urlString)
+    #print(r.url)
+    return r.url
 
 def aime(albumResult,textTitle):
     carousel_template_message = TemplateSendMessage(

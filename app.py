@@ -486,7 +486,7 @@ def handle_message(event):
             z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.user_id
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
 
-    if msg == '體育' or msg == 'sport':
+    if msg == '電視' or msg == 'Tv' or msg == 'TV' or msg == 'tv':
         carousel_template_message = TemplateSend.sportsChannel()
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
 
