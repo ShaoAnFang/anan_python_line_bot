@@ -117,9 +117,9 @@ def sportsChannel():
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="ANIMAX",
-                text= "ANIMAX",
-                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/anxax0714.m3u8")]
+                title="東森電影台",
+                text= "東森電影台",
+                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/ettvmovie/playlist.m3u8?tid=md2ba4c243ed411481253&ct=17874&tsum=4637ffbc3260e78931b566300e618313")]
             )
         ]
         )
