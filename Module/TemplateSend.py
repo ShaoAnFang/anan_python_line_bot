@@ -87,8 +87,6 @@ def avgleSearch(avgleResult,titleText='小電影'):
     return carousel_template_message
 
 def sportsChannel():
-
-
     carousel_template_message = TemplateSendMessage(
     alt_text='體育台',
     template=CarouselTemplate(
@@ -119,9 +117,9 @@ def sportsChannel():
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="Eleven Sports Plus",
-                text= "Eleven Sports Plus",
-                actions=[URITemplateAction(label='查看', uri=redir("http://pcb.myds.me/token/GtTV/playlist.m3u8?mid=241&sid=14035&cid=14195"))]
+                title="HBO-HD",
+                text= "HBO-HD",
+                actions=[URITemplateAction(label='查看', uri=redir("http://198.16.106.58:8278/hbohd_twn/playlist.m3u8?tid=m8d785f4e022616401837&ct=17877&tsum=56e767abfc65234db52b017576b00403"))]
             )
         ]
         )
