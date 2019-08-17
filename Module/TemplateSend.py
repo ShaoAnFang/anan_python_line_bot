@@ -3,6 +3,9 @@ from linebot.models import *
 import hashlib 
 import requests
 from datetime import datetime
+from firebase import firebase
+
+firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 
 def moive(g):
     carousel_template_message = TemplateSendMessage(
@@ -87,39 +90,41 @@ def avgleSearch(avgleResult,titleText='小電影'):
     return carousel_template_message
 
 def sportsChannel():
+    channelList = firebase.get('/TVChannel','channelList')
+
     carousel_template_message = TemplateSendMessage(
-    alt_text='體育台',
+    alt_text='TV Channel',
     template=CarouselTemplate(
         columns=[
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="緯來體育台",
-                text ="緯來體育台",
-                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/vlpor0714.m3u8")]
+                title=channelList[0]["name"],
+                text =channelList[0]["name"],
+                actions=[URITemplateAction(label='查看', uri=channelList[0]["url"])]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="緯來日本台",
-                text= "緯來日本台",
-                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/vxlxjxp0714.m3u8")]
+                title=channelList[1]["name"],
+                text= channelList[1]["name"],
+                actions=[URITemplateAction(label='查看', uri=channelList[1]["url"])]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="壹電視新聞",
-                text= "壹電視新聞",
-                actions=[URITemplateAction(label='查看', uri="http://www.bouosu.com/dvr/mt9txb8x/cggmv7m5/index.m3u8")]
+                title=channelList[2]["name"],
+                text= channelList[2]["name"],
+                actions=[URITemplateAction(label='查看', uri=channelList[2]["url"])]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="愛爾達體育1台",
-                text= "愛爾達體育1台",
-                actions=[URITemplateAction(label='查看', uri=redir("http://pcb.myds.me/token/MOD/04.m3u8?CH=200"))]
+                title=channelList[3]["name"],
+                text= channelList[3]["name"],
+                actions=[URITemplateAction(label='查看', uri=redir(channelList[3]["url"]))]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="東森電影台",
-                text= "東森電影台",
-                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/ettvmovie/playlist.m3u8?tid=md2ba4c243ed411481253&ct=17874&tsum=4637ffbc3260e78931b566300e618313")]
+                title=channelList[4]["name"],
+                text= channelList[4]["name"],
+                actions=[URITemplateAction(label='查看', uri=channelList[4]["url"])]
             )
         ]
         )
@@ -128,8 +133,9 @@ def sportsChannel():
 
 def redir(urlString):
     #print(int(datetime.now().timestamp()))
+    md = firebase.get('/TVChannel',"md")
     nowTimestamp = int(datetime.now().timestamp())
-    token = "CA0670498B2C9B1C" + str(nowTimestamp + 5)
+    token = md + str(nowTimestamp + 5)
     result = hashlib.md5(token.encode())
     tokenMD5 = result.hexdigest()
     tokenString = "&st={}&token={}".format(str(nowTimestamp), tokenMD5)
