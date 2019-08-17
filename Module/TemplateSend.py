@@ -96,27 +96,27 @@ def sportsChannel():
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="FOX SPORTS 1",
-                text= "FOX SPORTS 1",
-                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/foxsports7188.m3u8")]
+                title="緯來日本台",
+                text= "緯來日本台",
+                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/vxlxjxp0714.m3u8")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="FOX SPORTS 2",
-                text= "FOX SPORTS 2",
-                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/foxspoerts7188.m3u8")]
+                title="HBO",
+                text= "HBO",
+                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/hbo7188.m3u8")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="FOX體育3台",
-                text= "FOX體育3台",
-                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/foxsport3hd_twn/playlist.m3u8?tid=m5d584d8f204e14267960&ct=17895&tsum=a75615ebe28f1eaa5d552ec102136011")]
+                title="壹電視新聞",
+                text= "壹電視新聞",
+                actions=[URITemplateAction(label='查看', uri="http://www.bouosu.com/dvr/mt9txb8x/cggmv7m5/index.m3u8")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title="FOX體育3台",
-                text= "FOX體育3台",
-                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/foxsport3hd_twn/playlist.m3u8?tid=m5d584d8f204e14267960&ct=17895&tsum=a75615ebe28f1eaa5d552ec102136011")]
+                title="衛視電影台",
+                text= "衛視電影台",
+                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/stxxmvx0714.m3u8")]
             )
         ]
         )
