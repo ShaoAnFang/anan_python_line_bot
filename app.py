@@ -486,6 +486,10 @@ def handle_message(event):
             z = n + '\n \n' + p + '\n \n' + m + '\n \n' + event.source.user_id
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= z))
 
+    if msg == '體育' or 'sport':
+        carousel_template_message = TemplateSend.sportsChannel()
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+
     if msg == '電影':
         if event.source.type == 'group' :
             if event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f' :

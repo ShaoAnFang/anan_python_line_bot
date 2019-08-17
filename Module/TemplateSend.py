@@ -83,6 +83,45 @@ def avgleSearch(avgleResult,titleText='小電影'):
     )
     return carousel_template_message
 
+def sportsChannel():
+    carousel_template_message = TemplateSendMessage(
+    alt_text='體育台',
+    template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url="",
+                title="緯來體育台",
+                text ="緯來體育台",
+                actions=[URITemplateAction(label='查看', uri="http://60.250.69.26:8080/live/vlpor0714.m3u8")]
+            ),
+            CarouselColumn(
+                thumbnail_image_url="",
+                title="FOX SPORTS 1",
+                text= "FOX SPORTS 1",
+                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/foxsports7188.m3u8")]
+            ),
+            CarouselColumn(
+                thumbnail_image_url="",
+                title="FOX SPORTS 2",
+                text= "FOX SPORTS 2",
+                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/foxspoerts7188.m3u8")]
+            ),
+            CarouselColumn(
+                thumbnail_image_url="",
+                title="FOX體育3台",
+                text= "FOX體育3台",
+                actions=[URITemplateAction(label='查看', uri="http://198.16.106.58:8278/foxsport3hd_twn/playlist.m3u8?tid=m5d584d8f204e14267960&ct=17895&tsum=a75615ebe28f1eaa5d552ec102136011")]
+            )#,
+            #CarouselColumn(
+            #    thumbnail_image_url=g[4]['poster_url'],
+            #    title=g[4]['ch_name'],
+            #    text= g[4]['intro'],
+            #    actions=[URITemplateAction(label='查看', uri=g[4]['info_url'])]
+            #)
+        ]
+        )
+    )
+    return carousel_template_message
 
 def aime(albumResult,textTitle):
     carousel_template_message = TemplateSendMessage(
