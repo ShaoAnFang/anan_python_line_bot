@@ -119,7 +119,7 @@ def sportsChannel():
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title="ANIMAX",
                 text= "ANIMAX",
-                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/anxax0714.m3u8"))]
+                actions=[URITemplateAction(label='查看', uri="http://59.125.101.122:8080/live/anxax0714.m3u8")]
             )
         ]
         )
