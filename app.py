@@ -362,6 +362,14 @@ def handle_message(event):
             preview_image_url='https://imgur.com/3XBTU2t.jpg')
         line_bot_api.reply_message(event.reply_token, image_message)
     
+    if msg.find('葡萄') != -1 :
+        hua = ["https://i.imgur.com/NxG5gdO.jpg", "https://i.imgur.com/Th8j0Qu.jpg", "https://i.imgur.com/5EouecF.jpg"]
+        url = hua[random.randint(0,2)]
+        image_message = ImageSendMessage(
+            original_content_url = url,
+            preview_image_url= url)
+        line_bot_api.reply_message(event.reply_token, image_message)
+        
     global quiet
     global quietArr
     if msg == '安靜':
