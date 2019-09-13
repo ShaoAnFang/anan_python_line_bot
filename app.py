@@ -363,7 +363,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, image_message)
     
     if msg.find('葡萄') != -1 :
-        hua = ["https://imgur.com/NxG5gdO.jpg", "https://imgur.com/Th8j0Qu.jpg", "https://imgur.com/5EouecF.jpg"]
+        hua = ["https://imgur.com/VuREJCO.jpg", "https://imgur.com/NxG5gdO.jpg", "https://imgur.com/Th8j0Qu.jpg", "https://imgur.com/5EouecF.jpg"]
         url = hua[random.randint(0, len(hua) - 1)]
         image_message = ImageSendMessage(
             original_content_url = url,
