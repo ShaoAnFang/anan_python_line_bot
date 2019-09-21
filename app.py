@@ -298,7 +298,10 @@ def handle_message(event):
 
     #if event.source.group_id is not None:
     #    groupID = event.source.group_id 
-
+    if msg == '離開房間':
+        roomID = event.source.room_id
+        line_bot_api.leave_room(roomID)
+        
     if msg == '沒填生日':
         m = birthday(msg)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
