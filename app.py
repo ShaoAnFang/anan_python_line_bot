@@ -294,8 +294,8 @@ def handle_message(event):
 @handler.add(PostbackEvent)
 def handle_postback(event):
     id = event.source.user_id
-    data = event.postback.data
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
+    data = event.postback.data #string r1 or r2 
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
     if data.find('r1') != -1 :
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-fe6b81d0de74f6019d5206e41b7c74ca')
         
