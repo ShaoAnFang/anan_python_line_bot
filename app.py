@@ -290,7 +290,18 @@ def handle_message(event):
     with open('{}.m4a'.format(id), 'wb') as f:
         f.write(response.content)
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
-
+    
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    id = event.source.user_id
+    data = event.postback.data
+    if data.find('r1') != -1 :
+        line_bot_api.link_rich_menu_to_user(user_id, 'richmenu-966ed1aca6fa5c747297c1fc17791c7a')
+        
+    elif data.find('r2') != -1 :
+        line_bot_api.link_rich_menu_to_user(user_id, 'richmenu-fe6b81d0de74f6019d5206e41b7c74ca')
+        
+    #line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
