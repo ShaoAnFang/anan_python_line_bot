@@ -295,6 +295,7 @@ def handle_message(event):
 def handle_postback(event):
     id = event.source.user_id
     data = event.postback.data
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
     if data.find('r1') != -1 :
         line_bot_api.link_rich_menu_to_user(user_id, 'richmenu-966ed1aca6fa5c747297c1fc17791c7a')
         
