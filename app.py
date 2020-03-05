@@ -300,7 +300,7 @@ def handle_postback(event):
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-fe6b81d0de74f6019d5206e41b7c74ca')
         
     elif data.find('r2') != -1 :
-        line_bot_api.link_rich_menu_to_user(id, 'richmenu-966ed1aca6fa5c747297c1fc17791c7a')
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-8a45c1e58be01526c446ef0af7146a08')
         
     #line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
