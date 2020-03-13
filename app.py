@@ -297,11 +297,11 @@ def handle_postback(event):
     data = event.postback.data #string r1 or r2 
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
     if data.find('r1') != -1 :
-        line_bot_api.link_rich_menu_to_user(id, 'richmenu-fe6b81d0de74f6019d5206e41b7c74ca')
-        
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-3785cfdf90d5bde5f51509b028f378fa')
     elif data.find('r2') != -1 :
-        line_bot_api.link_rich_menu_to_user(id, 'richmenu-8a45c1e58be01526c446ef0af7146a08')
-        
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-9960a4a2fc162696c806037d86adf020')
+    elif data.find('r3') != -1:
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-88ef7cce57d20d0caa2f2b40bf9b90b2')
     #line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
 @handler.add(MessageEvent, message=TextMessage)
