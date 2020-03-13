@@ -97,7 +97,7 @@ def sportsChannel():
     template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url="https://static-clst.avgle.com/videos/tmb8/265610/1.jpg",  #"https://i.imgur.com/YvY2ttl.jpg",
+                thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[0]["name"],
                 text =channelList[0]["name"],
                 actions=[URITemplateAction(label='查看', uri=channelList[0]["url"])]
