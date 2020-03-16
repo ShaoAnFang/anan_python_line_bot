@@ -298,13 +298,13 @@ def handle_postback(event):
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
     if data.find('r1') != -1 :
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-3785cfdf90d5bde5f51509b028f378fa')
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第一頁\n Design by Marten (以笙)\n不知道以笙是誰就去問紹安")
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第一頁\n Design by Marten (以笙)\n不知道以笙是誰就去問紹安"))
     elif data.find('r2') != -1 :
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-9960a4a2fc162696c806037d86adf020')
-        ine_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第二頁\n Design by Marten (以笙)")
+        ine_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第二頁\n Design by Marten (以笙)"))
     elif data.find('r3') != -1:
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-88ef7cce57d20d0caa2f2b40bf9b90b2')
-        ine_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第三頁\n Design by Marten (以笙)")
+        ine_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu第三頁\n Design by Marten (以笙)"))
     #line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
 @handler.add(MessageEvent, message=TextMessage)
