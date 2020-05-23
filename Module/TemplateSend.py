@@ -100,31 +100,36 @@ def sportsChannel():
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[0]["name"],
                 text =channelList[0]["name"],
-                actions=[URITemplateAction(label='查看', uri=channelList[0]["url"])]
+                #actions=[URITemplateAction(label='查看', uri=channelList[0]["url"])]
+                actions=[URITemplateAction(label='查看', uri="https://google.com")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[1]["name"],
                 text= channelList[1]["name"],
-                actions=[URITemplateAction(label='查看', uri=channelList[1]["url"])]
+                #actions=[URITemplateAction(label='查看', uri=channelList[1]["url"])]
+                actions=[URITemplateAction(label='查看', uri="https://google.com")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[2]["name"],
                 text= channelList[2]["name"],
-                actions=[URITemplateAction(label='查看', uri=channelList[2]["url"])]
+                #actions=[URITemplateAction(label='查看', uri=channelList[2]["url"])]
+                actions=[URITemplateAction(label='查看', uri="https://google.com")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[3]["name"],
                 text= channelList[3]["name"],
-                actions=[URITemplateAction(label='查看', uri=redir(channelList[3]["url"]))]
+                #actions=[URITemplateAction(label='查看', uri=redir(channelList[3]["url"]))]
+                actions=[URITemplateAction(label='查看', uri="https://google.com")]
             ),
             CarouselColumn(
                 thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
                 title=channelList[4]["name"],
                 text= channelList[4]["name"],
-                actions=[URITemplateAction(label='查看', uri=channelList[4]["url"])]
+                #actions=[URITemplateAction(label='查看', uri=channelList[4]["url"])]
+                actions=[URITemplateAction(label='查看', uri="https://google.com")]
             )
         ]
         )
