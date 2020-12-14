@@ -5,7 +5,7 @@ requests
 imgurpython
 beautifulsoup4
 python-firebase
-line-bot-sdk==1.16.0
+line-bot-sdk
 paho-mqtt
 gspread
 oauth2client
