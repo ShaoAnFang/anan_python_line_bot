@@ -264,11 +264,12 @@ def chloeBlog():
         #print(type(article.findAll('img')))
         for image in article.findAll('img'):
             if image['src'].find('data:image') == -1:
-                #print(type(i['src']))
+                #print(type(image['src']))
                 #print(image['src'])
+                #print(image['src'].split('?')[0])
                 #print(image['alt'])
                 articleDict['title'] = image['alt'][:18]
-                articleDict['image'] = image['src']
+                articleDict['image'] = image['src'].split('?')[0]
         articles.append(articleDict)
         
     contentResult = []
