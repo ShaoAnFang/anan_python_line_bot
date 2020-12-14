@@ -90,15 +90,15 @@ def moive(datas):
               }
         }
         contentResult.append(contentDict)
-    
     flex_message = FlexSendMessage(
-        alt_text='hello',
+        alt_text='FlexMessage',
         contents={
             "type": "carousel",
             "contents": contentResult
         }
     )
     return flex_message
+
 #     flex_message = FlexSendMessage(
 #         alt_text='hello',
 #         contents={
