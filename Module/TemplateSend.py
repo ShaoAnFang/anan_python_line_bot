@@ -89,7 +89,7 @@ def moive(datas):
                 ]
               }
             }
-        }
+        
         contentResult.append(contentDict)
     
     flex_message = FlexSendMessage(
