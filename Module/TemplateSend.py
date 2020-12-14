@@ -47,19 +47,16 @@ firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',N
 #     )
 #     return carousel_template_message
 
-def moive(g):
-    flex_message = FlexSendMessage(
-        alt_text='hello',
-        contents={
-          "type": "carousel",
-          "contents": [
-            {
-              "type": "bubble",
+def moive(datas):
+    contentResult = []
+    for data in datas:
+        contentDict = {
+            "type": "bubble",
               "hero": {
                 "type": "image",
                 "size": "full",
                 "aspectMode": "cover",
-                "url": g[0]['poster_url']
+                "url": data[0]['poster_url']
               },
               "body": {
                 "type": "box",
@@ -68,7 +65,7 @@ def moive(g):
                 "contents": [
                   {
                     "type": "text",
-                    "text": g[0]['intro'],
+                    "text": data[0]['intro'],
                     "wrap": True,
                     "weight": "bold",
                     "size": "xl"
@@ -86,172 +83,226 @@ def moive(g):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": g[0]['info_url']
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "size": "full",
-                "aspectMode": "cover",
-                "url": g[1]['poster_url']
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": g[1]['intro'],
-                    "wrap": True,
-                    "weight": "bold",
-                    "size": "xl"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "flex": 2,
-                    "style": "primary",
-                    "action": {
-                      "type": "uri",
-                      "label": "查看",
-                      "uri": g[1]['info_url']
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "size": "full",
-                "aspectMode": "cover",
-                "url": g[2]['poster_url']
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": g[2]['intro'],
-                    "wrap": True,
-                    "weight": "bold",
-                    "size": "xl"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "primary",
-                    "action": {
-                      "type": "uri",
-                      "label": "查看",
-                      "uri": g[2]['info_url']
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "size": "full",
-                "aspectMode": "cover",
-                "url": g[3]['poster_url']
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": g[3]['intro'],
-                    "wrap": True,
-                    "weight": "bold",
-                    "size": "xl"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "primary",
-                    "action": {
-                      "type": "uri",
-                      "label": "查看",
-                      "uri": g[3]['info_url']
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "size": "full",
-                "aspectMode": "cover",
-                "url": g[4]['poster_url']
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": g[4]['intro'],
-                    "wrap": True,
-                    "weight": "bold",
-                    "size": "xl"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "primary",
-                    "action": {
-                      "type": "uri",
-                      "label": "查看",
-                      "uri": g[4]['info_url']
+                      "uri": data[0]['info_url']
                     }
                   }
                 ]
               }
             }
-          ]
+        }
+        contentResult.append(contentDict)
+    
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
         }
     )
+#     flex_message = FlexSendMessage(
+#         alt_text='hello',
+#         contents={
+#           "type": "carousel",
+#           "contents": [
+#             {
+#               "type": "bubble",
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": g[0]['poster_url']
+#               },
+#               "body": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "text",
+#                     "text": g[0]['intro'],
+#                     "wrap": True,
+#                     "weight": "bold",
+#                     "size": "xl"
+#                   }
+#                 ]
+#               },
+#               "footer": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "button",
+#                     "style": "primary",
+#                     "action": {
+#                       "type": "uri",
+#                       "label": "查看",
+#                       "uri": g[0]['info_url']
+#                     }
+#                   }
+#                 ]
+#               }
+#             },
+#             {
+#               "type": "bubble",
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": g[1]['poster_url']
+#               },
+#               "body": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "text",
+#                     "text": g[1]['intro'],
+#                     "wrap": True,
+#                     "weight": "bold",
+#                     "size": "xl"
+#                   }
+#                 ]
+#               },
+#               "footer": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "button",
+#                     "flex": 2,
+#                     "style": "primary",
+#                     "action": {
+#                       "type": "uri",
+#                       "label": "查看",
+#                       "uri": g[1]['info_url']
+#                     }
+#                   }
+#                 ]
+#               }
+#             },
+#             {
+#               "type": "bubble",
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": g[2]['poster_url']
+#               },
+#               "body": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "text",
+#                     "text": g[2]['intro'],
+#                     "wrap": True,
+#                     "weight": "bold",
+#                     "size": "xl"
+#                   }
+#                 ]
+#               },
+#               "footer": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "button",
+#                     "style": "primary",
+#                     "action": {
+#                       "type": "uri",
+#                       "label": "查看",
+#                       "uri": g[2]['info_url']
+#                     }
+#                   }
+#                 ]
+#               }
+#             },
+#             {
+#               "type": "bubble",
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": g[3]['poster_url']
+#               },
+#               "body": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "text",
+#                     "text": g[3]['intro'],
+#                     "wrap": True,
+#                     "weight": "bold",
+#                     "size": "xl"
+#                   }
+#                 ]
+#               },
+#               "footer": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "button",
+#                     "style": "primary",
+#                     "action": {
+#                       "type": "uri",
+#                       "label": "查看",
+#                       "uri": g[3]['info_url']
+#                     }
+#                   }
+#                 ]
+#               }
+#             },
+#             {
+#               "type": "bubble",
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": g[4]['poster_url']
+#               },
+#               "body": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "text",
+#                     "text": g[4]['intro'],
+#                     "wrap": True,
+#                     "weight": "bold",
+#                     "size": "xl"
+#                   }
+#                 ]
+#               },
+#               "footer": {
+#                 "type": "box",
+#                 "layout": "vertical",
+#                 "spacing": "sm",
+#                 "contents": [
+#                   {
+#                     "type": "button",
+#                     "style": "primary",
+#                     "action": {
+#                       "type": "uri",
+#                       "label": "查看",
+#                       "uri": g[4]['info_url']
+#                     }
+#                   }
+#                 ]
+#               }
+#             }
+#           ]
+#         }
+#     )
     return flex_message
 
 def avgleSearch(avgleResult,titleText='小電影'):
