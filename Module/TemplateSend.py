@@ -267,7 +267,7 @@ def chloeBlog():
                 #print(type(i['src']))
                 #print(image['src'])
                 #print(image['alt'])
-                articleDict['title'] = image['title']
+                articleDict['title'] = image['alt'][:18]
                 articleDict['image'] = image['src']
         articles.append(articleDict)
         
