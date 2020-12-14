@@ -2,6 +2,7 @@
 from linebot.models import *
 import hashlib 
 import requests
+from bs4 import BeautifulSoup
 from datetime import datetime
 from firebase import firebase
 
@@ -247,3 +248,75 @@ def aime(albumResult,textTitle):
     )
     return carousel_template_message
 
+def chloeBlog():
+    url = "https://aifun01.com"
+    header = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"}
+    res = requests.get(url, headers=header)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text,'html.parser')
+    articles = []
+    for (index, article) in enumerate(soup.select('.thumbnail-link')):
+        articleDict = {}
+        #print(type(article))
+        #print(article.get('href'))
+        articleDict['url'] = article.get('href')
+        #print(type(article.findAll('img')))
+        for image in article.findAll('img'):
+            if image['src'].find('data:image') == -1:
+                #print(type(i['src']))
+                #print(image['src'])
+                #print(image['alt'])
+                articleDict['title'] = image['title']
+                articleDict['image'] = image['src']
+
+        articles.append(articleDict)
+   
+    for article in articles:
+        contentDict = {
+            "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": article['image']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": article['title'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": article['url']
+                    }
+                  }
+                ]
+              }
+        }
+        contentResult.append(contentDict)
+    flex_message = FlexSendMessage(
+        alt_text='FlexMessage',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
+        }
+    )
+    return flex_message
