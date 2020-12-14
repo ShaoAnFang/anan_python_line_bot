@@ -7,45 +7,208 @@ from firebase import firebase
 
 firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 
+# def moive(g):
+#     carousel_template_message = TemplateSendMessage(
+#     alt_text='電影',
+#     template=CarouselTemplate(
+#         columns=[
+#             CarouselColumn(
+#                 thumbnail_image_url=g[0]['poster_url'],
+#                 title=g[0]['ch_name'],
+#                 text= g[0]['intro'],
+#                 actions=[URITemplateAction(label='查看', uri=g[0]['info_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=g[1]['poster_url'],
+#                 title=g[1]['ch_name'],
+#                 text= g[1]['intro'],
+#                 actions=[URITemplateAction(label='查看', uri=g[1]['info_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=g[2]['poster_url'],
+#                 title=g[2]['ch_name'],
+#                 text= g[2]['intro'],
+#                 actions=[URITemplateAction(label='查看', uri=g[2]['info_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=g[3]['poster_url'],
+#                 title=g[3]['ch_name'],
+#                 text= g[3]['intro'],
+#                 actions=[URITemplateAction(label='查看', uri=g[3]['info_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=g[4]['poster_url'],
+#                 title=g[4]['ch_name'],
+#                 text= g[4]['intro'],
+#                 actions=[URITemplateAction(label='查看', uri=g[4]['info_url'])]
+#             )
+#         ]
+#         )
+#     )
+#     return carousel_template_message
+
 def moive(g):
-    carousel_template_message = TemplateSendMessage(
-    alt_text='電影',
-    template=CarouselTemplate(
-        columns=[
-            CarouselColumn(
-                thumbnail_image_url=g[0]['poster_url'],
-                title=g[0]['ch_name'],
-                text= g[0]['intro'],
-                actions=[URITemplateAction(label='查看', uri=g[0]['info_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=g[1]['poster_url'],
-                title=g[1]['ch_name'],
-                text= g[1]['intro'],
-                actions=[URITemplateAction(label='查看', uri=g[1]['info_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=g[2]['poster_url'],
-                title=g[2]['ch_name'],
-                text= g[2]['intro'],
-                actions=[URITemplateAction(label='查看', uri=g[2]['info_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=g[3]['poster_url'],
-                title=g[3]['ch_name'],
-                text= g[3]['intro'],
-                actions=[URITemplateAction(label='查看', uri=g[3]['info_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=g[4]['poster_url'],
-                title=g[4]['ch_name'],
-                text= g[4]['intro'],
-                actions=[URITemplateAction(label='查看', uri=g[4]['info_url'])]
-            )
-        ]
-        )
-    )
-    return carousel_template_message
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={ 
+            "type": "carousel",
+            "contents": [
+                {
+                  "type": "bubble",
+                  "hero": {
+                    "type": "image",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "url": g[0]['poster_url']
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Arm Chair, White",
+                        "wrap": true,
+                        "weight": "bold",
+                        "size": "xl"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "$49",
+                            "wrap": true,
+                            "weight": "bold",
+                            "size": "xl",
+                            "flex": 0
+                          },
+                          {
+                            "type": "text",
+                            "text": ".99",
+                            "wrap": true,
+                            "weight": "bold",
+                            "size": "sm",
+                            "flex": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "button",
+                        "style": "primary",
+                        "action": {
+                          "type": "uri",
+                          "label": "Add to Cart",
+                          "uri": g[0]['info_url']
+                        }
+                      },
+                      {
+                        "type": "button",
+                        "action": {
+                          "type": "uri",
+                          "label": "Add to wishlist",
+                          "uri": g[0]['info_url']
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "bubble",
+                  "hero": {
+                    "type": "image",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "url": g[1]['poster_url']
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Metal Desk Lamp",
+                        "wrap": true,
+                        "weight": "bold",
+                        "size": "xl"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "flex": 1,
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "$11",
+                            "wrap": true,
+                            "weight": "bold",
+                            "size": "xl",
+                            "flex": 0
+                          },
+                          {
+                            "type": "text",
+                            "text": ".99",
+                            "wrap": true,
+                            "weight": "bold",
+                            "size": "sm",
+                            "flex": 0
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": "Temporarily out of stock",
+                        "wrap": true,
+                        "size": "xxs",
+                        "margin": "md",
+                        "color": "#ff5551",
+                        "flex": 0
+                      }
+                    ]
+                  },
+                  "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "button",
+                        "flex": 2,
+                        "style": "primary",
+                        "color": "#aaaaaa",
+                        "action": {
+                          "type": "uri",
+                          "label": "Add to Cart",
+                          "uri": g[0]['info_url']
+                        }
+                      },
+                      {
+                        "type": "button",
+                        "action": {
+                          "type": "uri",
+                          "label": "Add to wish list",
+                          "uri": g[0]['info_url']
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+          }
+     )
+    return flex_message
 
 def avgleSearch(avgleResult,titleText='小電影'):
     #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
