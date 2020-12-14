@@ -47,16 +47,16 @@ firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',N
 #     )
 #     return carousel_template_message
 
-def moive(g):
+def moive(datas):
     contentResult = []
-    for gg in g:
+    for data in datas:
         contentDict = {
             "type": "bubble",
               "hero": {
                 "type": "image",
                 "size": "full",
                 "aspectMode": "cover",
-                "url": gg[0]['poster_url']
+                "url": data[0]['poster_url']
               },
               "body": {
                 "type": "box",
@@ -65,7 +65,7 @@ def moive(g):
                 "contents": [
                   {
                     "type": "text",
-                    "text": gg[0]['intro'],
+                    "text": data[0]['intro'],
                     "wrap": True,
                     "weight": "bold",
                     "size": "xl"
@@ -83,7 +83,7 @@ def moive(g):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": gg[0]['info_url']
+                      "uri": data[0]['info_url']
                     }
                   }
                 ]
