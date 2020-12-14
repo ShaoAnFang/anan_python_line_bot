@@ -50,142 +50,206 @@ firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',N
 def moive(g):
     flex_message = FlexSendMessage(
         alt_text='hello',
-        contents={ 
-            "type": "carousel",
-            "contents": [
-                {
-                  "type": "bubble",
-                  "hero": {
-                    "type": "image",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "url": g[0]['poster_url']
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": g[0]['ch_name'],
-                        "wrap": True,
-                        "weight": "bold",
-                        "size": "xl"
-                      },
-                      {
-                        "type": "box",
-                        "layout": "baseline",
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "$49",
-                            "wrap": True,
-                            "weight": "bold",
-                            "size": "xl",
-                            "flex": 0
-                          },
-                          {
-                            "type": "text",
-                            "text": ".99",
-                            "wrap": True,
-                            "weight": "bold",
-                            "size": "sm",
-                            "flex": 0
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": {
-                        "type": "button",
-                        "style": "primary",
-                        "action": {
-                          "type": "uri",
-                          "label": "查看",
-                          "uri": g[0]['info_url']
-                        }
-                     }
+        contents={
+          "type": "carousel",
+          "contents": [
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": g[0]['poster_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": g[0]['intro'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
                   }
-                },
-                {
-                  "type": "bubble",
-                  "hero": {
-                    "type": "image",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "url": g[1]['poster_url']
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": g[0]['ch_name'],
-                        "wrap": True,
-                        "weight": "bold",
-                        "size": "xl"
-                      },
-                      {
-                        "type": "box",
-                        "layout": "baseline",
-                        "flex": 1,
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "$11",
-                            "wrap": True,
-                            "weight": "bold",
-                            "size": "xl",
-                            "flex": 0
-                          },
-                          {
-                            "type": "text",
-                            "text": ".99",
-                            "wrap": True,
-                            "weight": "bold",
-                            "size": "sm",
-                            "flex": 0
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "Temporarily out of stock",
-                        "wrap": True,
-                        "size": "xxs",
-                        "margin": "md",
-                        "color": "#ff5551",
-                        "flex": 0
-                      }
-                    ]
-                  },
-                  "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": {
-                        "type": "button",
-                        "flex": 2,
-                        "style": "primary",
-                        "color": "#aaaaaa",
-                        "action": {
-                          "type": "uri",
-                          "label": "查看",
-                          "uri": g[1]['info_url']
-                        }
-                     }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": g[0]['info_url']
+                    }
                   }
-               }
-            ]
+                ]
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": g[1]['poster_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": g[1]['intro'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "flex": 2,
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": g[1]['info_url']
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": g[2]['poster_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": g[2]['intro'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": g[2]['info_url']
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": g[3]['poster_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": g[3]['intro'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": g[3]['info_url']
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": g[4]['poster_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": g[4]['intro'],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": g[4]['info_url']
+                    }
+                  }
+                ]
+              }
+            }
+          ]
         }
     )
     return flex_message
