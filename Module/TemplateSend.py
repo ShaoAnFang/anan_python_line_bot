@@ -255,6 +255,7 @@ def chloeBlog():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text,'html.parser')
     articles = []
+    
     for (index, article) in enumerate(soup.select('.thumbnail-link')):
         articleDict = {}
         #print(type(article))
@@ -268,9 +269,9 @@ def chloeBlog():
                 #print(image['alt'])
                 articleDict['title'] = image['title']
                 articleDict['image'] = image['src']
-
         articles.append(articleDict)
-   
+        
+    contentResult = []
     for article in articles:
         contentDict = {
             "type": "bubble",
