@@ -56,7 +56,7 @@ def moive(datas):
                 "type": "image",
                 "size": "full",
                 "aspectMode": "cover",
-                "url": data[0]['poster_url']
+                "url": data['poster_url']
               },
               "body": {
                 "type": "box",
@@ -65,7 +65,7 @@ def moive(datas):
                 "contents": [
                   {
                     "type": "text",
-                    "text": data[0]['intro'],
+                    "text": data['intro'],
                     "wrap": True,
                     "weight": "bold",
                     "size": "xl"
@@ -83,7 +83,7 @@ def moive(datas):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": data[0]['info_url']
+                      "uri": data['info_url']
                     }
                   }
                 ]
