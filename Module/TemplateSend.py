@@ -60,7 +60,7 @@ def moive(g):
                     "size": "full",
                     "aspectRatio": "20:13",
                     "aspectMode": "cover",
-                    "url": "https://fakeimg.pl/300x250"
+                    "url": g[0]['poster_url']
                   },
                   "body": {
                     "type": "box",
@@ -69,7 +69,7 @@ def moive(g):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "Arm Chair, White",
+                        "text": g[0]['ch_name'],
                         "wrap": True,
                         "weight": "bold",
                         "size": "xl"
@@ -102,25 +102,15 @@ def moive(g):
                     "type": "box",
                     "layout": "vertical",
                     "spacing": "sm",
-                    "contents": [
-                      {
+                    "contents": {
                         "type": "button",
                         "style": "primary",
                         "action": {
                           "type": "uri",
-                          "label": "Add to Cart",
-                          "uri": "https://www.youtube.com"
+                          "label": "查看",
+                          "uri": g[0]['info_url']
                         }
-                      },
-                      {
-                        "type": "button",
-                        "action": {
-                          "type": "uri",
-                          "label": "Add to wishlist",
-                          "uri": "https://www.youtube.com"
-                        }
-                      }
-                    ]
+                     }
                   }
                 },
                 {
@@ -130,7 +120,7 @@ def moive(g):
                     "size": "full",
                     "aspectRatio": "20:13",
                     "aspectMode": "cover",
-                    "url": "https://fakeimg.pl/300x250"
+                    "url": g[1]['poster_url']
                   },
                   "body": {
                     "type": "box",
@@ -139,7 +129,7 @@ def moive(g):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "Metal Desk Lamp",
+                        "text": g[0]['ch_name'],
                         "wrap": True,
                         "weight": "bold",
                         "size": "xl"
@@ -182,27 +172,17 @@ def moive(g):
                     "type": "box",
                     "layout": "vertical",
                     "spacing": "sm",
-                    "contents": [
-                      {
+                    "contents": {
                         "type": "button",
                         "flex": 2,
                         "style": "primary",
                         "color": "#aaaaaa",
                         "action": {
                           "type": "uri",
-                          "label": "Add to Cart",
-                          "uri": "https://www.youtube.com"
+                          "label": "查看",
+                          "uri": g[1]['info_url']
                         }
-                      },
-                      {
-                        "type": "button",
-                        "action": {
-                          "type": "uri",
-                          "label": "Add to wish list",
-                          "uri": "https://www.youtube.com"
-                        }
-                      }
-                    ]
+                     }
                   }
                }
             ]
