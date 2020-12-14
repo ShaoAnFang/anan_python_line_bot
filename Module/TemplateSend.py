@@ -1,5 +1,6 @@
 #from linebot.models import TemplateSendMessage
 from linebot.models import *
+import urllib
 import hashlib 
 import requests
 from bs4 import BeautifulSoup
@@ -268,12 +269,13 @@ def chloeBlog():
                 #print(image['src'])
                 #print(image['src'].split('?')[0])
                 #print(image['alt'])
+                #print(urllib.parse.quote(image['src'].split('?')[0]))
                 articleDict['title'] = image['alt'][:18]
-                articleDict['image'] = image['src'].split('?')[0]
+                articleDict['image'] = urllib.parse.quote(image['src'].split('?')[0])
         articles.append(articleDict)
         
     contentResult = []
-    for article in articles[:6]:
+    for article in articles[:5]:
         contentDict = {
             "type": "bubble",
               "hero": {
