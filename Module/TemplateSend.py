@@ -272,7 +272,7 @@ def chloeBlog():
         articles.append(articleDict)
         
     contentResult = []
-    for article in articles:
+    for article in articles[:6]:
         contentDict = {
             "type": "bubble",
               "hero": {
