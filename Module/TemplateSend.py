@@ -272,7 +272,6 @@ def chloeBlog():
                 #print( urllib.parse.quote(image['src'].split('https://')[1]))
                 articleDict['title'] = image['alt'][:18]
                 articleDict['image'] = 'https://' + urllib.parse.quote(image['src'].split('https://')[1])
-    articles.append(articleDict)
         articles.append(articleDict)
         
     contentResult = []
