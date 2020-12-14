@@ -60,7 +60,7 @@ def moive(g):
                     "size": "full",
                     "aspectRatio": "20:13",
                     "aspectMode": "cover",
-                    "url": g[0]['poster_url']
+                    "url": "https://fakeimg.pl/300x250"
                   },
                   "body": {
                     "type": "box",
@@ -109,7 +109,7 @@ def moive(g):
                         "action": {
                           "type": "uri",
                           "label": "Add to Cart",
-                          "uri": g[0]['info_url']
+                          "uri": "https://www.youtube.com"
                         }
                       },
                       {
@@ -117,7 +117,7 @@ def moive(g):
                         "action": {
                           "type": "uri",
                           "label": "Add to wishlist",
-                          "uri": g[0]['info_url']
+                          "uri": "https://www.youtube.com"
                         }
                       }
                     ]
@@ -130,7 +130,7 @@ def moive(g):
                     "size": "full",
                     "aspectRatio": "20:13",
                     "aspectMode": "cover",
-                    "url": g[1]['poster_url']
+                    "url": "https://fakeimg.pl/300x250"
                   },
                   "body": {
                     "type": "box",
@@ -191,7 +191,7 @@ def moive(g):
                         "action": {
                           "type": "uri",
                           "label": "Add to Cart",
-                          "uri": g[0]['info_url']
+                          "uri": "https://www.youtube.com"
                         }
                       },
                       {
@@ -199,15 +199,15 @@ def moive(g):
                         "action": {
                           "type": "uri",
                           "label": "Add to wish list",
-                          "uri": g[0]['info_url']
+                          "uri": "https://www.youtube.com"
                         }
                       }
                     ]
                   }
-                }
-              ]
-          }
-     )
+               }
+            ]
+        }
+    )
     return flex_message
 
 def avgleSearch(avgleResult,titleText='小電影'):
