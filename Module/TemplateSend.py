@@ -88,8 +88,7 @@ def moive(datas):
                   }
                 ]
               }
-            }
-        
+        }
         contentResult.append(contentDict)
     
     flex_message = FlexSendMessage(
@@ -99,6 +98,7 @@ def moive(datas):
             "contents": contentResult
         }
     )
+    return flex_message
 #     flex_message = FlexSendMessage(
 #         alt_text='hello',
 #         contents={
@@ -303,7 +303,7 @@ def moive(datas):
 #           ]
 #         }
 #     )
-    return flex_message
+#     return flex_message
 
 def avgleSearch(avgleResult,titleText='小電影'):
     #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
