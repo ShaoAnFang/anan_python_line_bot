@@ -449,7 +449,7 @@ def smzb():
                         "contents": [
                           {
                             "type": "text",
-                            "text": liveData['nickname'],
+                            "text": liveData['title'],
                             "align": "start",
                             "flex": 2,
                             "weight": "bold",
@@ -457,7 +457,7 @@ def smzb():
                           },
                           {
                             "type": "text",
-                            "text": "hello, world",
+                            "text": liveData['nickname'],
                             "maxLines": 1
                           }
                         ],
