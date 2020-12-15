@@ -324,3 +324,162 @@ def chloeBlog():
         }
     )
     return flex_message
+
+def smzb():
+    host = "https://smzb.cn"
+    # https://smzb.cn/api/more/live?live_type_id=2
+    url = f"{host}/api/more/live?live_type_id=2"
+
+    liveDataList = []
+
+    res = requests.get(url)
+    # print(json.loads(res.text))
+    responseJson = json.loads(res.text)
+    # print(responseJson['data']['rooms'])
+    if len(responseJson['data']['rooms']) > 0:
+        # print(responseJson['data']['rooms']['1']['data'])
+        dataList = responseJson['data']['rooms']['1']['data']
+        for data in dataList:
+            liveDataDict = {}
+            liveDataDict['title'] = data['title']
+            liveDataDict['nickname'] = data['nickname']
+            liveDataDict['user_icon'] = data['icon']
+            liveDataDict['image_url'] = 'https:' + data['image_url']
+            liveDataDict['url'] = host + '/room/' + data['room_num']
+            # print(liveDataDict['url'])
+            liveDataList.append(liveDataDict)
+    else:
+        # 沒有直播中的
+        print("data empty")
+    
+    contentResult = []
+    for liveData in liveDataList:
+        contentDict = {
+            "type": "carousel",
+            "contents": [
+                {
+                  "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": liveData['image_url'],
+                        "size": "full",
+                        "aspectRatio": "16:9",
+                        "gravity": "center",
+                        "aspectMode": "cover",
+                        "position": "relative"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Live",
+                            "color": "#ffffff",
+                            "align": "center",
+                            "size": "xs",
+                            "offsetTop": "3px"
+                          }
+                        ],
+                        "position": "absolute",
+                        "cornerRadius": "20px",
+                        "offsetTop": "18px",
+                        "backgroundColor": "#ff334b",
+                        "offsetStart": "18px",
+                        "height": "25px",
+                        "width": "53px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": liveData['title'],
+                                "size": "sm",
+                                "color": "#ffffff",
+                                "weight": "bold",
+                                "margin": "none"
+                              }
+                            ]
+                          }
+                        ],
+                        "position": "absolute",
+                        "offsetBottom": "0px",
+                        "offsetStart": "0px",
+                        "offsetEnd": "0px",
+                        "backgroundColor": "#03303Acc",
+                        "paddingAll": "20px",
+                        "paddingTop": "18px"
+                      }
+                    ],
+                    "paddingAll": "0px"
+                  },
+                  "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "image",
+                            "url": liveData['user_icon'],
+                            "aspectMode": "cover",
+                            "position": "relative",
+                            "size": "xs"
+                          }
+                        ],
+                        "flex": 1,
+                        "justifyContent": "center"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": liveData['nickname'],
+                            "align": "start",
+                            "flex": 2,
+                            "weight": "bold",
+                            "maxLines": 1
+                          },
+                          {
+                            "type": "text",
+                            "text": "hello, world",
+                            "maxLines": 1
+                          }
+                        ],
+                        "flex": 3
+                      }
+                    ],
+                    "position": "relative"
+                  },
+                  "action": {
+                    "type": "uri",
+                    "label": "action",
+                    "uri":  liveData['url']
+                  }
+                }
+              ]
+       }
+       contentResult.append(contentDict)
+    
+    flex_message = FlexSendMessage(
+        alt_text='直播中',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
+        }
+    )
+    return flex_message
