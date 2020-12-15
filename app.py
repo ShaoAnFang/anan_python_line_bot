@@ -527,12 +527,11 @@ def handle_message(event):
     if msg == 'chloe' or msg == '啾':
         flex_message = TemplateSend.chloeBlog()
         line_bot_api.reply_message(event.reply_token, flex_message)
+        
     if msg == 'zb':
         smzb_message = TemplateSend.smzb()
         line_bot_api.reply_message(event.reply_token, smzb_message)
-    if msg == 'az':
-        test_message = TemplateSend.ff()
-        line_bot_api.reply_message(event.reply_token, test_message)
+
     if msg == '小電影' or msg == 'AV':
         if event.source.type == 'group' and event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=''))
