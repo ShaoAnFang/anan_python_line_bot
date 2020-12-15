@@ -297,13 +297,13 @@ def handle_postback(event):
     data = event.postback.data #string r1 or r2 
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=data))
     if data.find('r1') != -1 :
-        line_bot_api.link_rich_menu_to_user(id, 'richmenu-47aa6cb5724d490c8e40cf7b71f9ba82')
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-39e7dddd1920031b72ce7a3ecb00a05e')
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu1\nMarten(以笙)設計 \n不知道以笙是誰就去問紹安"))
     elif data.find('r2') != -1 :
         line_bot_api.link_rich_menu_to_user(id, 'richmenu-97f27748b1dbc2745571dbbdb0b7f73d')
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu2\nMarten(以笙)設計 \n不知道以笙是誰就去問紹安"))
     elif data.find('r3') != -1:
-        line_bot_api.link_rich_menu_to_user(id, 'richmenu-39e7dddd1920031b72ce7a3ecb00a05e')
+        line_bot_api.link_rich_menu_to_user(id, 'richmenu-47aa6cb5724d490c8e40cf7b71f9ba82')
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Rich menu3\nMarten(以笙)設計"))
     #line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
