@@ -468,7 +468,7 @@ def smzb():
                 "label": "action",
                 "uri":  liveData['url']
               }
-            }
+            
        }
        contentResult.append(contentDict)
     
