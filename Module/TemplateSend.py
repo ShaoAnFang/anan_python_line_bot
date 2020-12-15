@@ -425,8 +425,6 @@ def chloeStyleTwo():
                 "label": "action",
                 "uri": article['url']
               }
-            }
-          ]
         }
         contentResult.append(contentDict)
             
