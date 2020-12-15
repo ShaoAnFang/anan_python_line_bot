@@ -415,8 +415,8 @@ def smzb():
                     "offsetStart": "0px",
                     "offsetEnd": "0px",
                     "backgroundColor": "#03303Acc",
-                    "paddingAll": "20px",
-                    "paddingTop": "18px"
+                    "paddingAll": "5px",
+                    "paddingTop": "5px"
                   }
                 ],
                 "paddingAll": "0px"
