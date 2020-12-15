@@ -468,9 +468,8 @@ def smzb():
                 "label": "action",
                 "uri":  liveData['url']
               }
-            
-       }
-       contentResult.append(contentDict)
+        }
+        contentResult.append(contentDict)
     
     flex_message = FlexSendMessage(
         alt_text='直播中',
