@@ -329,7 +329,7 @@ def chloeBlog():
 def smzb():
     host = "https://smzb.cn"
     # https://smzb.cn/api/more/live?live_type_id=2
-    url = f"{host}/api/more/live?live_type_id=2"
+    url = f'{host}/hot/top'
 
     liveDataList = []
 
@@ -337,9 +337,9 @@ def smzb():
     # print(json.loads(res.text))
     responseJson = json.loads(res.text)
     # print(responseJson['data']['rooms'])
-    if len(responseJson['data']['rooms']) > 0:
+    if len(responseJson['result']) > 0:
         # print(responseJson['data']['rooms']['1']['data'])
-        dataList = responseJson['data']['rooms']['1']['data']
+        dataList = responseJson['result']
         for data in dataList:
             liveDataDict = {}
             liveDataDict['title'] = data['title']
