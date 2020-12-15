@@ -250,7 +250,7 @@ def aime(albumResult,textTitle):
     )
     return carousel_template_message
 
-def chloeBlog():
+def chloeBlogParser():
     url = "https://aifun01.com"
     header = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"}
     res = requests.get(url, headers=header)
@@ -260,6 +260,8 @@ def chloeBlog():
     
     for (index, article) in enumerate(soup.select('.thumbnail-link')):
         articleDict = {}
+        #print(soup.select('.meta-cat')[index].a.string)
+        articleDict['classification'] = soup.select('.meta-cat')[index].a.string
         #print(type(article))
         #print(article.get('href'))
         articleDict['url'] = article.get('href')
@@ -271,10 +273,13 @@ def chloeBlog():
                 #print(image['src'].split('?')[0])
                 #print(image['alt'])
                 #print( urllib.parse.quote(image['src'].split('https://')[1]))
-                articleDict['title'] = image['alt'][:18]
+                articleDict['title'] = image['alt'][:20]
                 articleDict['image'] = 'https://' + urllib.parse.quote(image['src'].split('https://')[1])
         articles.append(articleDict)
-        
+    return articles
+
+def chloeStyleOne(articles):
+    articles = chloeBlogParser()
     contentResult = []
     for article in articles[:5]:
         contentDict = {
@@ -317,6 +322,114 @@ def chloeBlog():
               }
         }
         contentResult.append(contentDict)
+    flex_message = FlexSendMessage(
+        alt_text='FlexMessage',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
+        }
+    )
+    return flex_message
+
+def chloeStyleTwo():
+    articles = chloeBlogParser()
+    contentResult = []
+    for article in articles[:5]:
+        contentDict = {
+            "type": "bubble",
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": article['image'],
+                    "size": "full",
+                    "aspectRatio": "1:1",
+                    "aspectMode": "cover",
+                    "position": "relative"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": article['title'],
+                            "size": "sm",
+                            "color": "#ffffff",
+                            "weight": "bold",
+                            "margin": "none"
+                          }
+                        ]
+                      }
+                    ],
+                    "position": "absolute",
+                    "offsetBottom": "0px",
+                    "offsetStart": "0px",
+                    "offsetEnd": "0px",
+                    "backgroundColor": "#03303Acc",
+                    "paddingAll": "5px",
+                    "paddingTop": "5px"
+                  }
+                ],
+                "paddingAll": "0px"
+              },
+              "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": "https://i2.wp.com/aifun01.com/wp-content/uploads/2020/05/IMG_8525_meitu_1-e1589029321532.jpg",
+                        "aspectMode": "cover",
+                        "position": "relative",
+                        "size": "xs"
+                      }
+                    ],
+                    "flex": 1,
+                    "justifyContent": "center"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": article['classification'],
+                        "align": "start",
+                        "flex": 2,
+                        "weight": "bold"
+                      },
+                      {
+                        "type": "text",
+                        "text": "啾比 Joli",
+                        "maxLines": 1
+                      }
+                    ],
+                    "flex": 3
+                  }
+                ],
+                "position": "relative"
+              },
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": article['url']
+              }
+            }
+          ]
+        }
+        contentResult.append(contentDict)
+            
     flex_message = FlexSendMessage(
         alt_text='FlexMessage',
         contents={
