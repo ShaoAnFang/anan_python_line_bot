@@ -278,7 +278,7 @@ def chloeBlogParser():
         articles.append(articleDict)
     return articles
 
-def chloeStyleOne(articles):
+def chloeStyleOne():
     articles = chloeBlogParser()
     contentResult = []
     for article in articles[:5]:
