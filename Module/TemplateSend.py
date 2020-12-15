@@ -356,93 +356,45 @@ def smzb():
     contentResult = []
     for liveData in liveDataList:
         contentDict = {
-            "type": "carousel",
-            "contents": [
-                {
-                  "type": "bubble",
-                  "body": {
+            "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": liveData['image_url'],
+                    "size": "full",
+                    "aspectRatio": "16:9",
+                    "gravity": "center",
+                    "aspectMode": "cover",
+                    "position": "relative"
+                  },
+                  {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [
                       {
-                        "type": "image",
-                        "url": liveData['image_url'],
-                        "size": "full",
-                        "aspectRatio": "16:9",
-                        "gravity": "center",
-                        "aspectMode": "cover",
-                        "position": "relative"
-                      },
-                      {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "Live",
-                            "color": "#ffffff",
-                            "align": "center",
-                            "size": "xs",
-                            "offsetTop": "3px"
-                          }
-                        ],
-                        "position": "absolute",
-                        "cornerRadius": "20px",
-                        "offsetTop": "18px",
-                        "backgroundColor": "#ff334b",
-                        "offsetStart": "18px",
-                        "height": "25px",
-                        "width": "53px"
-                      },
-                      {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                          {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                              {
-                                "type": "text",
-                                "text": liveData['title'],
-                                "size": "sm",
-                                "color": "#ffffff",
-                                "weight": "bold",
-                                "margin": "none"
-                              }
-                            ]
-                          }
-                        ],
-                        "position": "absolute",
-                        "offsetBottom": "0px",
-                        "offsetStart": "0px",
-                        "offsetEnd": "0px",
-                        "backgroundColor": "#03303Acc",
-                        "paddingAll": "20px",
-                        "paddingTop": "18px"
+                        "type": "text",
+                        "text": "Live",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "size": "xs",
+                        "offsetTop": "3px"
                       }
                     ],
-                    "paddingAll": "0px"
+                    "position": "absolute",
+                    "cornerRadius": "20px",
+                    "offsetTop": "18px",
+                    "backgroundColor": "#ff334b",
+                    "offsetStart": "18px",
+                    "height": "25px",
+                    "width": "53px"
                   },
-                  "footer": {
+                  {
                     "type": "box",
-                    "layout": "horizontal",
+                    "layout": "vertical",
                     "contents": [
-                      {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                          {
-                            "type": "image",
-                            "url": liveData['user_icon'],
-                            "aspectMode": "cover",
-                            "position": "relative",
-                            "size": "xs"
-                          }
-                        ],
-                        "flex": 1,
-                        "justifyContent": "center"
-                      },
                       {
                         "type": "box",
                         "layout": "vertical",
@@ -450,29 +402,73 @@ def smzb():
                           {
                             "type": "text",
                             "text": liveData['title'],
-                            "align": "start",
-                            "flex": 2,
+                            "size": "sm",
+                            "color": "#ffffff",
                             "weight": "bold",
-                            "maxLines": 1
-                          },
-                          {
-                            "type": "text",
-                            "text": liveData['nickname'],
-                            "maxLines": 1
+                            "margin": "none"
                           }
-                        ],
-                        "flex": 3
+                        ]
                       }
                     ],
-                    "position": "relative"
-                  },
-                  "action": {
-                    "type": "uri",
-                    "label": "action",
-                    "uri":  liveData['url']
+                    "position": "absolute",
+                    "offsetBottom": "0px",
+                    "offsetStart": "0px",
+                    "offsetEnd": "0px",
+                    "backgroundColor": "#03303Acc",
+                    "paddingAll": "20px",
+                    "paddingTop": "18px"
                   }
-                }
-              ]
+                ],
+                "paddingAll": "0px"
+              },
+              "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": liveData['user_icon'],
+                        "aspectMode": "cover",
+                        "position": "relative",
+                        "size": "xs"
+                      }
+                    ],
+                    "flex": 1,
+                    "justifyContent": "center"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": liveData['title'],
+                        "align": "start",
+                        "flex": 2,
+                        "weight": "bold",
+                        "maxLines": 1
+                      },
+                      {
+                        "type": "text",
+                        "text": liveData['nickname'],
+                        "maxLines": 1
+                      }
+                    ],
+                    "flex": 3
+                  }
+                ],
+                "position": "relative"
+              },
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri":  liveData['url']
+              }
+            }
        }
        contentResult.append(contentDict)
     
