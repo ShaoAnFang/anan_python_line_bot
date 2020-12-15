@@ -525,7 +525,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     if msg == 'chloe' or msg == '啾':
-        flex_message = TemplateSend.chloeBlog()
+        flex_message = TemplateSend.chloeStyleOne()
+        line_bot_api.reply_message(event.reply_token, flex_message)
+    if msg == 'c2':
+        flex_message = TemplateSend.chloeStyleTwo()
         line_bot_api.reply_message(event.reply_token, flex_message)
         
     if msg == 'zb':
