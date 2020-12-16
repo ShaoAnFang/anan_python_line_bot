@@ -590,3 +590,93 @@ def smzb():
         }
     )
     return flex_message
+
+def nba_data():
+    league_board_route_url = "https://smzb.cn/get_League_Board_Json"
+    res = requests.get(league_board_route_url)
+    # print(res.text)
+    json_obj = json.loads(res.text)
+    #print('https:' + json_obj['data'])
+    league_board_data_url = 'https:' + json_obj['data']
+    res = requests.get(league_board_data_url)
+    resClean = res.text.replace("gameStatus(", "").replace("})", "}")
+    json_obj = json.loads(resClean)
+    # print(json_obj['data'])
+    nba_group_list = []
+    for data in json_obj['data']:
+        if data['name'] == "NBA":
+            # print(data)
+            # print(data['group'])
+            nba_group_list = data
+            for nba_data in nba_group_list['data']:
+                print(nba_data['group'])
+                for team in nba_data['rows']:
+                    print(team['team_name'])
+                    # print(team['won'])
+                    # print(team['loss'])
+                    teamDict = {[
+                        {
+                            "type": "text",
+                            "text": team['team_name'],
+                            "size": "sm",
+                            "color": "#555555",
+                            "flex": 2
+                        },
+                        {
+                            "type": "text",
+                            "text": team['won'],
+                            "size": "sm",
+                            "color": "#111111",
+                            "align": "center",
+                            "flex": 1
+                        },
+                        {
+                            "type": "text",
+                            "text": f"{team['won']}/{team['loss']}",
+                            "size": "sm",
+                            "color": "#111111",
+                            "flex": 1,
+                            "align": "center"
+                        },
+                        {
+                            "type": "text",
+                            "text": "Rate",
+                            "flex": 1,
+                            "align": "center"
+                        }
+                    ]}
+                    teamDataList.append(teamDict)
+                    
+            contentDict = {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": nba_data['group'],
+                            "weight": "bold",
+                            "size": "lg"
+                        },
+                        {
+                            "type": "separator"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": teamDataList
+                        }
+                    ]
+                }
+            }
+            contentResult.append(contentDict)
+        
+    flex_message = FlexSendMessage(
+        alt_text='NBA',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
+        }
+    )
+    return flex_message
