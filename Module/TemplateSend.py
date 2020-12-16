@@ -609,13 +609,20 @@ def nba_data():
             # print(data)
             # print(data['group'])
             nba_group_list = data
-            teamDataList = []
+
             for nba_data in nba_group_list['data']:
+                teamDataList = []
                 # print(nba_data['group'])
                 for team in nba_data['rows']:
                     # print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
+                    rate = "0%"
+                    if int(team['won']) + int(team['loss']) == 0:
+                        rate = "0%"
+                    else:
+                        rateFloat = float(int(team['won']) / (int(team['won']) + int(team['loss']))) * 100
+                        rate = f'{ rateFloat }'
                     teamDict = {
                         "type": "box",
                         "layout": "horizontal",
@@ -629,7 +636,7 @@ def nba_data():
                             },
                             {
                                 "type": "text",
-                                "text": f"{team['won']}",
+                                "text": f"{ int(team['won']) + int(team['loss'])}",
                                 "size": "sm",
                                 "color": "#111111",
                                 "align": "center",
@@ -637,8 +644,7 @@ def nba_data():
                             },
                             {
                                 "type": "text",
-                                # f"{team['won']}/{team['loss']}",
-                                "text": "0",
+                                "text": f"{team['won']}/{team['loss']}",
                                 "size": "sm",
                                 "color": "#111111",
                                 "flex": 1,
@@ -646,7 +652,7 @@ def nba_data():
                             },
                             {
                                 "type": "text",
-                                "text": "Rate",
+                                "text": rate,
                                 "flex": 1,
                                 "align": "center"
                             }
@@ -703,11 +709,12 @@ def nba_data():
                                         "flex": 1,
                                         "align": "center"
                                     }
-                                ]
+                                ],
+                                "paddingTop": "3px",
+                                "paddingBottom": "3px"
                             },
                             {
                                 "type": "separator",
-                                "margin": "sm"
                             },
                             {
                                 "type": "box",
