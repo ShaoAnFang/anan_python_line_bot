@@ -534,6 +534,10 @@ def handle_message(event):
     if msg == 'zb':
         smzb_message = TemplateSend.smzb()
         line_bot_api.reply_message(event.reply_token, smzb_message)
+        
+    if msg == 'nba' or msg == 'Nba' or msg == 'NBA':
+        nba_message = TemplateSend.nba_data()
+        line_bot_api.reply_message(event.reply_token, nba_message)
 
     if msg == '小電影' or msg == 'AV':
         if event.source.type == 'group' and event.source.group_id == 'C54f882fec4c5b8dc538b6d1cee5fc31f':
