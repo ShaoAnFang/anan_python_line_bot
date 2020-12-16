@@ -590,7 +590,6 @@ def smzb():
         }
     )
     return flex_message
-
 def nba_data():
     league_board_route_url = "https://smzb.cn/get_League_Board_Json"
     res = requests.get(league_board_route_url)
@@ -616,7 +615,7 @@ def nba_data():
                     # print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
-                    teamDict = [
+                    teamDict = {
                         {
                             "type": "text",
                             "text": team['team_name'],
@@ -646,7 +645,7 @@ def nba_data():
                             "flex": 1,
                             "align": "center"
                         }
-                    ]
+                    }
                     teamDataList.append(teamDict)
 
                 # print(teamDataList)
@@ -669,6 +668,45 @@ def nba_data():
                             {
                                 "type": "box",
                                 "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "Team",
+                                    "size": "sm",
+                                    "color": "#555555",
+                                    "flex": 2
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Total",
+                                    "size": "sm",
+                                    "color": "#111111",
+                                    "align": "center",
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "W/L",
+                                    "size": "sm",
+                                    "color": "#111111",
+                                    "flex": 1,
+                                    "align": "center"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Rate",
+                                    "flex": 1,
+                                    "align": "center"
+                                }
+                                ]
+                            },
+                            {
+                                "type": "separator",
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
                                 "contents": teamDataList
                             }
                         ]
