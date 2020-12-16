@@ -590,12 +590,13 @@ def smzb():
         }
     )
     return flex_message
+
 def nba_data():
     league_board_route_url = "https://smzb.cn/get_League_Board_Json"
     res = requests.get(league_board_route_url)
     # print(res.text)
     json_obj = json.loads(res.text)
-    #print('https:' + json_obj['data'])
+    # print('https:' + json_obj['data'])
     league_board_data_url = 'https:' + json_obj['data']
     res = requests.get(league_board_data_url)
     resClean = res.text.replace("gameStatus(", "").replace("})", "}")
@@ -615,37 +616,41 @@ def nba_data():
                     # print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
-                    teamDict = [
-                        {
-                            "type": "text",
-                            "text": team['team_name'],
-                            "size": "sm",
-                            "color": "#555555",
-                            "flex": 2
-                        },
-                        {
-                            "type": "text",
-                            "text": f"{team['won']}",
-                            "size": "sm",
-                            "color": "#111111",
-                            "align": "center",
-                            "flex": 1
-                        },
-                        {
-                            "type": "text",
-                            "text": "0",  # f"{team['won']}/{team['loss']}",
-                            "size": "sm",
-                            "color": "#111111",
-                            "flex": 1,
-                            "align": "center"
-                        },
-                        {
-                            "type": "text",
-                            "text": "Rate",
-                            "flex": 1,
-                            "align": "center"
-                        }
-                    ]
+                    teamDict = {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": team['team_name'],
+                                "size": "sm",
+                                "color": "#555555",
+                                "flex": 2
+                            },
+                            {
+                                "type": "text",
+                                "text": f"{team['won']}",
+                                "size": "sm",
+                                "color": "#111111",
+                                "align": "center",
+                                "flex": 1
+                            },
+                            {
+                                "type": "text",
+                                # f"{team['won']}/{team['loss']}",
+                                "text": "0",
+                                "size": "sm",
+                                "color": "#111111",
+                                "flex": 1,
+                                "align": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "Rate",
+                                "flex": 1,
+                                "align": "center"
+                            }
+                        ]}
                     teamDataList.append(teamDict)
 
                 # print(teamDataList)
@@ -669,35 +674,35 @@ def nba_data():
                                 "type": "box",
                                 "layout": "horizontal",
                                 "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "Team",
-                                    "size": "sm",
-                                    "color": "#555555",
-                                    "flex": 2
-                                },
-                                {
-                                    "type": "text",
-                                    "text": "Total",
-                                    "size": "sm",
-                                    "color": "#111111",
-                                    "align": "center",
-                                    "flex": 1
-                                },
-                                {
-                                    "type": "text",
-                                    "text": "W/L",
-                                    "size": "sm",
-                                    "color": "#111111",
-                                    "flex": 1,
-                                    "align": "center"
-                                },
-                                {
-                                    "type": "text",
-                                    "text": "Rate",
-                                    "flex": 1,
-                                    "align": "center"
-                                }
+                                    {
+                                        "type": "text",
+                                        "text": "Team",
+                                        "size": "sm",
+                                        "color": "#555555",
+                                        "flex": 2
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Total",
+                                        "size": "sm",
+                                        "color": "#111111",
+                                        "align": "center",
+                                        "flex": 1
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "W/L",
+                                        "size": "sm",
+                                        "color": "#111111",
+                                        "flex": 1,
+                                        "align": "center"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Rate",
+                                        "flex": 1,
+                                        "align": "center"
+                                    }
                                 ]
                             },
                             {
