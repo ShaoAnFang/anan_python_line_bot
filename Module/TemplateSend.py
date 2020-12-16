@@ -603,18 +603,20 @@ def nba_data():
     json_obj = json.loads(resClean)
     # print(json_obj['data'])
     nba_group_list = []
+    contentResult = []
     for data in json_obj['data']:
         if data['name'] == "NBA":
             # print(data)
             # print(data['group'])
             nba_group_list = data
+            teamDataList = []
             for nba_data in nba_group_list['data']:
                 print(nba_data['group'])
                 for team in nba_data['rows']:
                     print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
-                    teamDict = {[
+                    teamDict = [
                         {
                             "type": "text",
                             "text": team['team_name'],
@@ -624,7 +626,7 @@ def nba_data():
                         },
                         {
                             "type": "text",
-                            "text": team['won'],
+                            "text": f"{team['won']}",
                             "size": "sm",
                             "color": "#111111",
                             "align": "center",
@@ -632,7 +634,7 @@ def nba_data():
                         },
                         {
                             "type": "text",
-                            "text": f"{team['won']}/{team['loss']}",
+                            "text": "0",  # f"{team['won']}/{team['loss']}",
                             "size": "sm",
                             "color": "#111111",
                             "flex": 1,
@@ -644,9 +646,10 @@ def nba_data():
                             "flex": 1,
                             "align": "center"
                         }
-                    ]}
+                    ]
                     teamDataList.append(teamDict)
-                    
+
+            print(teamDataList)
             contentDict = {
                 "type": "bubble",
                 "body": {
@@ -671,6 +674,7 @@ def nba_data():
                 }
             }
             contentResult.append(contentDict)
+
         
     flex_message = FlexSendMessage(
         alt_text='NBA',
