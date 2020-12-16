@@ -611,9 +611,9 @@ def nba_data():
             nba_group_list = data
             teamDataList = []
             for nba_data in nba_group_list['data']:
-                print(nba_data['group'])
+                # print(nba_data['group'])
                 for team in nba_data['rows']:
-                    print(team['team_name'])
+                    # print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
                     teamDict = [
@@ -649,33 +649,33 @@ def nba_data():
                     ]
                     teamDataList.append(teamDict)
 
-            print(teamDataList)
-            contentDict = {
-                "type": "bubble",
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": nba_data['group'],
-                            "weight": "bold",
-                            "size": "lg"
-                        },
-                        {
-                            "type": "separator"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": teamDataList
-                        }
-                    ]
+                # print(teamDataList)
+                print(nba_data['group'])
+                contentDict = {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": nba_data['group'],
+                                "weight": "bold",
+                                "size": "lg"
+                            },
+                            {
+                                "type": "separator"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": teamDataList
+                            }
+                        ]
+                    }
                 }
-            }
-            contentResult.append(contentDict)
+                contentResult.append(contentDict)
 
-        
     flex_message = FlexSendMessage(
         alt_text='NBA',
         contents={
