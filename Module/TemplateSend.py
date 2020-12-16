@@ -615,7 +615,7 @@ def nba_data():
                     # print(team['team_name'])
                     # print(team['won'])
                     # print(team['loss'])
-                    teamDict = {
+                    teamDict = [
                         {
                             "type": "text",
                             "text": team['team_name'],
@@ -645,7 +645,7 @@ def nba_data():
                             "flex": 1,
                             "align": "center"
                         }
-                    }
+                    ]
                     teamDataList.append(teamDict)
 
                 # print(teamDataList)
