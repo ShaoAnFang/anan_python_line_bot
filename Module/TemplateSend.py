@@ -621,8 +621,8 @@ def nba_data():
                     if int(team['won']) + int(team['loss']) == 0:
                         rate = "0%"
                     else:
-                        rateFloat = float(int(team['won']) / (int(team['won']) + int(team['loss']))) * 100
-                        rate = f'{ rateFloat }'
+                        rateFloat = rateFloat = float('{:.3f}'.format(int('2') / (int('2') + int('1')))) * 100
+                        rate = f'{ rateFloat }%'
                     teamDict = {
                         "type": "box",
                         "layout": "horizontal",
