@@ -645,7 +645,7 @@ def nba_data():
                             },
                             {
                                 "type": "text",
-                                "text": "99/99", #f"{won}/{loss}",
+                                "text": f"{won}/{loss}",
                                 "size": "sm",
                                 "color": "#111111",
                                 "flex": 1,
