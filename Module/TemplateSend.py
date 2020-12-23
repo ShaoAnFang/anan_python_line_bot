@@ -622,7 +622,7 @@ def nba_data():
                     total_game = won + loss
                     rate = "0%"
                     if total_game > 0:
-                        rateFloat = float('{%.1f}'.format(won / total_game)) * 100
+                        rateFloat = float('{:.3f}'.format(won / total_game)) * 100
                         rate = f'{ rateFloat }%'.replace(".0", "")
                     teamDict = {
                         "type": "box",
