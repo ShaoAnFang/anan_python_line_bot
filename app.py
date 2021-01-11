@@ -524,9 +524,12 @@ def handle_message(event):
         carousel_template_message = TemplateSend.moive(g)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
-    if msg == 'chloe' or msg == '啾':
+    if msg == 'chloe' or msg == '啾' or msg == 'c2':
         flex_message = TemplateSend.chloeStyleOne()
+        if random.randint(1, 2) != 1:
+            flex_message = TemplateSend.chloeStyleTwo()
         line_bot_api.reply_message(event.reply_token, flex_message)
+            
     if msg == 'c2':
         flex_message = TemplateSend.chloeStyleTwo()
         line_bot_api.reply_message(event.reply_token, flex_message)
@@ -570,9 +573,6 @@ def handle_message(event):
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=album))
         carousel_template_message = TemplateSend.aime(albumResult, msg)
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    if msg == 'flex':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='GG WP'))
-        #line_bot_api.reply_message(event.reply_token, flex_message)
         
     #firebaseChatLog(msg)
     #profile = line_bot_api.get_profile(event.source.user_id)
