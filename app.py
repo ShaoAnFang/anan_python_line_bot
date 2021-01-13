@@ -130,8 +130,11 @@ def firebaseChatLog(content, name='', userID = ''):
     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
     getChatLog = firebase.get('/ChatLog',inputDate)
     
-    if name != '' and userID != '':
-        content = name + ':' + content + '.' + userID
+    #if name != '' and userID != '':
+    #    content = name + ':' + content + '.' + userID
+    
+    if name != '':
+        content = name + ':' + content
         
     if getChatLog is None:
         arr = []
@@ -579,14 +582,14 @@ def handle_message(event):
     if event.source.type =='user' :
         #直接對機器人講
         z = '單獨(user_id):' + event.source.user_id
-        #firebaseChatLog(msg,profile.display_name,z)   
-        firebaseChatLog(msg,'',z)
+        firebaseChatLog(msg,profile.display_name,z)   
+        #firebaseChatLog(msg,'',z)
         
     elif event.source.type == 'group':
         #群組裡講
         z = '群組(group_id):' + event.source.group_id
-        #firebaseChatLog(msg,profile.display_name,z)
-        firebaseChatLog(msg,'',z)    
+        firebaseChatLog(msg,profile.display_name,z)
+        #firebaseChatLog(msg,'',z)    
             
     if sticker(msg) != 'GG':
         if event.source.type !='group':
