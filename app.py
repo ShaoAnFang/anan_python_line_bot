@@ -578,7 +578,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
     #firebaseChatLog(msg)
-    #profile = line_bot_api.get_profile(event.source.user_id)
+    profile = line_bot_api.get_profile(event.source.user_id)
     if event.source.type =='user' :
         #直接對機器人講
         z = '單獨(user_id):' + event.source.user_id
