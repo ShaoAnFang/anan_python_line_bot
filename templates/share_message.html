@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <title>My LIFF App</title>
+  <style>
+    body { padding: 256px }
+    button { display: none; width: 50%; padding: 16px 0; margin: 16px auto }
+  </style>
+</head>
+<body>
+  <button id="btnShare" onclick="sendShare()">Share Target Picker</button>
+  <button id="btnLogin" onclick="liff.login()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.0/sdk.js"></script>
+  <script>
+    async function sendShare() {
+      const result = await liff.shareTargetPicker([
+        {
+          "type": "flex",
+          "altText": "Flex Message",
+          "contents": {
+            "type": "bubble",
+            "size": "giga",
+            "header": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "HORIZON",
+                        "size": "xxl",
+                        "weight": "regular",
+                        "gravity": "center",
+                        "align": "center"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "flex": 1,
+                            "backgroundColor": "#21aded",
+                            "height": "4px"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "flex": 1,
+                            "height": "4px",
+                            "backgroundColor": "#ff9d00"
+                        }
+                        ],
+                        "height": "4px",
+                        "flex": 1
+                    }
+                    ],
+                    "flex": 38
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "皓展資訊股份有限公司",
+                        "size": "sm"
+                    },
+                    {
+                        "type": "text",
+                        "text": "www.hzn.com.tw",
+                        "size": "sm",
+                        "action": {
+                        "type": "uri",
+                        "label": "action",
+                        "uri": "http://www.hzn.com.tw"
+                        }
+                    }
+                    ],
+                    "offsetStart": "15px",
+                    "offsetTop": "5px",
+                    "flex": 62
+                }
+                ]
+            },
+            "body": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "方紹安",
+                        "size": "xl",
+                        "align": "center",
+                        "weight": "bold",
+                        "color": "#21aded"
+                    },
+                    {
+                        "type": "text",
+                        "text": "軟體工程師",
+                        "size": "sm",
+                        "align": "center"
+                    }
+                    ],
+                    "flex": 4,
+                    "justifyContent": "center",
+                    "offsetBottom": "15px"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "| 行動：0936204105",
+                        "size": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "| 電話：02 2767 3776 # 120",
+                        "size": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "| 傳真：02 2767 3250",
+                        "size": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "| 統編：24452051",
+                        "size": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "| Email：clark.fang@hzn.com.tw",
+                        "size": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "| 105 臺北市松山區復興北路1號3樓之4",
+                        "size": "xxs",
+                        "offsetTop": "2px"
+                    }
+                    ],
+                    "flex": 6,
+                    "action": {
+                    "type": "uri",
+                    "label": "action",
+                    "uri": "http://www.hzn.com.tw"
+                    }
+                }
+                ],
+                "margin": "none"
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "30px",
+                    "backgroundColor": "#21aded",
+                    "position": "absolute",
+                    "offsetStart": "80%",
+                    "height": "10px"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "30px",
+                    "backgroundColor": "#ff9d00",
+                    "position": "absolute",
+                    "offsetStart": "88%",
+                    "height": "10px",
+                    "offsetBottom": "-15%"
+                }
+                ]
+                }
+            }
+        }
+      ])
+      if (result) {
+        alert(`[${result.status}] Message sent!`)
+      } else {
+        const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+        if (minorVer === undefined) {
+          alert('ShareTargetPicker was canceled in external browser')
+          return
+        }
+
+        if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+          alert('ShareTargetPicker was canceled in LINE app')
+        }
+      }
+    }
+    function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    async function main() {
+      await liff.init({ liffId: "YOUR-LIFF-ID" })
+      if (liff.isLoggedIn()) {
+        document.getElementById("btnShare").style.display = "block"
+        if (!liff.isInClient()) {
+          document.getElementById("btnLogOut").style.display = "block"
+        }
+      } else {
+        document.getElementById("btnLogin").style.display = "block"
+      }
+    }
+    main()
+  </script>
+</body>
+</html>
