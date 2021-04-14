@@ -16,7 +16,7 @@ from flask import Flask, request, abort
 
 from oauth2client.service_account import ServiceAccountCredentials
 from Module import Aime, Constellation, Weather, Movies, GoogleSheet, TemplateSend, Sticker
-from controller.liff_controller import LiffController
+from Controller.liff_controller import LiffController
 
 sendTime = time.time()
 
