@@ -1,4 +1,5 @@
 flask
+flask-restful==0.3.7
 pytz
 gunicorn
 requests
