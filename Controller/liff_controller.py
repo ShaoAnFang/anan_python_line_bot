@@ -17,4 +17,5 @@ class LiffController(Resource):
         super().__init__(*args, **kwargs)
 
     def get(self):
-        return Response(render_template('share_message.html', flex=msg, liff_id=LIFF_ID))
+        # return Response(render_template('share_message.html', flex=msg, liff_id=LIFF_ID))
+        return Response(render_template('share_message.html', liff_id=LIFF_ID))
