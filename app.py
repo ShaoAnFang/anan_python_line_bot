@@ -45,9 +45,10 @@ api = Api(app)
 #https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
 liff_routes = [
     '/liff/shared',
-    '/liff/shared/<string:name>/<string:title>/<string:cellphone>/<string:mail>/<string:phone>',
+    '/liff/shared/<string:name><string:title><string:cellphone><string:mail><string:phone>',
 ]
 api.add_resource(LiffController, *liff_routes)
+api.init_app(app)
 
 @app.route("/callback", methods=['POST'])
 def callback():

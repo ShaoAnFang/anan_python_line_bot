@@ -247,11 +247,11 @@
         window.location.reload();
       }
       async function main() {
-        document.getElementById("name").defaultValue = '{{ data.name }}';
-        document.getElementById("title").defaultValue = '{{ data.title }}';
-        document.getElementById("cellphone").defaultValue = '{{ data.cellphone }}';
-        document.getElementById("mail").defaultValue = '{{ data.mail }}';
-        document.getElementById("phone").defaultValue = '{{ data.phone }}';
+        document.getElementById("name").value = '{{ data.name }}';
+        document.getElementById("title").value = '{{ data.title }}';
+        document.getElementById("cellphone").value = '{{ data.cellphone }}';
+        document.getElementById("mail").value = '{{ data.mail }}';
+        document.getElementById("phone").value = '{{ data.phone }}';
 
         await liff.init({ liffId: '{{ liff_id }}' });
         if (liff.isLoggedIn()) {
