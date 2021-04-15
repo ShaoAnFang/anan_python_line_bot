@@ -267,6 +267,12 @@
         localStorage.setItem("mail", '{{ data.mail }}');
         localStorage.setItem("phone", '{{ data.phone }}');
 
+        document.getElementById("name").value = '{{ data.name }}';
+        document.getElementById("title").value = '{{ data.title }}';
+        document.getElementById("cellphone").value = '{{ data.cellphone }}';
+        document.getElementById("mail").value = '{{ data.mail }}';
+        document.getElementById("phone").value = '{{ data.phone }}';
+
         await liff.init({ liffId: '{{ liff_id }}' });
         if (liff.isLoggedIn()) {
           document.getElementById('btnShare').style.display = 'block';
