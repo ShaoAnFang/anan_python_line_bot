@@ -16,6 +16,16 @@ class LiffController(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def get(self):
-        # return Response(render_template('share_message.html', flex=msg, liff_id=LIFF_ID))
-        return Response(render_template('share_message.html', liff_id=LIFF_ID))
+    def get(self, name, title, cellphone, mail, phone):
+        if name is None:
+            return Response(render_template('share_message.html', liff_id=LIFF_ID))
+        else:
+            data_fields = {
+                'name': name,
+                'title': title,
+                'cellphone': cellphone,
+                'mail': mail,
+                'phone': phone
+            }
+            # return Response(render_template('share_message.html', flex=msg, liff_id=LIFF_ID))
+            return Response(render_template('share_message.html', data=data_fields ,liff_id=LIFF_ID))

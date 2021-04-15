@@ -247,6 +247,12 @@
         window.location.reload();
       }
       async function main() {
+        document.querySelector('input#name') = '{{ data.name }}';
+        document.querySelector('input#title') = '{{ data.title }}';
+        document.querySelector('input#cellphone') = '{{ data.cellphone }}';
+        document.querySelector('input#mail') = '{{ data.mail }}';
+        document.querySelector('input#phone') = '{{ data.phone }}';
+
         await liff.init({ liffId: '{{ liff_id }}' });
         if (liff.isLoggedIn()) {
           document.getElementById('btnShare').style.display = 'block';

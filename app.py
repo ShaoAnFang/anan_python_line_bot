@@ -42,7 +42,12 @@ line_bot_api = LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFro
 handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
 
 api = Api(app)
-api.add_resource(LiffController, '/liff/shared')
+#https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
+liff_routes = [
+    '/liff/shared',
+    '/liff/shared/<str:name>/<str:title>/<int:cellphone>/<str:mail>/<int:phone>',
+]
+api.add_resource(LiffController, *liff_routes)
 
 @app.route("/callback", methods=['POST'])
 def callback():
