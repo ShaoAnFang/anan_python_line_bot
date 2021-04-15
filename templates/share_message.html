@@ -246,13 +246,7 @@
         liff.logout();
         window.location.reload();
       }
-      async function main() {
-        localStorage.setItem("name", '{{ data.name }}');
-        localStorage.setItem("title", '{{ data.title }}');
-        localStorage.setItem("cellphone", '{{ data.cellphone }}');
-        localStorage.setItem("mail", '{{ data.mail }}');
-        localStorage.setItem("phone", '{{ data.phone }}');
-
+      function dataResign() {
         var nameVarName = localStorage.getItem("name");
         var titleVarName = localStorage.getItem("title");
         var cellphoneVarName = localStorage.getItem("cellphone");
@@ -264,10 +258,19 @@
         document.getElementById("cellphone").value = cellphoneVarName;
         document.getElementById("mail").value = mailVarName;
         document.getElementById("phone").value = phoneVarName;
+      }
+
+      async function main() {
+        localStorage.setItem("name", '{{ data.name }}');
+        localStorage.setItem("title", '{{ data.title }}');
+        localStorage.setItem("cellphone", '{{ data.cellphone }}');
+        localStorage.setItem("mail", '{{ data.mail }}');
+        localStorage.setItem("phone", '{{ data.phone }}');
 
         await liff.init({ liffId: '{{ liff_id }}' });
         if (liff.isLoggedIn()) {
           document.getElementById('btnShare').style.display = 'block';
+          dataResign();
           if (!liff.isInClient()) {
             document.getElementById('btnLogOut').style.display = 'block';
           }
