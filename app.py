@@ -45,7 +45,7 @@ api = Api(app)
 #https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
 liff_routes = [
     '/liff/shared',
-    '/liff/shared/<str:name>/<str:title>/<int:cellphone>/<str:mail>/<int:phone>',
+    '/liff/shared/<string:name>/<string:title>/<string:cellphone>/<string:mail>/<string:phone>',
 ]
 api.add_resource(LiffController, *liff_routes)
 
