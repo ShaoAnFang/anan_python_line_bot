@@ -247,11 +247,11 @@
         window.location.reload();
       }
       async function main() {
-        document.querySelector('input#name') = '{{ data.name }}';
-        document.querySelector('input#title') = '{{ data.title }}';
-        document.querySelector('input#cellphone') = '{{ data.cellphone }}';
-        document.querySelector('input#mail') = '{{ data.mail }}';
-        document.querySelector('input#phone') = '{{ data.phone }}';
+        ocument.getElementById("name").defaultValue = '{{ data.name }}';
+        ocument.getElementById("title").defaultValue = '{{ data.title }}';
+        ocument.getElementById("cellphone").defaultValue = '{{ data.cellphone }}';
+        ocument.getElementById("mail").defaultValue = '{{ data.mail }}';
+        ocument.getElementById("phone").defaultValue = '{{ data.phone }}';
 
         await liff.init({ liffId: '{{ liff_id }}' });
         if (liff.isLoggedIn()) {
