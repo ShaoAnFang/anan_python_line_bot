@@ -1,7 +1,7 @@
 flask
 flask-restful==0.3.7
 pytz
-gunicorn
+gunicorn==20.1.0
 requests
 imgurpython
 beautifulsoup4
