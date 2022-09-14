@@ -1,4 +1,4 @@
-flask
+Flask==2.1.0
 flask-restful==0.3.7
 pytz
 gunicorn==20.1.0
