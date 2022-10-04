@@ -29,7 +29,7 @@ def get_movies():
         #movie['movie_id'] = get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
         movie['poster_url'] = row.select('img')[0]['data-src']
         #movie['release_date'] = get_date(row.select('.release_movie_time')[0].text)
-        movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:15] + '...'
+        movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:25] + '...'
         #movie['info_url'] = row.select('.release_movie_name .gabtn')[0]['href']
         #movie['info_url'] = Y_INTRO_URL + '/id=' + get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
         movie['info_url'] = get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
