@@ -114,7 +114,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
                 "type": "image",
                 "size": "full",
                 "aspectMode": "cover",
-                "url": 'https://placeholder.com/200' #data['preview_url']
+                "url": 'https://via.placeholder.com/200x200' #data['preview_url']
               },
               "body": {
                 "type": "box",
@@ -141,7 +141,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": 'https://www.youtube.com/' + data["video_url"].replace("https://avgle.com/video/", "")
+                      "uri": 'https://www.youtube.com/' #+ data["video_url"].replace("https://avgle.com/video/", "")
                     }
                   }
                 ]
