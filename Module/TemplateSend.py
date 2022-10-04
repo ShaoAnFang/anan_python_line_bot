@@ -155,6 +155,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
             "contents": contentResult
         }
     )
+    return flex_message
 #     carousel_template_message = TemplateSendMessage(
 #     alt_text=titleText,
 #     template=CarouselTemplate(
@@ -197,7 +198,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
 #         ]
 #         )
 #     )
-    return carousel_template_message
+#     return carousel_template_message
 
 def sportsChannel():
 #     channelList = firebase.get('/TVChannel','channelList')
