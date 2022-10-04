@@ -27,8 +27,7 @@ def get_movies():
         movie['ch_name'] = row.select('.release_movie_name .gabtn')[0].text.strip()
         movie['eng_name'] = row.select('.en .gabtn')[0].text.strip()
         #movie['movie_id'] = get_movie_id(row.select('.release_movie_name .gabtn')[0]['href'])
-        #movie['poster_url'] = row.select('img')[0]['src']
-        movie['poster_url'] = row.select('img')[0]
+        movie['poster_url'] = row.select('img')[0]['data-src']
         #movie['release_date'] = get_date(row.select('.release_movie_time')[0].text)
         movie['intro'] = row.select('.release_text')[0].text.strip().replace(u'...詳全文', '').replace('\n', '')[0:15] + '...'
         #movie['info_url'] = row.select('.release_movie_name .gabtn')[0]['href']
