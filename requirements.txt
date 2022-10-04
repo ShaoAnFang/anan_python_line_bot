@@ -1,5 +1,6 @@
 Flask==2.1.0
-flask-restful==0.3.7
+#flask-restful==0.3.7
+Flask-RESTful==0.3.9
 pytz
 gunicorn==20.1.0
 requests
