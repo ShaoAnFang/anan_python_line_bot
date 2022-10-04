@@ -433,7 +433,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好 我會好好講話'))
 
     if msg == '安安':
-        menulist = 'Hello 紹安寫的機器人 你可以'
+        menulist = 'Hello 紹安寫的機器人 你可以\n'
         menulist += '1. 輸入 天氣 台北 \n\n'
         menulist += '2. 輸入 星座 天蠍\n\n'
         menulist += '3. 輸入 電影\n\n'
