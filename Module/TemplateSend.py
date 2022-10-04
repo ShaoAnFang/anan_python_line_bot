@@ -141,7 +141,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": f'https://www.youtube.com/{data["video_url"].replace("https://avgle.com/video/", "")}'
+                      "uri": 'https://www.youtube.com/' + data["video_url"].replace("https://avgle.com/video/", "")
                     }
                   }
                 ]
