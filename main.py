@@ -447,25 +447,25 @@ def handle_message(event):
     #if len(msg) > 200:
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='未看先猜 __文'))
     
-    if msg[0] == '安' and msg[1] == ' ':
-        msg =  msg.strip('~!@#$%^&*()|"')
-        String = msg.split('安 ')[1]
-        #print(String)
-        key = String.split('=')[0]
-        key = key.split()
-        #print(key[0])
-        #如果第一個字是空白則去除
-        value = String.split('=')[1]
-        if value[0] == ' ':
-            #從第二個字開始算 再裝回去
-            value = value[1:]
-            if value == '':
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='不好意思 特殊字元會記不住呢'))
+#     if msg[0] == '安' and msg[1] == ' ':
+#         msg =  msg.strip('~!@#$%^&*()|"')
+#         String = msg.split('安 ')[1]
+#         #print(String)
+#         key = String.split('=')[0]
+#         key = key.split()
+#         #print(key[0])
+#         #如果第一個字是空白則去除
+#         value = String.split('=')[1]
+#         if value[0] == ' ':
+#             #從第二個字開始算 再裝回去
+#             value = value[1:]
+#             if value == '':
+#                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text='不好意思 特殊字元會記不住呢'))
     
-        insertFirebase = firebaseInsert(key[0],value)   
+# #         insertFirebase = firebaseInsert(key[0],value)   
         
-        insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
+#         insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
         #if event.source.user_id != "" :
             #profile = line_bot_api.get_profile(event.source.user_id)
@@ -477,17 +477,17 @@ def handle_message(event):
         #insertResult = key[0]+ ' = ' + value + ' 嗎? \n' + insertFirebase + ' !'
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=insertResult))
         
-    if msg[0] == '遺' and msg[1] == '忘' and msg[2] ==' ':
-        string = msg.split('遺忘 ')[1]
-        print(string)
-        deleteFirebase = firebaseDelete(string)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=deleteFirebase))
+#     if msg[0] == '遺' and msg[1] == '忘' and msg[2] ==' ':
+#         string = msg.split('遺忘 ')[1]
+#         print(string)
+#         deleteFirebase = firebaseDelete(string)
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=deleteFirebase))
         
-    if msg[0] == '查' and msg[1] == ' ':
-        string = msg.split('查 ')[1]   
-#         fetchResult = firebaseFetch(string)
-        result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+#     if msg[0] == '查' and msg[1] == ' ':
+#         string = msg.split('查 ')[1]   
+# #         fetchResult = firebaseFetch(string)
+#         result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     
     if msg[0] == '星' and msg[1] == '座' and msg[2] == ' ':
         star = msg.split('星座 ')[1]
@@ -589,17 +589,17 @@ def handle_message(event):
         
     #firebaseChatLog(msg)
     profile = line_bot_api.get_profile(event.source.user_id)
-    if event.source.type =='user' :
-        #直接對機器人講
-        z = '單獨(user_id):' + event.source.user_id
-#         firebaseChatLog(msg,profile.display_name,z)   
-        #firebaseChatLog(msg,'',z)
+#     if event.source.type =='user' :
+#         #直接對機器人講
+#         z = '單獨(user_id):' + event.source.user_id
+# #         firebaseChatLog(msg,profile.display_name,z)   
+#         #firebaseChatLog(msg,'',z)
         
-    elif event.source.type == 'group':
-        #群組裡講
-        z = '群組(group_id):' + event.source.group_id
-#         firebaseChatLog(msg,profile.display_name,z)
-        #firebaseChatLog(msg,'',z)    
+#     elif event.source.type == 'group':
+#         #群組裡講
+#         z = '群組(group_id):' + event.source.group_id
+# #         firebaseChatLog(msg,profile.display_name,z)
+#         #firebaseChatLog(msg,'',z)    
             
     if sticker(msg) != 'GG':
         if event.source.type !='group':
