@@ -110,12 +110,12 @@ def avgleSearch(avgleResult,titleText='小電影'):
     for data in avgleResult:
         contentDict = {
             "type": "bubble",
-              "hero": {
-                "type": "image",
-                "size": "full",
-                "aspectMode": "cover",
-                "url": data['preview_url']
-              },
+#               "hero": {
+#                 "type": "image",
+#                 "size": "full",
+#                 "aspectMode": "cover",
+#                 "url": data['preview_url']
+#               },
               "body": {
                 "type": "box",
                 "layout": "vertical",
