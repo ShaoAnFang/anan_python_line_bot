@@ -28,7 +28,7 @@ def constellation(star):
 #     content = soup.find('article').text.strip()
 #     #print content
 
-#     resultString = ''
+    resultString = ''
 #     resultString += starAndDate[0] + ' ' + starAndDate[1] + '\n'
 #     resultString += today + '\n'
 #     resultString += content + '\n\n'
