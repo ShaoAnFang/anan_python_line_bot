@@ -106,48 +106,97 @@ def moive(datas):
 def avgleSearch(avgleResult,titleText='小電影'):
     #asd = avgleResult[4]['title'][:10] + '\n' + avgleResult[4]['preview_url'] +'\n'+ avgleResult[4]['keyword'][:10] +'\n'+ avgleResult[4]['video_url']
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=asd))
-    carousel_template_message = TemplateSendMessage(
-    alt_text=titleText,
-    template=CarouselTemplate(
-        columns=[
-            CarouselColumn(
-                thumbnail_image_url=avgleResult[0]['preview_url'],
-                #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title=avgleResult[0]['keyword'][:10],
-                text= avgleResult[0]['title'][:10],
-                actions=[URITemplateAction(label='查看', uri=avgleResult[0]['video_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=avgleResult[1]['preview_url'],
-                #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title=avgleResult[1]['keyword'][:10],
-                text= avgleResult[1]['title'][:10],
-                actions=[URITemplateAction(label='查看', uri=avgleResult[1]['video_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=avgleResult[2]['preview_url'],
-                #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title=avgleResult[2]['keyword'][:10],
-                text= avgleResult[2]['title'][:10],
-                actions=[URITemplateAction(label='查看', uri=avgleResult[2]['video_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=avgleResult[3]['preview_url'],
-                #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title=avgleResult[3]['keyword'][:10],
-                text= avgleResult[3]['title'][:10],
-                actions=[URITemplateAction(label='查看', uri=avgleResult[3]['video_url'])]
-            ),
-            CarouselColumn(
-                thumbnail_image_url=avgleResult[4]['preview_url'],
-                #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
-                title=avgleResult[4]['keyword'][:10],
-                text= avgleResult[4]['title'][:10],
-                actions=[URITemplateAction(label='查看', uri=avgleResult[4]['video_url'])]
-            )
-        ]
-        )
+    contentResult = []
+    for data in avgleResult:
+        contentDict = {
+            "type": "bubble",
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": data['preview_url']
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": data['keyword'][:10],
+                    "wrap": True,
+                    "weight": "bold",
+                    "size": "xl"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看",
+                      "uri": data['video_url']
+                    }
+                  }
+                ]
+              }
+        }
+        contentResult.append(contentDict)
+    flex_message = FlexSendMessage(
+        alt_text='FlexMessage',
+        contents={
+            "type": "carousel",
+            "contents": contentResult
+        }
     )
+#     carousel_template_message = TemplateSendMessage(
+#     alt_text=titleText,
+#     template=CarouselTemplate(
+#         columns=[
+#             CarouselColumn(
+#                 thumbnail_image_url=avgleResult[0]['preview_url'],
+#                 #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+#                 title=avgleResult[0]['keyword'][:10],
+#                 text= avgleResult[0]['title'][:10],
+#                 actions=[URITemplateAction(label='查看', uri=avgleResult[0]['video_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=avgleResult[1]['preview_url'],
+#                 #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+#                 title=avgleResult[1]['keyword'][:10],
+#                 text= avgleResult[1]['title'][:10],
+#                 actions=[URITemplateAction(label='查看', uri=avgleResult[1]['video_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=avgleResult[2]['preview_url'],
+#                 #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+#                 title=avgleResult[2]['keyword'][:10],
+#                 text= avgleResult[2]['title'][:10],
+#                 actions=[URITemplateAction(label='查看', uri=avgleResult[2]['video_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=avgleResult[3]['preview_url'],
+#                 #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+#                 title=avgleResult[3]['keyword'][:10],
+#                 text= avgleResult[3]['title'][:10],
+#                 actions=[URITemplateAction(label='查看', uri=avgleResult[3]['video_url'])]
+#             ),
+#             CarouselColumn(
+#                 thumbnail_image_url=avgleResult[4]['preview_url'],
+#                 #thumbnail_image_url="https://i.imgur.com/YvY2ttl.jpg",
+#                 title=avgleResult[4]['keyword'][:10],
+#                 text= avgleResult[4]['title'][:10],
+#                 actions=[URITemplateAction(label='查看', uri=avgleResult[4]['video_url'])]
+#             )
+#         ]
+#         )
+#     )
     return carousel_template_message
 
 def sportsChannel():
