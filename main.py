@@ -617,28 +617,28 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, sticker_message)
             
 #     dbResult = firebaseQuery(msg)
-    if dbResult != 'GG':
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#     if dbResult != 'GG':
+#         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-        #r = random.random()
-        #if r > 0.05 :
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
-        #else:
-        #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安')) 
+#         #r = random.random()
+#         #if r > 0.05 :
+#         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#         #else:
+#         #    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='如果我之前回過幹話 不要生氣 去怪紹安')) 
         
-        global sendTime
-        sendTimeStr = str(sendTime).split('.')[0]
-        s = int(sendTimeStr)
+#         global sendTime
+#         sendTimeStr = str(sendTime).split('.')[0]
+#         s = int(sendTimeStr)
         
-        now = str(time.time()).split('.')[0]
-        n = int(now)
+#         now = str(time.time()).split('.')[0]
+#         n = int(now)
 
-        if event.source.type != 'group':
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#         if event.source.type != 'group':
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
-        if not event.source.group_id in quietArr and (n - s) > 10:
-            sendTime = time.time()
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
+#         if not event.source.group_id in quietArr and (n - s) > 10:
+#             sendTime = time.time()
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
 
 if __name__ == "__main__":
     app.run(port=8080)
