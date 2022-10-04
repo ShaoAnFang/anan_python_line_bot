@@ -6,7 +6,7 @@ requests
 imgurpython
 beautifulsoup4
 #python-firebase
-git+https://github.com/ozgur/python-firebase
+-e git://github.com/ozgur/python-firebase.git@0d79d7609844569ea1cec4ac71cb9038e834c355#egg=ozgur
 line-bot-sdk
 paho-mqtt
 gspread
