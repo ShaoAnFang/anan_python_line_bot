@@ -110,12 +110,12 @@ def avgleSearch(avgleResult,titleText='小電影'):
     for data in avgleResult:
         contentDict = {
             "type": "bubble",
-#               "hero": {
-#                 "type": "image",
-#                 "size": "full",
-#                 "aspectMode": "cover",
-#                 "url": data['preview_url']
-#               },
+              "hero": {
+                "type": "image",
+                "size": "full",
+                "aspectMode": "cover",
+                "url": https://placeholder.com/200, #data['preview_url']
+              },
               "body": {
                 "type": "box",
                 "layout": "vertical",
@@ -141,7 +141,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
                     "action": {
                       "type": "uri",
                       "label": "查看",
-                      "uri": 'https://www.youtube.com/' #data['video_url'].replace('https://avgle.com/video/', '')
+                      "uri": f'https://www.youtube.com/{data['video_url'].replace('https://avgle.com/video/', '')}'
                     }
                   }
                 ]
