@@ -9,7 +9,7 @@ import gspread
 import requests
 import datetime
 
-from firebase import firebase
+# from firebase import firebase
 from bs4 import BeautifulSoup
 from imgurpython import ImgurClient
 from flask import Flask, request, abort
@@ -20,10 +20,10 @@ from Controller.liff_controller import LiffController
 
 sendTime = time.time()
 
-firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
-queryAllKeyAndValues = firebase.get('/data',None)
-quiet = firebase.get('/QuietGroup',None)
-quietArr = quiet['group_id']
+# firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+# queryAllKeyAndValues = firebase.get('/data',None)
+# quiet = firebase.get('/QuietGroup',None)
+# quietArr = quiet['group_id']
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -71,88 +71,88 @@ def callback():
 def test():
     return "Hello World!"
 
-@app.route('/queryDB/<string:message>', methods=['GET'])
-def firebaseQuery(message):
-    #queryAllKeyAndValues = firebase.get('/data',None)
-    global queryAllKeyAndValues
-    allKeys = queryAllKeyAndValues.keys()
-    for k in allKeys:
-        #print(message.find(k))
-        #若找不到 返回值是 -1
-        if message.find(k) != -1:
-            #print(queryAllKeyAndValues[k])
-            queryAllValues = queryAllKeyAndValues[k]
-            count = len(queryAllValues) - 1
-            randomNumber = random.randint(0,count)
-            result = queryAllValues[randomNumber]
-            return result
+# @app.route('/queryDB/<string:message>', methods=['GET'])
+# def firebaseQuery(message):
+#     #queryAllKeyAndValues = firebase.get('/data',None)
+#     global queryAllKeyAndValues
+#     allKeys = queryAllKeyAndValues.keys()
+#     for k in allKeys:
+#         #print(message.find(k))
+#         #若找不到 返回值是 -1
+#         if message.find(k) != -1:
+#             #print(queryAllKeyAndValues[k])
+#             queryAllValues = queryAllKeyAndValues[k]
+#             count = len(queryAllValues) - 1
+#             randomNumber = random.randint(0,count)
+#             result = queryAllValues[randomNumber]
+#             return result
     
-    return 'GG'
+#     return 'GG'
 
-@app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
-def firebaseInsert(key,value):
-    #key = '冠宏'
-    #value = 'OC之神'
-    getValues = firebase.get('/data',key)
-    if getValues is None:
-        new = dict()
-        new['0'] = value
-        firebase.put('data',key,new)
-    else:    
-        getValues.append(value)
-        firebase.put('data',key,getValues)
-    #寫完 停兩秒 再讀取DB一次
-    time.sleep(2)
-    global queryAllKeyAndValues
-    queryAllKeyAndValues.clear()
-    queryAllKeyAndValues = firebase.get('/data',None)
-    #queryAllKeyAndValues[key] = value
-    return "好的 記住了"
+# @app.route('/insertDB/<string:key>/<string:value>', methods=['GET'])
+# def firebaseInsert(key,value):
+#     #key = '冠宏'
+#     #value = 'OC之神'
+#     getValues = firebase.get('/data',key)
+#     if getValues is None:
+#         new = dict()
+#         new['0'] = value
+#         firebase.put('data',key,new)
+#     else:    
+#         getValues.append(value)
+#         firebase.put('data',key,getValues)
+#     #寫完 停兩秒 再讀取DB一次
+#     time.sleep(2)
+#     global queryAllKeyAndValues
+#     queryAllKeyAndValues.clear()
+#     queryAllKeyAndValues = firebase.get('/data',None)
+#     #queryAllKeyAndValues[key] = value
+#     return "好的 記住了"
 
-@app.route('/deleteDB', methods=['GET'])
-def firebaseDelete(deleteKey):
-    firebase.delete('/data', deleteKey)
-    time.sleep(2)
-    #刪除完再重新讀取一次DB
-    global queryAllKeyAndValues
-    queryAllKeyAndValues.clear()
-    queryAllKeyAndValues = firebase.get('/data',None)
-    return '好的 已經遺忘'
+# @app.route('/deleteDB', methods=['GET'])
+# def firebaseDelete(deleteKey):
+#     firebase.delete('/data', deleteKey)
+#     time.sleep(2)
+#     #刪除完再重新讀取一次DB
+#     global queryAllKeyAndValues
+#     queryAllKeyAndValues.clear()
+#     queryAllKeyAndValues = firebase.get('/data',None)
+#     return '好的 已經遺忘'
 
-@app.route('/fetchDB/<string:key>', methods=['GET'])
-def firebaseFetch(key):
+# @app.route('/fetchDB/<string:key>', methods=['GET'])
+# def firebaseFetch(key):
        
-    string = ''
-    getValues = firebase.get('/data',key)
-    if getValues is None:
-        string = "沒有被寫入呢"
-    else:
-        for x in getValues:
-            string += x + ' , '
-        #刪掉最後一個逗號
-        last = len(string)
-        string = string[0:last]
-    return string
+#     string = ''
+#     getValues = firebase.get('/data',key)
+#     if getValues is None:
+#         string = "沒有被寫入呢"
+#     else:
+#         for x in getValues:
+#             string += x + ' , '
+#         #刪掉最後一個逗號
+#         last = len(string)
+#         string = string[0:last]
+#     return string
 
-def firebaseChatLog(content, name='', userID = ''):
-    tz = pytz.timezone('Asia/Taipei')
-    dd = datetime.datetime.now(tz).date()
-    inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
-    getChatLog = firebase.get('/ChatLog',inputDate)
+# def firebaseChatLog(content, name='', userID = ''):
+#     tz = pytz.timezone('Asia/Taipei')
+#     dd = datetime.datetime.now(tz).date()
+#     inputDate = "{}-{}-{}".format(dd.year,dd.month,dd.day)
+#     getChatLog = firebase.get('/ChatLog',inputDate)
     
-    #if name != '' and userID != '':
-    #    content = name + ':' + content + '.' + userID
+#     #if name != '' and userID != '':
+#     #    content = name + ':' + content + '.' + userID
     
-    if name != '':
-        content = name + ':' + content
+#     if name != '':
+#         content = name + ':' + content
         
-    if getChatLog is None:
-        arr = []
-        arr.append(content)
-        firebase.put('/ChatLog',inputDate,arr)
-    else:    
-        getChatLog.append(content)
-        firebase.put('/ChatLog',inputDate,getChatLog)
+#     if getChatLog is None:
+#         arr = []
+#         arr.append(content)
+#         firebase.put('/ChatLog',inputDate,arr)
+#     else:    
+#         getChatLog.append(content)
+#         firebase.put('/ChatLog',inputDate,getChatLog)
 
 
 # def stock(stockNumber):
@@ -339,10 +339,10 @@ def handle_message(event):
         m = birthday(string)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=m))
 
-    if msg == '重抓':
-        global queryAllKeyAndValues
-        queryAllKeyAndValues.clear()
-        queryAllKeyAndValues = firebase.get('/data',None)
+#     if msg == '重抓':
+#         global queryAllKeyAndValues
+#         queryAllKeyAndValues.clear()
+#         queryAllKeyAndValues = firebase.get('/data',None)
 
     if msg == '抽':
         result = handsome()
@@ -356,17 +356,17 @@ def handle_message(event):
         w += '\n\n這家如何呢!?'
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=w))
 
-    if msg == '籃球':
-        video_message = VideoSendMessage(
-            original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
-            preview_image_url='https://imgur.com/tCtYGfK.jpg')
-        line_bot_api.reply_message(event.reply_token, video_message) 
+#     if msg == '籃球':
+#         video_message = VideoSendMessage(
+#             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/Hollaback%20Girl.mp4?alt=media&token=e46a3d98-6e51-4c18-b903-61ff45f19f2a',
+#             preview_image_url='https://imgur.com/tCtYGfK.jpg')
+#         line_bot_api.reply_message(event.reply_token, video_message) 
         
-    if msg == '上車':
-        video_message = VideoSendMessage(
-            original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.mp4?alt=media&token=4a20b5ca-d129-496a-a0b3-1d820204a3c1',
-            preview_image_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.png?alt=media&token=c3238c0d-3207-4d6d-9867-0bfa80381263')
-        line_bot_api.reply_message(event.reply_token, video_message)
+#     if msg == '上車':
+#         video_message = VideoSendMessage(
+#             original_content_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.mp4?alt=media&token=4a20b5ca-d129-496a-a0b3-1d820204a3c1',
+#             preview_image_url='https://firebasestorage.googleapis.com/v0/b/python-f5763.appspot.com/o/89.png?alt=media&token=c3238c0d-3207-4d6d-9867-0bfa80381263')
+#         line_bot_api.reply_message(event.reply_token, video_message)
         
     if msg.find('吃懶') != -1 :
         image_message = ImageSendMessage(
@@ -416,19 +416,19 @@ def handle_message(event):
 #             quiet = firebase.get('/QuietGroup',None)
 #             quietArr = quiet['group_id']
 #             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
-            quietArr.append(event.source.group_id)
-            firebase.put('QuietGroup','group_id',quietArr)
+#             quietArr.append(event.source.group_id)
+#             firebase.put('QuietGroup','group_id',quietArr)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好的 安靜哩'))
         
     if msg == '講話':
         if event.source.group_id in quietArr :
             quietArr.remove(event.source.group_id)
-            firebase.put('QuietGroup','group_id',quietArr)
+#             firebase.put('QuietGroup','group_id',quietArr)
             #寫完讓DB重讀一次
             time.sleep(2)
             quiet.clear()
             quietArr.clear()
-            quiet = firebase.get('/QuietGroup',None)
+#             quiet = firebase.get('/QuietGroup',None)
             quietArr = quiet['group_id']
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='好 我會好好講話'))
 
@@ -485,7 +485,7 @@ def handle_message(event):
         
     if msg[0] == '查' and msg[1] == ' ':
         string = msg.split('查 ')[1]   
-        fetchResult = firebaseFetch(string)
+#         fetchResult = firebaseFetch(string)
         result = '關鍵字 ' + string + ' 結果為: \n' + fetchResult
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     
@@ -592,13 +592,13 @@ def handle_message(event):
     if event.source.type =='user' :
         #直接對機器人講
         z = '單獨(user_id):' + event.source.user_id
-        firebaseChatLog(msg,profile.display_name,z)   
+#         firebaseChatLog(msg,profile.display_name,z)   
         #firebaseChatLog(msg,'',z)
         
     elif event.source.type == 'group':
         #群組裡講
         z = '群組(group_id):' + event.source.group_id
-        firebaseChatLog(msg,profile.display_name,z)
+#         firebaseChatLog(msg,profile.display_name,z)
         #firebaseChatLog(msg,'',z)    
             
     if sticker(msg) != 'GG':
@@ -616,7 +616,7 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token, sticker_message)
             
-    dbResult = firebaseQuery(msg)
+#     dbResult = firebaseQuery(msg)
     if dbResult != 'GG':
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=dbResult))
         
