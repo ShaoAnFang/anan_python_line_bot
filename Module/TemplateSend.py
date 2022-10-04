@@ -114,7 +114,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
                 "type": "image",
                 "size": "full",
                 "aspectMode": "cover",
-                "url": https://placeholder.com/200, #data['preview_url']
+                "url": 'https://placeholder.com/200' #data['preview_url']
               },
               "body": {
                 "type": "box",
