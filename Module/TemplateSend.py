@@ -7,9 +7,9 @@ import hashlib
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-from firebase import firebase
+# from firebase import firebase
 
-firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
+# firebase = firebase.FirebaseApplication('https://python-f5763.firebaseio.com/',None)
 
 # def moive(g):
 #     carousel_template_message = TemplateSendMessage(
@@ -151,7 +151,7 @@ def avgleSearch(avgleResult,titleText='小電影'):
     return carousel_template_message
 
 def sportsChannel():
-    channelList = firebase.get('/TVChannel','channelList')
+#     channelList = firebase.get('/TVChannel','channelList')
 
     carousel_template_message = TemplateSendMessage(
     alt_text='TV Channel',
@@ -197,19 +197,19 @@ def sportsChannel():
     )
     return carousel_template_message
 
-def redir(urlString):
-    #print(int(datetime.now().timestamp()))
-    md = firebase.get('/TVChannel',"md")
-    nowTimestamp = int(datetime.now().timestamp())
-    token = md + str(nowTimestamp + 5)
-    result = hashlib.md5(token.encode())
-    tokenMD5 = result.hexdigest()
-    tokenString = "&st={}&token={}".format(str(nowTimestamp), tokenMD5)
-    urlString = urlString + tokenString
-    #print(urlString)
-    r = requests.get(urlString)
-    #print(r.url)
-    return r.url
+# def redir(urlString):
+#     #print(int(datetime.now().timestamp()))
+# #     md = firebase.get('/TVChannel',"md")
+#     nowTimestamp = int(datetime.now().timestamp())
+#     token = md + str(nowTimestamp + 5)
+#     result = hashlib.md5(token.encode())
+#     tokenMD5 = result.hexdigest()
+#     tokenString = "&st={}&token={}".format(str(nowTimestamp), tokenMD5)
+#     urlString = urlString + tokenString
+#     #print(urlString)
+#     r = requests.get(urlString)
+#     #print(r.url)
+#     return r.url
 
 def aime(albumResult,textTitle):
     carousel_template_message = TemplateSendMessage(
