@@ -41,8 +41,8 @@ from linebot.models import *
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(os.environ.get('LINE_BOT_TOKEN'))
-handler = WebhookHandler(os.environ.get('LINE_WEB_HOOK'))
+line_bot_api = LineBotApi(os.getenv('LINE_BOT_TOKEN'))
+handler = WebhookHandler(os.getenv('LINE_WEB_HOOK'))
 
 api = Api(app)
 #https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
@@ -248,8 +248,8 @@ def aime(key):
     return imgurResult
 
 def handsome():
-    client_id = os.environ.get('IMGUR_ID')
-    client_secret = os.environ.get('IMGUR_SECRET')
+    client_id = os.getenv('IMGUR_ID')
+    client_secret = os.getenv('IMGUR_SECRET')
     client = ImgurClient(client_id,client_secret)
     images = client.get_album_images('hjCtM')
     index = random.randint(0, len(images) - 1)
