@@ -35,15 +35,10 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run a Python script
-#       run: python -c 'import os;print(os.environ)'
       env:
         LINE_BOT_TOKEN: ${{ secrets.LINE_BOT_TOKEN }}
         LINE_WEB_HOOK: ${{ secrets.LINE_WEB_HOOK }}
         IMGUR_ID: ${{ secrets.IMGUR_ID }}
         IMGUR_SECRET: ${{ secrets.IMGUR_SECRET }}
-      with:
-        LINE_BOT_TOKEN: ${{ secrets.LINE_BOT_TOKEN }}
-        LINE_WEB_HOOK: ${{ secrets.LINE_WEB_HOOK }}
-        IMGUR_ID: ${{ secrets.IMGUR_ID }}
-        IMGUR_SECRET: ${{ secrets.IMGUR_SECRET }}
+      run: python -c 'import os;print(os.environ)'
 
