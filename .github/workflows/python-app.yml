@@ -18,46 +18,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Create env file'
-        run: |
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: 'Create env file'
+      run: |
           touch .env
           echo LINE_BOT_TOKEN = ${{ secrets.LINE_BOT_TOKEN }} >> .env
           echo LINE_WEB_HOOK = ${{ secrets.LINE_WEB_HOOK }} >> .env
           echo IMGUR_ID = ${{ secrets.IMGUR_ID }} >> .env
           echo IMGUR_SECRET = ${{ secrets.IMGUR_SECRET }} >> .env
           cat .env
-
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          dockerfile: Dockerfile
-          tags: latest
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Set up Python 3.10
-#       uses: actions/setup-python@v3
-#       with:
-#         python-version: "3.10"
-#     - name: Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install flake8 pytest
-#         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#     - name: Lint with flake8
-#       run: |
-#         # stop the build if there are Python syntax errors or undefined names
-#         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-#         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#     - name: 'Create env file'
-#       run: |
-#           touch .env
-#           echo LINE_BOT_TOKEN = ${{ secrets.LINE_BOT_TOKEN }} >> .env
-#           echo LINE_WEB_HOOK = ${{ secrets.LINE_WEB_HOOK }} >> .env
-#           echo IMGUR_ID = ${{ secrets.IMGUR_ID }} >> .env
-#           echo IMGUR_SECRET = ${{ secrets.IMGUR_SECRET }} >> .env
-#           cat .env
+          
+    - name: Check GitHub Actions Secret
+      env:
+        LINE_WEB_HOOK: ${{ secrets.LINE_WEB_HOOK }}
+      if: env.LINE_WEB_HOOK == 'f2f133f2ba43194cf0e18503586023aa'
+      run: echo "LINE_WEB_HOOK == f2f133f2ba43194cf0e18503586023aa"
+            
+    
 
 
 
