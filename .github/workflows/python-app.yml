@@ -26,13 +26,7 @@ jobs:
           echo IMGUR_ID = ${{ secrets.IMGUR_ID }} >> .env
           echo IMGUR_SECRET = ${{ secrets.IMGUR_SECRET }} >> .env
           cat .env
-          
-      - uses: actions/checkout@v2
-      - name: Download .env file
-        uses: actions/download-artifact@v2
-        with:
-          name: env-file
-          path: .env
+
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
