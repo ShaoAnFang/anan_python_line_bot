@@ -300,7 +300,7 @@ def handle_message(event):
     id = event.message.id
     m = 'msgType:' + msgType + '\n' + 'id:' + id
     url = 'https://api.line.me/v2/bot/message/{}/content'.format(id)
-    headers =  {'Authorization':'Bearer E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=' }
+    headers =  {'Authorization': f'Bearer {os.getenv('LINE_BOT_TOKEN')}' }
     response = requests.get(url, headers=headers)
     #print(response)
     with open('{}.m4a'.format(id), 'wb') as f:
