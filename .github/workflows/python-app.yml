@@ -40,4 +40,4 @@ jobs:
         LINE_WEB_HOOK: ${{ secrets.LINE_WEB_HOOK }}
         IMGUR_ID: ${{ secrets.IMGUR_ID }}
         IMGUR_SECRET: ${{ secrets.IMGUR_SECRET }}
-      run: python -c 'import os;print(os.environ)'
+#       run: python -c 'import os;print(os.environ)'
