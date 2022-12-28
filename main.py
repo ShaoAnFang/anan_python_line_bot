@@ -43,9 +43,6 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get('LINE_BOT_TOKEN'))
 handler = WebhookHandler(os.environ.get('LINE_WEB_HOOK'))
-# LineBotApi('E3V1P2J74V3qQ5VQsR0Au27E+NwBBlnh8r24mpP5vbkrogwj7PFroxNAKS9MU2iBeDMJiEFiaqe0SvKypYsoPcr70wVac/v4FJfXa1TwGPo0QeI1fkZcaejhJSz09aetC0TaMsblhNOorJaG4J/RlwdB04t89/1O/w1cDnyilFU=')
-# handler = WebhookHandler('f2f133f2ba43194cf0e18503586023aa')
-
 
 api = Api(app)
 #https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
@@ -253,8 +250,6 @@ def aime(key):
 def handsome():
     client_id = os.environ.get('IMGUR_ID')
     client_secret = os.environ.get('IMGUR_SECRET')
-#     client_id = 'c3e767d450a401e'
-#     client_secret = 'cdf5fb70e82bc00e65c0d1d1a4eed318ae82024c'
     client = ImgurClient(client_id,client_secret)
     images = client.get_album_images('hjCtM')
     index = random.randint(0, len(images) - 1)
