@@ -11,3 +11,4 @@ line-bot-sdk
 paho-mqtt
 gspread
 oauth2client
+python-dotenv
