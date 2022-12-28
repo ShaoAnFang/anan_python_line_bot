@@ -34,11 +34,14 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Run a Python script
-      env:
-        LINE_BOT_TOKEN: ${{ secrets.LINE_BOT_TOKEN }}
-        LINE_WEB_HOOK: ${{ secrets.LINE_WEB_HOOK }}
-        IMGUR_ID: ${{ secrets.IMGUR_ID }}
-        IMGUR_SECRET: ${{ secrets.IMGUR_SECRET }}
-      run: python -c 'import os;print(os.environ)'
+    - name: 'Create env file'
+      run: |
+          touch .env
+          echo LINE_BOT_TOKEN = ${{ secrets.LINE_BOT_TOKEN }} >> .env
+          echo LINE_WEB_HOOK = ${{ secrets.LINE_WEB_HOOK }} >> .env
+          echo IMGUR_ID = ${{ secrets.IMGUR_ID }} >> .env
+          echo IMGUR_SECRET = ${{ secrets.IMGUR_SECRET }} >> .env
+          cat .env
+
+
 
